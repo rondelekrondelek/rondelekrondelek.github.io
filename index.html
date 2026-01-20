@@ -4,27 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angielski Online | Ewelina Nowak</title>
-    <meta name="description" content="Kreatywne lekcje angielskiego. Przełam lody i zacznij mówić.">
+    <meta name="description" content="Kreatywne lekcje angielskiego w luźnej atmosferze. Przełam lody i zacznij mówić.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA KOLORÓW (PLAYFUL / FOLDER STYLE) --- */
+        /* --- PALETA "COFFEE HOUSE" --- */
         :root {
-            --orange: #e07a5f;
-            --teal: #216e78;
-            --blue: #5465ff;
-            --cream: #fdfbf7;
-            
-            --text-dark: #1d3557;
-            --text-muted: #457b9d;
-            --white: #ffffff;
+            /* Tła */
+            --bg-cream: #fdfbf7;      /* Ciepły papier/śmietanka */
+            --bg-white: #ffffff;
+            --bg-card: #ffffff;
 
-            --radius-lg: 30px;
-            --radius-md: 20px;
-            --shadow: 0 10px 40px rgba(0,0,0,0.06);
+            /* Tekst */
+            --text-coffee: #4a3b32;   /* Głęboki brąz zamiast czerni */
+            --text-muted: #8c7b70;    /* Kolor kawy z mlekiem */
+
+            /* Akcenty */
+            --color-honey: #feb538;   /* Twój żółty (Miód) */
+            --color-clay: #d68c68;    /* Stonowana terakota (do detali) */
+
+            /* Ustawienia */
+            --radius-soft: 12px;
+            --radius-organic: 60% 40% 30% 70% / 60% 30% 70% 40%; /* Kształt "kleksa" */
+            --shadow-soft: 0 15px 40px -10px rgba(74, 59, 50, 0.08);
+            --transition: all 0.4s ease;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,166 +38,279 @@
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--cream);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-coffee);
+            line-height: 1.8; /* Większy oddech w tekście */
+            font-size: 17px;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; }
-        a { text-decoration: none; transition: 0.3s; }
-        ul { list-style: none; }
+        /* Typografia "Magazine" */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-coffee);
+            line-height: 1.25;
+            font-weight: 700;
+        }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 80px 0; }
+        h1 { font-size: 3.8rem; }
+        h2 { font-size: 2.8rem; margin-bottom: 20px; }
+        h3 { font-size: 1.6rem; margin-bottom: 15px; }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .section-padding { padding: 100px 0; }
+        .text-center { text-align: center; }
 
         /* --- BUTTONS --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 14px 32px; border-radius: 50px; font-weight: 700;
-            cursor: pointer; transition: 0.3s; border: none; font-size: 1rem;
+            padding: 14px 34px; 
+            border-radius: 50px; 
+            font-family: 'Lato', sans-serif; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.9rem;
+            cursor: pointer; transition: var(--transition); border: 2px solid transparent;
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        .btn-primary { background: var(--text-dark); color: white; }
-        .btn-orange { background: var(--orange); color: white; }
-        .btn-teal { background: var(--teal); color: white; }
-        
-        .btn-outline { background: transparent; border: 2px solid var(--text-dark); color: var(--text-dark); }
-        .btn-outline:hover { background: var(--text-dark); color: white; }
+        .btn-primary {
+            background-color: var(--text-coffee);
+            color: var(--bg-cream);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-honey);
+            color: var(--text-coffee);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(254, 181, 56, 0.3);
+        }
+
+        .btn-honey {
+            background-color: var(--color-honey);
+            color: var(--text-coffee);
+        }
+        .btn-honey:hover {
+            background-color: #ffc866;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--text-coffee);
+            color: var(--text-coffee);
+        }
+        .btn-outline:hover {
+            background-color: var(--text-coffee);
+            color: var(--bg-cream);
+            transform: translateY(-3px);
+        }
 
         /* --- NAVBAR --- */
         nav {
-            padding: 20px 0; background: var(--cream);
+            padding: 25px 0;
             position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba(253, 251, 247, 0.95); /* Półprzezroczysty krem */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(74, 59, 50, 0.05);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 5px; }
-        .logo span { color: var(--orange); }
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-link { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; }
-        .nav-link:hover { color: var(--orange); }
         
-        @media(max-width: 768px) { .nav-links { display: none; } } /* Uproszczone mobile */
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.6rem; font-weight: 700; font-style: italic;
+            color: var(--text-coffee);
+        }
+        .logo span { color: var(--color-honey); font-style: normal; }
+
+        .nav-links { display: flex; gap: 35px; align-items: center; }
+        .nav-link { 
+            font-size: 0.95rem; font-weight: 400; color: var(--text-coffee); 
+            position: relative;
+        }
+        /* Subtelne podkreślenie */
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--color-honey); transition: 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        @media(max-width: 768px) { .nav-links { display: none; } }
 
         /* --- HERO SECTION --- */
         .hero {
-            padding: 80px 0 100px;
+            padding: 80px 0 120px;
             position: relative;
         }
         .hero-grid {
-            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
         }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 25px; color: var(--text-dark); }
-        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 500px; }
-        
-        /* Ilustracja w Hero (SVG) */
-        .hero-svg { width: 100%; height: auto; max-width: 500px; }
 
-        /* --- O MNIE (Styl Karty/Teczki) --- */
-        .about-section { background: var(--white); border-radius: var(--radius-lg); margin: 0 20px; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        /* "Odręczne" podkreślenie */
+        .highlight {
+            position: relative; white-space: nowrap; z-index: 1;
+        }
+        .highlight::after {
+            content: ''; position: absolute; bottom: 5px; left: -5px; width: 105%; height: 35%;
+            background: var(--color-honey); opacity: 0.6; z-index: -1;
+            border-radius: 4px; transform: rotate(-1deg);
+        }
+
+        .hero p { 
+            font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; 
+            max-width: 480px; font-weight: 300;
+        }
         
-        .about-image-wrapper {
+        /* Zdjęcie w organicznym kształcie */
+        .hero-img-wrapper {
             position: relative;
         }
-        .about-photo {
-            width: 100%; border-radius: var(--radius-lg);
-            /* Stylizowana ramka */
-            border: 8px solid var(--cream);
-            box-shadow: var(--shadow);
+        .hero-img {
+            width: 100%; max-width: 450px;
+            border-radius: var(--radius-organic);
+            box-shadow: var(--shadow-soft);
+            animation: breathe 6s ease-in-out infinite;
         }
-        .about-badge {
-            position: absolute; bottom: -20px; right: -20px;
-            background: var(--blue); color: white; padding: 15px 25px;
-            border-radius: var(--radius-md); font-weight: 700;
-            transform: rotate(-3deg);
+        /* Dekoracja w tle zdjęcia */
+        .blob-bg {
+            position: absolute; top: -20px; right: -20px; width: 100%; height: 100%;
+            background: #f0ece6; z-index: -1;
+            border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+            transform: scale(1.1);
         }
 
-        /* --- FOLDERS SECTION (Twoje "Zakładki") --- */
-        .folders-wrapper { display: flex; flex-direction: column; gap: 50px; }
+        @keyframes breathe {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+
+        /* --- O MNIE --- */
+        .about-section {
+            background: var(--bg-white);
+            margin: 0 20px; border-radius: 30px;
+        }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
         
-        .folder-card {
-            position: relative; border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
-            padding: 50px; color: white; box-shadow: var(--shadow);
-        }
-        .folder-tab {
-            position: absolute; top: -40px; left: 0; height: 40px; padding: 0 35px;
-            border-radius: 20px 20px 0 0; display: flex; align-items: center;
-            font-weight: 700; font-size: 1.1rem;
-        }
-        /* Efekt wklęsłego rogu przy zakładce */
-        .folder-tab::after {
-            content: ''; position: absolute; bottom: 0; right: -20px; width: 20px; height: 20px;
-            background: transparent; border-bottom-left-radius: 50%;
+        .about-text p { margin-bottom: 25px; color: var(--text-muted); }
+        .quote {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic;
+            color: var(--text-coffee); border-left: 3px solid var(--color-honey);
+            padding-left: 20px; margin: 30px 0;
         }
 
-        /* Warianty kolorów folderów */
-        .f-orange { background: var(--orange); }
-        .f-orange .folder-tab { background: var(--orange); }
-        .f-orange .folder-tab::after { box-shadow: -10px 0 0 0 var(--orange); }
-        
-        .f-teal { background: var(--teal); }
-        .f-teal .folder-tab { background: var(--teal); }
-        .f-teal .folder-tab::after { box-shadow: -10px 0 0 0 var(--teal); }
-        
-        .f-blue { background: var(--blue); }
-        .f-blue .folder-tab { background: var(--blue); }
-        .f-blue .folder-tab::after { box-shadow: -10px 0 0 0 var(--blue); }
+        /* --- KARTY "DLA KOGO" --- */
+        .persona-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px;
+        }
+        .persona-card {
+            background: var(--bg-white); padding: 40px 30px;
+            border-radius: 20px 20px 0 20px; /* Nietypowy kształt */
+            border: 1px solid rgba(74, 59, 50, 0.05);
+            transition: var(--transition);
+        }
+        .persona-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--color-honey);
+        }
+        .persona-icon {
+            font-size: 2.5rem; margin-bottom: 20px; display: block;
+            color: var(--color-clay);
+        }
 
-        .folder-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .folder-content ul li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-        .folder-content ul li::before { content: '•'; position: absolute; left: 0; }
-
-        /* --- OFERTA --- */
-        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* --- OFERTA (Menu Kawiarniane) --- */
+        .offer-section { position: relative; }
+        .offer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
+        }
         .offer-card {
-            background: var(--white); border-radius: var(--radius-lg); padding: 40px 30px;
-            text-align: center; transition: 0.3s; border: 2px solid transparent;
-            display: flex; flex-direction: column; align-items: center;
+            background: var(--bg-white);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            /* Wygląd karty menu */
+            border: 1px solid #f0ece6;
+            position: relative;
         }
-        .offer-card:hover { transform: translateY(-10px); border-color: var(--orange); box-shadow: var(--shadow); }
-        .illu-offer { height: 160px; margin-bottom: 20px; }
-        
+        /* Złota linia na górze */
+        .offer-card::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 40px; height: 4px; background: var(--color-honey);
+        }
+
+        .offer-title { font-size: 1.8rem; margin-bottom: 10px; text-align: center; }
+        .offer-price { 
+            text-align: center; font-family: 'Playfair Display', serif; 
+            font-size: 1.5rem; color: var(--color-clay); font-weight: 700; margin-bottom: 25px; 
+            font-style: italic;
+        }
+        .offer-desc { color: var(--text-muted); margin-bottom: 30px; text-align: center; font-size: 0.95rem; }
+        .offer-features li {
+            margin-bottom: 12px; padding-left: 20px; position: relative; font-size: 0.95rem; color: var(--text-coffee);
+        }
+        .offer-features li::before {
+            content: '—'; position: absolute; left: 0; color: var(--color-honey);
+        }
+
         /* --- OPINIE --- */
-        .reviews-section { text-align: center; }
+        .reviews-section { background: var(--text-coffee); color: var(--bg-cream); }
+        .reviews-section h2 { color: var(--bg-cream); }
+        .reviews-section p { color: rgba(253, 251, 247, 0.7); }
+        /* Elfsight na ciemnym tle */
         .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; }
 
         /* --- FAQ --- */
         .faq-item {
-            background: var(--white); margin-bottom: 15px; border-radius: var(--radius-md);
-            overflow: hidden; border: 1px solid #eee;
+            border-bottom: 1px solid #e0dcd5; margin-bottom: 15px;
         }
         .faq-item summary {
-            padding: 20px; cursor: pointer; font-weight: 700; list-style: none;
+            padding: 20px 0; cursor: pointer; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .faq-item[open] summary { color: var(--teal); }
-        .faq-content { padding: 0 20px 20px; color: var(--text-muted); line-height: 1.6; }
+        .faq-item[open] summary { color: var(--color-clay); }
+        .faq-content { padding-bottom: 25px; color: var(--text-muted); }
+        summary::after { content: '+'; font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.5rem; }
+        details[open] summary::after { content: '−'; }
 
         /* --- KONTAKT --- */
-        .contact-section { background: var(--text-dark); color: white; border-radius: 50px 50px 0 0; margin-top: 50px; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .contact-form input, .contact-form textarea {
-            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 15px; border: none;
-            font-family: inherit; font-size: 1rem;
+        .contact-wrapper {
+            background: var(--bg-white);
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            display: grid; grid-template-columns: 1fr 1.5fr;
         }
-        .contact-btn { background: var(--orange); color: white; width: 100%; border: none; }
-        .contact-btn:hover { background: #d66a4f; }
+        .contact-info {
+            background: #f4f1ea; padding: 60px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .contact-form-box { padding: 60px; }
+
+        .form-field {
+            width: 100%; padding: 15px 0; 
+            background: transparent; border: none; 
+            border-bottom: 1px solid #dcd6ce;
+            font-family: 'Lato', sans-serif; font-size: 1rem; color: var(--text-coffee);
+            margin-bottom: 25px; transition: 0.3s;
+        }
+        .form-field:focus { outline: none; border-bottom-color: var(--color-honey); }
+        .checkbox-wrapper { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 10px; margin-bottom: 30px; }
 
         /* --- FOOTER --- */
-        footer { background: var(--text-dark); color: rgba(255,255,255,0.6); padding: 30px 0 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer {
+            text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 0.9rem;
+            border-top: 1px solid rgba(74, 59, 50, 0.05);
+        }
 
+        /* --- RWD --- */
         @media(max-width: 900px) {
-            .hero-grid, .about-grid, .folder-content, .contact-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.8rem; }
+            .hero-grid, .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
             .hero { text-align: center; }
-            .hero-grid { gap: 30px; }
-            .hero-svg { max-width: 300px; margin: 0 auto; }
-            .folder-tab { position: static; width: fit-content; border-radius: 20px 20px 0 0; margin-bottom: -1px; }
-            .folder-tab::after { display: none; }
-            .folder-card { border-radius: 0 20px 20px 20px; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-img-wrapper { margin-top: 50px; max-width: 350px; margin-left: auto; margin-right: auto; }
+            .contact-info { padding: 40px; }
+            .contact-form-box { padding: 40px 20px; }
+            .offer-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -199,10 +318,10 @@
 
     <nav>
         <div class="container nav-inner">
-            <a href="#" class="logo">BreakThe<span>Ice</span></a>
+            <a href="#" class="logo">Ewelina <span>Nowak</span></a>
             <div class="nav-links">
                 <a href="#o-mnie" class="nav-link">O mnie</a>
-                <a href="#metoda" class="nav-link">Metoda</a>
+                <a href="#metoda" class="nav-link">Podejście</a>
                 <a href="#oferta" class="nav-link">Oferta</a>
                 <a href="#kontakt" class="btn btn-primary">Umów lekcję</a>
             </div>
@@ -212,207 +331,202 @@
     <header class="hero container">
         <div class="hero-grid">
             <div class="hero-text">
-                <span style="background:var(--orange); color:white; padding:5px 15px; border-radius:20px; font-size:0.8rem; font-weight:700; display:inline-block; margin-bottom:20px;">NOWOŚĆ: ZAJĘCIA 2025</span>
-                <h1>Angielski, który<br><span style="color:var(--teal)">łamie lody.</span></h1>
-                <p>Zapomnij o nudnych podręcznikach. Ucz się języka poprzez rozmowę, ciekawe tematy i autorskie materiały. Przełam barierę już na pierwszej lekcji.</p>
-                <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content: center; md:justify-content: flex-start;">
-                    <a href="#kontakt" class="btn btn-orange">Umów lekcję próbną</a>
-                    <a href="#oferta" class="btn btn-outline">Zobacz kursy</a>
+                <h1>Angielski przy<br><span class="highlight">dobrej kawie.</span></h1>
+                <p>Zapomnij o stresie i szkolnej ławce. Zapraszam Cię na lekcje, które są jak spotkanie z przyjacielem. Przełam barierę językową w atmosferze pełnej wsparcia.</p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
+                    <a href="#kontakt" class="btn btn-honey">Umów darmową rozmowę</a>
+                    <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
                 </div>
             </div>
             
-            <div class="hero-image">
-                <svg class="hero-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50,150 Q100,50 200,80 T350,150 T200,280 T50,150" fill="#e0f2f1" />
-                    <circle cx="120" cy="180" r="15" fill="#e07a5f" /> <path d="M120,195 L120,240 M120,210 L90,190 M120,210 L150,190 M120,240 L100,270 M120,240 L140,270" stroke="#e07a5f" stroke-width="8" stroke-linecap="round" fill="none"/>
-                    <circle cx="280" cy="160" r="15" fill="#216e78" /> <path d="M280,175 L280,220 M280,190 L250,170 M280,190 L310,170 M280,220 L260,250 M280,220 L300,250" stroke="#216e78" stroke-width="8" stroke-linecap="round" fill="none"/>
-                    <path d="M160,100 Q160,80 190,80 H210 Q240,80 240,100 V120 Q240,140 210,140 H190 L160,160 V120 Q160,120 160,120" fill="white" stroke="#1d3557" stroke-width="2"/>
-                    <text x="180" y="118" font-family="sans-serif" font-size="20" fill="#1d3557" font-weight="bold">Hi!</text>
-                </svg>
+            <div class="hero-img-wrapper">
+                <div class="blob-bg"></div>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=750" alt="Ewelina Nowak Lektorka" class="hero-img">
             </div>
         </div>
     </header>
 
-    <section id="o-mnie" class="section-padding">
-        <div class="container about-section" style="padding: 60px;">
-            <div class="about-grid">
-                <div class="about-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=700" alt="Lektorka" class="about-photo">
-                    <div class="about-badge">Ewelina Nowak</div>
+    <section id="o-mnie" class="section-padding" style="padding-bottom: 50px;">
+        <div class="container about-section">
+            <div style="padding: 60px;" class="about-grid">
+                <div>
+                    <h2>Więcej niż lektor.</h2>
+                    <div class="quote">
+                        "Język to narzędzie do budowania relacji, a nie zbiór gramatycznych regułek."
+                    </div>
+                    <p>Cześć! Jestem Ewelina. Wierzę, że nauka angielskiego może być przyjemnością, a nie przykrym obowiązkiem.</p>
+                    <p>Moje zajęcia są skrojone dla dorosłych, którzy cenią swój czas i chcą konkretów, ale podanych w ludzkiej formie. Specjalizuję się w Business English, ale odczarowuję "korpo-mowę", ucząc Cię komunikować się naturalnie i swobodnie.</p>
                 </div>
-                <div class="about-text">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Cześć, tu Ewelina!</h2>
-                    <p style="margin-bottom: 20px; font-size:1.1rem; color: var(--text-muted);">
-                        Nie jestem typową "panią od angielskiego". Moje zajęcia to partnerska rozmowa, a nie odpytywanie przy tablicy.
-                    </p>
-                    <p style="margin-bottom: 30px;">
-                        Specjalizuję się w przełamywaniu barier. Jeśli rozumiesz wszystko, co czytasz, ale boisz się odezwać na spotkaniu – trafiłeś idealnie. Pokażę Ci, że Twój angielski jest lepszy niż myślisz!
-                    </p>
-                    <ul style="display: grid; gap: 10px;">
-                        <li style="display:flex; align-items:center; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> 10 lat doświadczenia</li>
-                        <li style="display:flex; align-items:center; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> Setki zadowolonych uczniów</li>
-                        <li style="display:flex; align-items:center; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> Autorska metoda</li>
+                <div>
+                    <h3 style="margin-bottom: 30px;">Dlaczego moi uczniowie zostają na lata?</h3>
+                    <ul style="display:grid; gap:20px;">
+                        <li style="display:flex; gap:15px; align-items:center;">
+                            <span style="font-size:1.5rem; color:var(--color-honey)">☕</span>
+                            <span><strong>Atmosfera:</strong> Zero stresu, 100% wsparcia.</span>
+                        </li>
+                        <li style="display:flex; gap:15px; align-items:center;">
+                            <span style="font-size:1.5rem; color:var(--color-honey)">📑</span>
+                            <span><strong>Materiały:</strong> Autorskie, ciekawe, życiowe.</span>
+                        </li>
+                        <li style="display:flex; gap:15px; align-items:center;">
+                            <span style="font-size:1.5rem; color:var(--color-honey)">🎯</span>
+                            <span><strong>Cel:</strong> Mówienie od pierwszej minuty.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="metoda" class="section-padding container folders-wrapper">
-        
-        <div class="folder-card f-orange">
-            <div class="folder-tab">Indywidualne podejście</div>
-            <div class="folder-content">
-                <div>
-                    <h2>Kurs grupowy czy indywidualny?</h2>
-                    <p>Stawiam na dopasowanie. Na zajęciach 1:1 masz 100% mojej uwagi. W małej grupie – motywację od innych.</p>
-                </div>
-                <div style="background:rgba(255,255,255,0.15); padding:20px; border-radius:15px;">
-                    <strong>Wybierz lekcje 1:1, jeśli:</strong>
-                    <ul>
-                        <li>Chcesz robić szybkie postępy</li>
-                        <li>Masz specyficzny cel (np. rozmowa o pracę)</li>
-                    </ul>
-                </div>
-            </div>
+    <section id="metoda" class="section-padding container">
+        <div class="text-center" style="max-width: 700px; margin: 0 auto 60px;">
+            <h2>Dla kogo jest ta przestrzeń?</h2>
+            <p>Tworzę lekcje z myślą o osobach, które chcą czegoś więcej niż standardowy kurs językowy.</p>
         </div>
 
-        <div class="folder-card f-teal">
-            <div class="folder-tab">Przełamywanie barier</div>
-            <div class="folder-content">
-                <div>
-                    <h2>Nie trać czasu na nudę</h2>
-                    <p>Skupiamy się na praktyce. Gramatyka "przy okazji", słówka w kontekście. Rozmawiamy o tym, co Cię interesuje.</p>
-                </div>
-                <div>
-                    <strong>Zalety online:</strong>
-                    <ul>
-                        <li>Uczysz się z domu (komfort)</li>
-                        <li>Oszczędzasz czas na dojazdy</li>
-                        <li>Materiały w chmurze 24/7</li>
-                    </ul>
-                </div>
+        <div class="persona-grid">
+            <div class="persona-card">
+                <span class="persona-icon">💼</span>
+                <h3>Dla profesjonalistów</h3>
+                <p>Potrzebujesz angielskiego w pracy, ale boisz się odezwać na spotkaniu? Pomogę Ci zyskać pewność siebie w biznesie.</p>
+            </div>
+            <div class="persona-card">
+                <span class="persona-icon">😶</span>
+                <h3>Dla "wiecznie początkujących"</h3>
+                <p>Uczysz się od lat, ale wciąż masz blokadę? Stworzę dla Ciebie bezpieczną strefę do popełniania błędów i nauki.</p>
+            </div>
+            <div class="persona-card">
+                <span class="persona-icon">🌍</span>
+                <h3>Dla ciekawych świata</h3>
+                <p>Chcesz podróżować, czytać zagraniczne media i oglądać filmy w oryginale? Otworzę Ci te drzwi.</p>
             </div>
         </div>
-
-        <div class="folder-card f-blue">
-            <div class="folder-tab">Autorskie materiały</div>
-            <div class="folder-content">
-                <div>
-                    <h2>Bez podręcznika? Tak!</h2>
-                    <p>Korzystamy z artykułów, wideo, podcastów i moich autorskich kart pracy. Żywy język, a nie szkolne czytanki.</p>
-                </div>
-                <div>
-                    <p>Tematy? Psychologia, biznes, technologie, podróże. To, co Cię kręci.</p>
-                </div>
-            </div>
-        </div>
-
     </section>
 
-    <section id="oferta" class="section-padding" style="background: white;">
+    <section id="oferta" class="section-padding" style="background: var(--bg-white);">
         <div class="container">
-            <div style="text-align:center; margin-bottom:50px;">
-                <h2>Oferta kursów</h2>
-                <p style="color:var(--text-muted)">Wybierz opcję dla siebie</p>
+            <div class="text-center" style="margin-bottom: 60px;">
+                <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--color-clay);">Wybierz swój pakiet</span>
+                <h2 style="margin-top: 10px;">Menu Kursów</h2>
             </div>
 
             <div class="offer-grid">
                 <div class="offer-card">
-                    <svg class="illu-offer" viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="80" fill="#e0f2f1" />
-                        <path d="M100,60 L100,120 L70,160 M100,120 L130,160 M70,90 L130,90" stroke="#216e78" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <circle cx="100" cy="50" r="15" fill="#216e78"/>
-                    </svg>
-                    <h3 style="color:var(--teal)">General English</h3>
-                    <p>Dla podróżników i do życia codziennego. Poczuj luz w mówieniu.</p>
-                    <div style="margin-top:auto; font-weight:800; font-size:1.2rem; color:var(--text-dark)">od 120 zł</div>
+                    <h3 class="offer-title">General English</h3>
+                    <div class="offer-price">120 PLN <span style="font-size:0.9rem; font-weight:400">/ 60 min</span></div>
+                    <p class="offer-desc">Konwersacje o życiu, kulturze i podróżach. Rozwijaj słownictwo w naturalny sposób.</p>
+                    <ul class="offer-features">
+                        <li>Luźne rozmowy</li>
+                        <li>Artykuły i wideo</li>
+                        <li>Praca domowa (dla chętnych)</li>
+                    </ul>
+                    <div style="text-align:center; margin-top:30px;">
+                        <a href="#kontakt" class="btn btn-outline" style="font-size:0.8rem;">Wybieram</a>
+                    </div>
+                </div>
+
+                <div class="offer-card" style="border-color: var(--color-honey);">
+                    <div style="position:absolute; top:-12px; right:20px; background:var(--color-honey); font-size:0.7rem; padding:4px 10px; border-radius:10px; font-weight:bold;">BESTSELLER</div>
+                    <h3 class="offer-title">Business English</h3>
+                    <div class="offer-price">150 PLN <span style="font-size:0.9rem; font-weight:400">/ 60 min</span></div>
+                    <p class="offer-desc">Angielski w HR, finansach, IT. Przygotowanie do prezentacji, maili i negocjacji.</p>
+                    <ul class="offer-features">
+                        <li>Symulacje spotkań</li>
+                        <li>Korekta CV / LinkedIn</li>
+                        <li>Słownictwo branżowe</li>
+                    </ul>
+                    <div style="text-align:center; margin-top:30px;">
+                        <a href="#kontakt" class="btn btn-honey" style="font-size:0.8rem;">Wybieram</a>
+                    </div>
                 </div>
 
                 <div class="offer-card">
-                    <svg class="illu-offer" viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="80" fill="#eef2ff" />
-                        <path d="M100,130 L100,80 M100,80 L70,50 M100,80 L130,50 M100,130 L70,160 M100,130 L130,160" stroke="#5465ff" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <circle cx="100" cy="40" r="15" fill="#5465ff"/>
-                    </svg>
-                    <h3 style="color:var(--blue)">Egzaminy</h3>
-                    <p>FCE, CAE, Matura. Strategie, które gwarantują sukces.</p>
-                    <div style="margin-top:auto; font-weight:800; font-size:1.2rem; color:var(--text-dark)">od 140 zł</div>
-                </div>
-
-                <div class="offer-card">
-                    <svg class="illu-offer" viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="80" fill="#fef5f2" />
-                        <path d="M80,100 L80,150 M120,100 L120,150" stroke="#e07a5f" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <circle cx="80" cy="70" r="12" fill="#e07a5f"/>
-                        <circle cx="120" cy="70" r="12" fill="#e07a5f"/>
-                    </svg>
-                    <h3 style="color:var(--orange)">Grupy</h3>
-                    <p>Małe grupy (2-4 osoby). Motywacja i niższa cena.</p>
-                    <div style="margin-top:auto; font-weight:800; font-size:1.2rem; color:var(--text-dark)">od 80 zł</div>
+                    <h3 class="offer-title">Egzaminy</h3>
+                    <div class="offer-price">140 PLN <span style="font-size:0.9rem; font-weight:400">/ 60 min</span></div>
+                    <p class="offer-desc">FCE, CAE, Matura. Strategiczne przygotowanie do certyfikatów.</p>
+                    <ul class="offer-features">
+                        <li>Arkusze próbne</li>
+                        <li>Strategie egzaminacyjne</li>
+                        <li>Writing & Speaking</li>
+                    </ul>
+                    <div style="text-align:center; margin-top:30px;">
+                        <a href="#kontakt" class="btn btn-outline" style="font-size:0.8rem;">Wybieram</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding reviews-section container">
-        <h2>Co mówią uczniowie?</h2>
-        <div style="margin-top:30px;">
+    <section class="section-padding reviews-section">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 50px;">Historie moich uczniów</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div class="elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061" data-elfsight-app-lazy></div>
         </div>
     </section>
 
-    <section class="section-padding" style="background:var(--white)">
-        <div class="container" style="max-width:800px;">
-            <h2 style="text-align:center; margin-bottom:40px;">Częste pytania</h2>
+    <section class="section-padding container">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="text-center" style="margin-bottom: 50px;">Pytania i odpowiedzi</h2>
             
             <details class="faq-item">
-                <summary>Jak opłacić lekcje?</summary>
-                <div class="faq-content">Przelewem lub BLIKiem. Płatność z góry za pakiet 5 lub 10 lekcji.</div>
+                <summary>Na jakim poziomie muszę być?</summary>
+                <div class="faq-content">Uczę od poziomu A2 (podstawowy komunikatywny) do C2. Dostosuję tempo do Ciebie.</div>
             </details>
             <details class="faq-item">
-                <summary>Co jeśli muszę odwołać?</summary>
-                <div class="faq-content">Możesz odwołać bezpłatnie do 24h przed terminem.</div>
+                <summary>Gdzie odbywają się lekcje?</summary>
+                <div class="faq-content">Spotykamy się online na Google Meet. To wygodne i oszczędza Twój czas.</div>
             </details>
             <details class="faq-item">
-                <summary>Gdzie odbywają się zajęcia?</summary>
-                <div class="faq-content">Na Google Meet lub Zoom. Link wysyłam przed lekcją.</div>
+                <summary>Czy wystawiasz faktury?</summary>
+                <div class="faq-content">Tak, prowadzę legalną działalność i wystawiam faktury (bez VAT).</div>
+            </details>
+            <details class="faq-item">
+                <summary>Co w przypadku odwołania lekcji?</summary>
+                <div class="faq-content">Szanujemy swój czas. Lekcję możesz odwołać lub przełożyć bezpłatnie do 24h przed terminem.</div>
             </details>
         </div>
     </section>
 
-    <section id="kontakt" class="contact-section section-padding">
-        <div class="container contact-grid">
-            <div>
-                <h2 style="font-size:3rem; margin-bottom:20px;">Let's talk!</h2>
-                <p style="opacity:0.8; margin-bottom:40px;">Wypełnij formularz, a odezwę się w ciągu 24h, żeby umówić bezpłatną rozmowę poziomującą.</p>
+    <section id="kontakt" class="section-padding container">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Napisz do mnie.</h2>
+                <p>Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na bezpłatną, 15-minutową rozmowę.</p>
                 
-                <div style="margin-bottom:20px;">
-                    <strong>Email:</strong> kontakt@ewelina-nowak.pl
+                <div style="margin-top: 30px;">
+                    <p><strong>Email:</strong> kontakt@ewelina-nowak.pl</p>
+                    <p><strong>Telefon:</strong> +48 000 000 000</p>
                 </div>
-                <div>
-                    <strong>Telefon:</strong> +48 000 000 000
+
+                <div style="margin-top: 40px;">
+                    <a href="#" style="text-decoration: underline; color: var(--color-honey); font-weight: bold;">Znajdź mnie na Instagramie ↗</a>
                 </div>
             </div>
 
-            <form class="contact-form" action="https://formspree.io/f/TWOJ_KOD" method="POST">
-                <input type="text" name="name" placeholder="Twoje imię" required>
-                <input type="email" name="email" placeholder="Twój email" required>
-                <textarea name="message" rows="4" placeholder="O co chcesz zapytać?" required style="width:100%; padding:15px; border-radius:15px; font-family:inherit; border:none;"></textarea>
-                
-                <div style="margin: 15px 0; font-size:0.8rem; opacity:0.8">
-                    <input type="checkbox" required> Akceptuję politykę prywatności.
-                </div>
-                
-                <button type="submit" class="btn contact-btn">Wyślij wiadomość</button>
-            </form>
+            <div class="contact-form-box">
+                <form action="https://formspree.io/f/TWOJ_KOD" method="POST">
+                    <input type="text" name="name" class="form-field" placeholder="Twoje imię" required>
+                    <input type="email" name="email" class="form-field" placeholder="Twój email" required>
+                    <textarea name="message" rows="4" class="form-field" placeholder="O co chcesz zapytać?" required></textarea>
+                    
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" required>
+                        <span>Akceptuję politykę prywatności i wyrażam zgodę na kontakt.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Wyślij wiadomość</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            &copy; 2026 Ewelina Nowak. Break the Ice & Learn English!
+            <p>&copy; 2024 Ewelina Nowak. Wszystkie prawa zastrzeżone.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">
+                <a href="#">Polityka Prywatności</a> | <a href="#">Regulamin</a>
+            </p>
         </div>
     </footer>
 
