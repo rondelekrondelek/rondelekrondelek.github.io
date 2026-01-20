@@ -13,14 +13,17 @@
     <style>
         /* --- PALETA (FINE LINE NAVY) --- */
         :root {
+            /* Tła */
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
             
+            /* Tekst */
             --text-main: #2d2420;
             --text-light: #5e504a;
             
-            --accent-yellow: #ffc400;
-            --accent-navy: #1e3a8a; /* Royal Navy */
+            /* Akcenty */
+            --accent-yellow: #ffc400; /* Energetyczny żółty */
+            --accent-navy: #1e3a8a;   /* Royal Navy - Twój Granat */
             
             --radius: 20px;
             --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.06);
@@ -42,8 +45,8 @@
         /* --- DOODLES: ULTRA CIENKA LINIA --- */
         .doodle-icon, .doodle-small, .doodle-tick, .doodle-dot {
             fill: none; 
-            stroke: var(--accent-navy); 
-            stroke-width: 0.8px; /* ZMIANA: Bardzo cienka linia */
+            stroke: var(--accent-navy); /* GRANATOWY OBRYS */
+            stroke-width: 0.8px;        /* ULTRA CIENKA LINIA */
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
@@ -59,7 +62,7 @@
         /* Ptaszki na liście */
         .doodle-tick {
             width: 20px; height: 20px; margin-right: 12px; display: inline-block; vertical-align: middle;
-            stroke: var(--accent-navy); stroke-width: 1.2px; /* Troszkę grubsze żeby były widoczne */
+            stroke-width: 1px; /* Minimalnie grubsze dla czytelności */
         }
 
         /* Kropki na liście */
@@ -102,7 +105,7 @@
 
         .handwritten {
             font-family: 'Caveat', cursive; 
-            color: var(--accent-navy);
+            color: var(--accent-navy); /* Granatowe pismo */
             font-size: 1.7rem; transform: rotate(-3deg); display: inline-block; line-height: 1;
             font-weight: 700;
         }
@@ -159,7 +162,7 @@
             display: flex; flex-direction: column; align-items: center; z-index: 2;
             animation: float 4s ease-in-out infinite;
         }
-        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); }
+        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; } /* Strzałka wypełniona */
         @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(0deg); } 100% { transform: translateY(0px) rotate(0deg); } }
 
         /* About & Counters */
@@ -175,7 +178,6 @@
         .counter-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--accent-yellow); display: block; }
         .counter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
         
-        /* Lista w About - usunięcie domyślnych punktorów */
         .about-list { list-style: none; margin-top: 30px; padding: 0; }
         .about-list li { margin-bottom: 15px; display: flex; align-items: center; }
 
