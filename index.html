@@ -15,39 +15,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- ZMIENNE STYLU (MODERN & FRIENDLY) --- */
+        /* --- NOWA PALETA KOLORÓW (NAVY & YELLOW) --- */
         :root {
-            /* Główny kolor (Twój żółty) */
+            /* Główny kolor (Twój żółty - Akcent) */
             --primary: #feb538;
-            --primary-light: #fff4e0; /* Bardzo jasny żółty do tła */
+            --primary-light: #fff8eb; 
             
-            /* Drugi kolor (Morski Turkus - dla kontrastu i profesjonalizmu) */
-            --secondary: #0f766e;
-            --secondary-light: #f0fdfa;
+            /* Drugi kolor (Royal Navy - Profesjonalizm) */
+            --secondary: #1e3a8a;       /* Głęboki granat */
+            --secondary-light: #eff6ff; /* Bardzo jasny niebieski tła */
             
-            --text-main: #1e293b; /* Ciemny grafit, nie czarny */
-            --text-muted: #64748b;
+            --text-main: #0f172a;       /* Prawie czarny granat */
+            --text-muted: #64748b;      /* Szaro-niebieski */
             
             --white: #ffffff;
             --bg-body: #ffffff;
-            --bg-alt: #f8fafc; /* Bardzo jasny szary/niebieskawy do sekcji */
+            --bg-alt: #f8fafc;          /* Chłodna szarość */
             
-            --radius: 20px;
-            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+            --radius: 16px;             /* Optymalne zaokrąglenie */
+            --shadow: 0 4px 20px -2px rgba(30, 58, 138, 0.08); /* Cień z nutą granatu */
+            --shadow-hover: 0 10px 25px -5px rgba(30, 58, 138, 0.15);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Tryb Ciemny */
         [data-theme="dark"] {
-            --text-main: #f1f5f9;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --bg-body: #0f172a;
+            --bg-body: #0f172a;       /* Bardzo ciemny granat tła */
             --bg-alt: #1e293b;
             --white: #1e293b;
             --primary-light: #332815;
-            --secondary-light: #112929;
-            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            --secondary-light: #172554;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
         }
 
         /* --- BAZA --- */
@@ -71,6 +71,7 @@
             font-weight: 800;
             line-height: 1.2;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         ul { list-style: none; }
@@ -102,7 +103,7 @@
 
         .btn-primary {
             background-color: var(--primary);
-            color: #1e293b; /* Ciemny tekst na żółtym dla czytelności */
+            color: #0f172a; /* Ciemny tekst na żółtym */
             box-shadow: 0 4px 15px rgba(254, 181, 56, 0.3);
         }
         .btn-primary:hover { 
@@ -114,12 +115,12 @@
         .btn-secondary {
             background-color: var(--secondary);
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(15, 118, 110, 0.3);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
         }
         .btn-secondary:hover {
             transform: translateY(-3px);
-            background-color: #115e59;
-            box-shadow: 0 8px 25px rgba(15, 118, 110, 0.4);
+            background-color: #172554;
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
         }
 
         .btn-outline { 
@@ -145,11 +146,12 @@
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         
         .logo { 
-            font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; 
-            display: flex; align-items: center; gap: 8px;
+            font-weight: 800; font-size: 1.5rem; 
+            display: flex; align-items: center; gap: 8px; color: var(--secondary);
         }
+        .logo span { color: var(--text-main); }
         .logo-dot {
-            width: 12px; height: 12px; background: var(--primary); 
+            width: 10px; height: 10px; background: var(--primary); 
             border-radius: 50%; display: inline-block;
         }
 
@@ -169,18 +171,16 @@
         /* --- HERO --- */
         .hero { 
             padding: 120px 0 100px; 
-            /* Delikatny gradient w tle */
-            background: linear-gradient(135deg, var(--bg-body) 0%, var(--primary-light) 100%);
+            background: linear-gradient(180deg, var(--secondary-light) 0%, var(--bg-body) 100%);
             position: relative; overflow: hidden; 
         }
         
-        /* Dekoracyjne koła w tle */
-        .hero-circle {
-            position: absolute; border-radius: 50%; z-index: 0;
-            filter: blur(60px); opacity: 0.6;
+        /* Dekoracyjne tło */
+        .hero-bg-shape {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--primary) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0.07; top: -200px; right: -200px; z-index: 0; border-radius: 50%;
         }
-        .circle-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; right: -100px; opacity: 0.15; }
-        .circle-2 { width: 300px; height: 300px; background: var(--secondary); bottom: -50px; left: -50px; opacity: 0.1; }
 
         .hero-grid { 
             display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; 
@@ -189,16 +189,20 @@
         
         .hero-badge {
             display: inline-block; padding: 8px 16px; 
-            background: var(--secondary-light); color: var(--secondary);
+            background: var(--white); color: var(--secondary);
             border-radius: 30px; font-weight: 700; font-size: 0.85rem;
-            margin-bottom: 25px; border: 1px solid rgba(15, 118, 110, 0.1);
+            margin-bottom: 25px; border: 1px solid rgba(30, 58, 138, 0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 25px; letter-spacing: -1px; }
-        .hero-highlight { color: var(--secondary); position: relative; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 25px; }
+        .hero-highlight { 
+            position: relative; z-index: 1;
+            display: inline-block;
+        }
         .hero-highlight::after {
-            content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 12px;
-            background: var(--primary); opacity: 0.4; z-index: -1; border-radius: 4px;
+            content: ''; position: absolute; bottom: 5px; left: -5px; width: 105%; height: 14px;
+            background: var(--primary); opacity: 0.5; z-index: -1; border-radius: 4px; transform: rotate(-1deg);
         }
 
         .hero p { 
@@ -210,9 +214,10 @@
         .hero-benefits { display: flex; gap: 30px; flex-wrap: wrap; font-size: 0.95rem; color: var(--text-main); font-weight: 600; }
         .benefit-item { display: flex; align-items: center; gap: 10px; }
         .benefit-icon { 
-            color: var(--secondary); background: var(--secondary-light);
-            width: 24px; height: 24px; border-radius: 50%; 
+            color: var(--secondary); background: var(--white);
+            width: 26px; height: 26px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         /* Zdjęcie w Hero */
@@ -221,19 +226,14 @@
             padding: 20px;
         }
         .photo-frame::before {
-            content: ''; position: absolute; top: 0; right: 20px; width: 90%; height: 90%;
-            background: var(--primary); border-radius: var(--radius); z-index: -1;
-            transform: rotate(3deg); opacity: 0.3;
-        }
-        .photo-frame::after {
-            content: ''; position: absolute; bottom: 0; left: 20px; width: 90%; height: 90%;
-            background: var(--secondary); border-radius: var(--radius); z-index: -1;
-            transform: rotate(-3deg); opacity: 0.1;
+            content: ''; position: absolute; top: 10px; right: 10px; width: 100%; height: 100%;
+            border: 2px solid var(--primary); border-radius: var(--radius); z-index: -1;
+            transform: translate(15px, 15px);
         }
         .hero-photo {
             width: 100%; max-width: 450px; border-radius: var(--radius);
             box-shadow: var(--shadow);
-            transform: rotate(0deg); transition: var(--transition);
+            transition: var(--transition);
         }
         .hero-photo:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 
@@ -256,14 +256,19 @@
         .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
         
         .about-card {
-            background: var(--bg-alt); border-radius: var(--radius); padding: 40px;
-            position: relative; overflow: hidden;
+            background: var(--secondary); border-radius: var(--radius); padding: 40px;
+            color: white; position: relative; overflow: hidden;
         }
-        .about-card h3 { margin-bottom: 25px; color: var(--secondary); }
-        .work-list li { margin-bottom: 18px; padding-left: 30px; position: relative; font-weight: 500; color: var(--text-main); }
+        .about-card h3 { margin-bottom: 25px; color: white; }
+        .work-list li { margin-bottom: 18px; padding-left: 30px; position: relative; font-weight: 500; opacity: 0.95; }
         .work-list li::before { 
             content: "✓"; position: absolute; left: 0; color: var(--primary); 
             font-weight: 800;
+        }
+        /* Dekoracja w karcie "O mnie" */
+        .about-card::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px; width: 150px; height: 150px;
+            background: rgba(255,255,255,0.05); border-radius: 50%;
         }
 
         /* --- DLA KOGO --- */
@@ -272,14 +277,15 @@
         .persona-card { text-align: center; }
         .persona-icon { 
             width: 70px; height: 70px; 
-            background-color: var(--primary-light); 
-            color: var(--primary);
+            background-color: var(--white); 
+            color: var(--secondary);
             border-radius: 20px; 
             display: flex; align-items: center; justify-content: center; 
             margin: 0 auto 25px; font-size: 2rem;
             transition: var(--transition);
+            box-shadow: var(--shadow);
         }
-        .persona-card:hover .persona-icon { background-color: var(--primary); color: #fff; transform: rotate(10deg); }
+        .persona-card:hover .persona-icon { background-color: var(--secondary); color: #fff; transform: rotate(10deg); }
         .persona-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
         .persona-card p { color: var(--text-muted); font-size: 0.95rem; }
 
@@ -287,22 +293,22 @@
         .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .offer-card { 
             display: flex; flex-direction: column; 
-            border-top: 5px solid var(--primary); /* Kolorowy akcent na górze */
+            border-top: 5px solid transparent; 
         }
-        .offer-card.premium { border-top-color: var(--secondary); }
+        .offer-card:hover { border-top-color: var(--primary); }
         
-        .offer-header { margin-bottom: 20px; }
+        .offer-header { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
         .offer-icon { 
-            font-size: 2.5rem; margin-bottom: 15px; display: block;
+            width: 50px; height: 50px; background: var(--secondary-light); color: var(--secondary);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
         }
-        .offer-title { font-size: 1.5rem; margin-bottom: 10px; }
-        .offer-desc { color: var(--text-muted); flex-grow: 1; margin-bottom: 30px; }
+        .offer-title { font-size: 1.4rem; margin: 0; }
+        .offer-desc { color: var(--text-muted); flex-grow: 1; margin-bottom: 30px; border-top: 1px solid #f1f5f9; padding-top: 20px; }
         
         .price-box {
-            background: var(--bg-alt); padding: 15px; border-radius: 12px;
-            text-align: center; margin-top: auto;
+            text-align: right; margin-top: auto;
         }
-        .price-val { font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
+        .price-val { font-size: 1.6rem; font-weight: 800; color: var(--secondary); }
         .price-sub { font-size: 0.85rem; color: var(--text-muted); }
 
         /* --- OPINIE --- */
@@ -316,16 +322,15 @@
             border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; 
             overflow: hidden; transition: var(--transition);
         }
-        details[open] { box-shadow: var(--shadow); border-color: transparent; }
+        details[open] { box-shadow: var(--shadow); border-left: 5px solid var(--primary); }
         summary { 
             padding: 20px 25px; cursor: pointer; font-weight: 600; list-style: none; position: relative; padding-right: 50px; 
         }
         summary::after { 
             content: '+'; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); 
-            font-size: 1.5rem; color: var(--secondary); font-weight: 400;
+            font-size: 1.5rem; color: var(--primary); font-weight: 400;
         }
         details[open] summary::after { content: '-'; }
-        details[open] summary { color: var(--secondary); }
         .faq-answer { padding: 0 25px 25px; color: var(--text-muted); line-height: 1.7; }
 
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
@@ -333,19 +338,17 @@
         
         .contact-detail {
             display: flex; align-items: center; gap: 15px; margin-bottom: 20px;
-            padding: 15px; background: var(--white); border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.03);
         }
         .contact-icon { 
             width: 40px; height: 40px; 
-            background: var(--secondary-light); color: var(--secondary); 
+            background: var(--white); color: var(--secondary); 
             border-radius: 10px; display: flex; align-items: center; justify-content: center; 
-            font-size: 1.2rem;
+            font-size: 1.2rem; box-shadow: var(--shadow);
         }
         
         .contact-form {
             background: var(--white); padding: 40px; border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow); border-top: 5px solid var(--secondary);
         }
         .form-group input, .form-group textarea { 
             width: 100%; padding: 16px; margin-bottom: 20px;
@@ -367,9 +370,10 @@
 
         /* --- FOOTER --- */
         footer { 
-            background-color: var(--bg-alt); 
+            background-color: var(--white); 
             padding: 80px 0 30px; 
             margin-top: 100px; 
+            border-top: 1px solid var(--bg-alt);
         }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
         .footer-logo { font-weight: 800; font-size: 1.4rem; display: flex; gap: 5px; color: var(--text-main); margin-bottom: 15px;}
@@ -382,10 +386,10 @@
             width: 50px; height: 50px; 
             border: none; border-radius: 50%; 
             align-items: center; justify-content: center; cursor: pointer; 
-            box-shadow: 0 5px 15px rgba(15, 118, 110, 0.4);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.4);
             transition: var(--transition); font-size: 1.2rem;
         }
-        #scrollTopBtn:hover { transform: translateY(-3px); background-color: #115e59; }
+        #scrollTopBtn:hover { transform: translateY(-3px); background-color: #172554; }
 
         /* --- RWD --- */
         @media (max-width: 992px) {
@@ -415,7 +419,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <span class="logo-dot"></span> Ewelina Nowak
+                Ewelina<span>Nowak</span> <span class="logo-dot"></span>
             </a>
             <div class="hamburger" id="hamburger">☰</div>
             <ul class="nav-menu" id="nav-menu">
@@ -430,9 +434,7 @@
     </nav>
 
     <header class="hero fade-in-section">
-        <div class="hero-circle circle-1"></div>
-        <div class="hero-circle circle-2"></div>
-
+        <div class="hero-bg-shape"></div>
         <div class="container hero-grid">
             <div class="hero-text">
                 <div class="hero-badge">👋 Lektor Angielskiego Online</div>
@@ -462,10 +464,10 @@
     <section id="o-mnie" class="section-padding about-section fade-in-section">
         <div class="container about-grid">
             <div class="about-text">
-                <h4 style="color:var(--secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">O mnie</h4>
+                <h4 style="color:var(--secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700;">O mnie</h4>
                 <h2 style="font-size: 2.5rem; margin-bottom: 25px;">Nie uczę regułek.<br>Uczę komunikacji.</h2>
                 <p>Nazywam się <strong>Ewelina Nowak</strong>. Język to dla mnie narzędzie do osiągania celów, a nie przedmiot szkolny. Skupiam się na słownictwie, które realnie przyda Ci się w biurze, w podróży i na Netflixie.</p>
-                <p>Specjalizuję się w pracy z branżą finansową, HR i IT. Wiem, jak wygląda "korpo-angielski" i pomagam go oswoić, byś mógł/mogła swobodnie wyrażać swoje myśli.</p>
+                <p>Specjalizuję się w pracy z branżą finansową, HR i IT. Wiem, jak wygląda "korpo-angielski" i pomogę Ci go oswoić, byś mógł/mogła swobodnie wyrażać swoje myśli.</p>
             </div>
             <div class="about-card">
                 <h3>Jak wyglądają zajęcia?</h3>
@@ -512,7 +514,7 @@
             
             <div class="offer-card card-base">
                 <div class="offer-header">
-                    <span class="offer-icon">☕</span>
+                    <div class="offer-icon">☕</div>
                     <h3 class="offer-title">General English</h3>
                 </div>
                 <p class="offer-desc">Swobodne konwersacje na życiowe tematy. Poszerzanie słownictwa, idiomy, phrasal verbs. Idealne do podróży.</p>
@@ -522,21 +524,21 @@
                 </div>
             </div>
 
-            <div class="offer-card card-base premium" style="border-top-color: var(--secondary); background: #fcfcfc;">
+            <div class="offer-card card-base">
                 <div class="offer-header">
-                    <span class="offer-icon">👔</span>
+                    <div class="offer-icon">👔</div>
                     <h3 class="offer-title">Business English</h3>
                 </div>
                 <p class="offer-desc">Angielski specjalistyczny (HR, Finanse, IT). Przygotowanie do negocjacji, prezentacji i spotkań biznesowych.</p>
-                <div class="price-box" style="background: var(--secondary-light);">
-                    <div class="price-val" style="color: var(--secondary);">od 150 PLN</div>
+                <div class="price-box">
+                    <div class="price-val">od 150 PLN</div>
                     <div class="price-sub">za 60 minut</div>
                 </div>
             </div>
 
             <div class="offer-card card-base">
                 <div class="offer-header">
-                    <span class="offer-icon">🎓</span>
+                    <div class="offer-icon">🎓</div>
                     <h3 class="offer-title">Egzaminy</h3>
                 </div>
                 <p class="offer-desc">Intensywne przygotowanie do certyfikatów FCE, CAE lub matury rozszerzonej. Strategie i arkusze.</p>
