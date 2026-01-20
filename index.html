@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA (FINE LINE NAVY) --- */
+        /* --- PALETA --- */
         :root {
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
@@ -106,8 +106,6 @@
         
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
-        
-        /* 9. ANIMOWANY GRADIENT (SHIMMER) */
         .btn-warm::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
@@ -115,20 +113,12 @@
         }
         @keyframes shimmer { 100% { left: 150%; } }
 
-        /* --- 4. STICKY NAVBAR Z CIENIEM --- */
-        nav {
-            padding: 20px 0; position: sticky; top: 0; z-index: 1000;
-            background: transparent; transition: all 0.3s ease;
-        }
-        nav.scrolled {
-            background: rgba(253, 251, 247, 0.98);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            padding: 15px 0;
-        }
+        /* Navbar */
+        nav { padding: 20px 0; position: sticky; top: 0; z-index: 1000; background: transparent; transition: all 0.3s ease; }
+        nav.scrolled { background: rgba(253, 251, 247, 0.98); box-shadow: 0 5px 20px rgba(0,0,0,0.05); padding: 15px 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
         
-        /* 1. MENU MOBILNE */
         .nav-links { display: flex; align-items: center; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
         .nav-links a:hover { color: var(--accent-navy); }
@@ -140,7 +130,6 @@
         .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
         .hero-img-box { position: relative; }
         .hero-img { width: 100%; border-radius: var(--radius); transform: rotate(2deg); box-shadow: var(--shadow); border: 8px solid #fff; object-fit: cover; aspect-ratio: 3/4; }
-        
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
@@ -160,30 +149,40 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* OFFER & 8. TOGGLE CENOWY */
+        /* --- OFFER (NAVY BACKGROUND) --- */
+        #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
+        .offer-header h2 { color: #fff; }
+        
         .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
         .toggle-switch { position: relative; width: 50px; height: 26px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ddd; transition: .4s; border-radius: 34px; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.3); transition: .4s; border-radius: 34px; }
         .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--accent-yellow); }
         input:checked + .slider:before { transform: translateX(24px); }
-        .toggle-label { font-weight: 700; font-size: 0.95rem; cursor: pointer; }
-        .toggle-label.active { color: var(--accent-navy); }
+        .toggle-label { font-weight: 700; font-size: 0.95rem; cursor: pointer; color: rgba(255,255,255,0.7); }
+        .toggle-label.active { color: #fff; }
 
         .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
-        .offer-card { background: #fff; padding: 40px; border-radius: 20px; border: 2px solid transparent; transition: 0.3s; position: relative; display: flex; flex-direction: column; text-align: center; }
-        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); transform: translateY(-5px); }
+        .offer-card { 
+            background: #fff; padding: 40px; border-radius: 20px; 
+            border: 2px solid transparent; transition: 0.3s; 
+            position: relative; display: flex; flex-direction: column; text-align: center;
+            color: var(--text-main); /* Reset koloru tekstu wewnątrz karty */
+        }
+        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: 0 10px 40px rgba(0,0,0,0.2); transform: translateY(-5px); }
         .offer-card svg { margin: 0 auto 20px auto; }
         .offer-card ul { text-align: left; padding-left: 20px; margin-top: 20px; list-style: none; }
         .offer-card li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-light); }
         
-        /* POPRAWKA: Cena znowu Lora, tylko dopisek "lekcja" mniejszy */
-        .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
-        .price .price-unit { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
-        
-        .tag { position: absolute; top: -12px; right: 20px; background: var(--accent-yellow); padding: 5px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+        /* POPRAWKA CENY (Lato) */
+        .price { 
+            font-family: 'Lato', sans-serif; /* Zmiana na prosty font */
+            font-size: 2.2rem; font-weight: 700; margin: 15px 0; color: var(--text-main); 
+        }
+        .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+        .tag { position: absolute; top: -12px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 5px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
 
         /* Testimonials */
         .reviews-section { text-align: center; position: relative; overflow: hidden; background: transparent; }
@@ -199,7 +198,7 @@
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
-        /* 6. LEAD MAGNET (Darmowy PDF) */
+        /* 6. LEAD MAGNET */
         .lead-magnet { background: var(--text-main); color: #fff; border-radius: 30px; padding: 50px; text-align: center; margin: 50px auto; position: relative; overflow: hidden; }
         .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; font-family: 'Lora', serif; }
         .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
@@ -207,12 +206,11 @@
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
         .lead-form button:hover { background: #ffd633; }
 
-        /* KONTAKT - POPRAWKA TŁA (Ciemne) */
+        /* KONTAKT - POPRAWKA TŁA (Granat) */
         .contact-box { 
             background: var(--accent-navy); /* Ciemny Granat */
             color: #fff; 
             border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden;
-            border: none;
         }
         .contact-box h2 { color: #fff; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
@@ -225,31 +223,19 @@
         /* Footer */
         footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
-        /* --- 5 & 8. FLOATING BUTTONS (WhatsApp + Back to Top) --- */
-        .floating-btn {
-            position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s;
-        }
+        /* Buttons & Cookie */
+        .floating-btn { position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s; }
         .whatsapp-btn { right: 30px; background-color: #25D366; }
         .whatsapp-btn:hover { transform: scale(1.1); }
         .whatsapp-btn svg { width: 30px; height: 30px; fill: white; }
-        
         .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: none; }
         .back-to-top.visible { opacity: 1; pointer-events: auto; }
         .back-to-top:hover { background-color: var(--accent-yellow); color: var(--text-main); }
-
-        /* --- 11. COOKIE BANNER --- */
-        .cookie-banner {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff;
-            padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem;
-            display: flex; justify-content: center; align-items: center; gap: 20px;
-            transform: translateY(100%); transition: transform 0.5s ease;
-        }
+        .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
-        /* MEDIA QUERIES (Mobile) */
+        /* Mobile */
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
             .hero-grid { text-align: center; gap: 40px; }
@@ -258,19 +244,13 @@
             .arrow-note { display: none; }
             .about-box { padding: 30px; }
             .contact-box { padding: 40px 20px; }
-            
-            /* Mobile Menu */
             .mobile-toggle { display: block; }
-            .nav-links {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-                background: var(--bg-cream); flex-direction: column; justify-content: center;
-                gap: 30px; transform: translateX(100%); transition: transform 0.3s ease;
-            }
+            .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
             .nav-links.active { transform: translateX(0); }
             .nav-links a { font-size: 1.5rem; margin: 0; }
         }
         
-        /* Wave Separators (SVG) */
+        /* Waves */
         .wave-separator { width: 100%; overflow: hidden; line-height: 0; position: absolute; left: 0; }
         .wave-separator svg { display: block; width: calc(100% + 1.3px); height: 60px; }
         .wave-bottom { bottom: 0; }
@@ -286,11 +266,7 @@
     <nav id="navbar">
         <div class="container nav-inner">
             <a href="#" class="logo">Ewelina Nowak</a>
-            
-            <button class="mobile-toggle" aria-label="Menu">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg>
-            </button>
-
+            <button class="mobile-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg></button>
             <div class="nav-links">
                 <a href="#o-mnie">Poznajmy się</a>
                 <a href="#oferta">Współpraca</a>
@@ -303,13 +279,9 @@
     <header class="bg-cream section-padding" id="section-hero" style="padding-bottom: 150px;">
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="handwritten" style="margin-bottom: 10px; display:block;">
-                    Cześć! Tu Ewelina 👋
-                </span>
+                <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24">
-                        <path d="M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z" />
-                    </svg>
+                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z" /></svg>
                 </h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
@@ -317,19 +289,14 @@
                     <a href="#oferta" style="display:flex; align-items:center; font-weight:700; padding: 0 15px;">Zobacz jak uczę ↓</a>
                 </div>
             </div>
-            
             <div class="hero-img-box">
                 <div class="arrow-note">
                     <span class="handwritten">To ja! :)</span>
-                    <svg class="arrow-svg" viewBox="0 0 50 50" width="40">
-                        <path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-                        <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a"/></marker></defs>
-                    </svg>
+                    <svg class="arrow-svg" viewBox="0 0 50 50" width="40"><path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a"/></marker></defs></svg>
                 </div>
                 <img src="ewelina.jpg" alt="Ewelina Nowak" class="hero-img">
             </div>
         </div>
-        
         <div class="wave-separator wave-bottom">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path></svg>
         </div>
@@ -345,12 +312,10 @@
             </div>
             <div style="background: #fdfbf7; padding: 40px; border-radius: 20px; border: 1px solid #eee;">
                 <h3>Moje podejście: <svg class="doodle-small" viewBox="0 0 24 24"><path d="M9 21h6v-2H9v2zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg></h3>
-                
                 <div class="counters-wrapper">
                     <div class="counter-item"><span class="counter-num" data-target="1500">0</span><span class="counter-label">Wypitych kaw</span></div>
                     <div class="counter-item"><span class="counter-num" data-target="100">0</span>%<span class="counter-label">Zero stresu</span></div>
                 </div>
-                
                 <ul class="about-list">
                     <li>✅ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
                     <li>✅ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
@@ -385,14 +350,14 @@
         </div>
     </section>
 
-    <section id="oferta" class="bg-cream section-padding" style="padding-top: 150px;">
+    <section id="oferta" class="section-padding" style="padding-top: 150px;">
         <div class="wave-separator wave-top">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path></svg>
         </div>
 
         <div class="container">
             <div class="offer-header">
-                <h2 style="margin-bottom: 10px;">Wybierz swoją ścieżkę</h2>
+                <h2>Wybierz swoją ścieżkę</h2>
                 <div class="pricing-toggle">
                     <span class="toggle-label active" id="label-single">Pojedyncza lekcja</span>
                     <label class="toggle-switch">
@@ -408,7 +373,7 @@
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3"/><path d="M10 1v3"/><path d="M14 1v3"/></svg>
                     <h3>Na co dzień<br>(General)</h3>
                     <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
-                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span class="price-unit">zł / lekcja</span></div>
+                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span>zł / lekcja</span></div>
                     <ul>
                         <li>• Luźne konwersacje</li>
                         <li>• Ciekawe artykuły i wideo</li>
@@ -422,7 +387,7 @@
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M6 3h12v4c0 4-3 9-6 9s-6-5-6-9V3z"/><path d="M12 3v13"/><path d="M12 16l-4 6h8l-4-6"/></svg>
                     <h3>W pracy<br>(Business)</h3>
                     <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
-                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span class="price-unit">zł / lekcja</span></div>
+                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span>zł / lekcja</span></div>
                     <ul>
                         <li>• Symulacje rozmów</li>
                         <li>• Pisanie e-maili</li>
@@ -435,7 +400,7 @@
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
                     <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
-                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span class="price-unit">zł / lekcja</span></div>
+                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span>zł / lekcja</span></div>
                     <ul>
                         <li>• Arkusze próbne</li>
                         <li>• Strategie egzaminacyjne</li>
@@ -444,6 +409,10 @@
                     <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
                 </div>
             </div>
+        </div>
+        
+        <div class="wave-separator wave-bottom">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#fdfbf7"></path></svg>
         </div>
     </section>
 
@@ -500,77 +469,54 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/48000000000" class="floating-btn whatsapp-btn" target="_blank" title="Napisz na WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg>
-    </a>
+    <a href="https://wa.me/48000000000" class="floating-btn whatsapp-btn" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg></a>
     <a href="#navbar" class="floating-btn back-to-top" id="backToTop">↑</a>
-
-    <div class="cookie-banner" id="cookieBanner">
-        <span>Ta strona używa ciasteczek (cookies), aby działać lepiej. 🍪</span>
-        <button class="cookie-btn" onclick="acceptCookies()">OK, rozumiem</button>
-    </div>
+    <div class="cookie-banner" id="cookieBanner"><span>Ta strona używa ciasteczek (cookies).</span><button class="cookie-btn" onclick="acceptCookies()">OK</button></div>
 
     <script>
-        // Progress Bar
+        // Progress, Sticky Nav, Back to Top
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("scrollProgress").style.width = scrolled + "%";
             
-            // Sticky Navbar Shadow
             const nav = document.getElementById('navbar');
-            if (winScroll > 10) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-
-            // Back to Top button visibility
+            if (winScroll > 10) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
             const backBtn = document.getElementById('backToTop');
-            if (winScroll > 300) backBtn.classList.add('visible');
-            else backBtn.classList.remove('visible');
+            if (winScroll > 300) backBtn.classList.add('visible'); else backBtn.classList.remove('visible');
         };
 
         // Mobile Menu
         const mobileBtn = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
-        mobileBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => navLinks.classList.remove('active'));
-        });
+        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
 
         // Price Toggle
         const toggle = document.getElementById('priceToggle');
         const prices = document.querySelectorAll('.price-val');
         const labelSingle = document.getElementById('label-single');
         const labelPack = document.getElementById('label-pack');
-
         toggle.addEventListener('change', () => {
-            prices.forEach(price => {
+            prices.forEach(p => {
                 if(toggle.checked) {
-                    price.innerText = price.getAttribute('data-pack');
-                    price.nextElementSibling.innerText = " zł / pakiet";
-                    labelPack.classList.add('active');
-                    labelSingle.classList.remove('active');
+                    p.innerText = p.getAttribute('data-pack');
+                    p.nextElementSibling.innerText = " zł / pakiet";
+                    labelPack.classList.add('active'); labelSingle.classList.remove('active');
                 } else {
-                    price.innerText = price.getAttribute('data-single');
-                    price.nextElementSibling.innerText = " zł / lekcja";
-                    labelSingle.classList.add('active');
-                    labelPack.classList.remove('active');
+                    p.innerText = p.getAttribute('data-single');
+                    p.nextElementSibling.innerText = " zł / lekcja";
+                    labelSingle.classList.add('active'); labelPack.classList.remove('active');
                 }
             });
         });
 
         // Cookies
-        if (!localStorage.getItem('cookiesAccepted')) {
-            setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
-        }
-        function acceptCookies() {
-            document.getElementById('cookieBanner').classList.remove('show');
-            localStorage.setItem('cookiesAccepted', 'true');
-        }
+        if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
+        function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('cookiesAccepted', 'true'); }
 
-        // Observer (Animations)
+        // Animations (Observer)
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
