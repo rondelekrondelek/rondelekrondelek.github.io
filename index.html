@@ -15,7 +15,7 @@
         :root {
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
-            --bg-warm: #fffdf5; /* Nowy kolor do tranzycji */
+            --bg-warm: #fffdf5; 
             
             --text-main: #2d2420;
             --text-light: #5e504a;
@@ -37,10 +37,10 @@
             line-height: 1.7;
             font-size: 18px;
             overflow-x: hidden;
-            transition: background-color 0.8s ease; /* Płynna zmiana tła */
+            transition: background-color 0.8s ease;
         }
 
-        /* --- 10. CUSTOM SCROLLBAR --- */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: var(--bg-cream); }
         ::-webkit-scrollbar-thumb { 
@@ -49,7 +49,7 @@
             border: 3px solid var(--bg-cream); 
         }
 
-        /* --- 8. PASEK POSTĘPU --- */
+        /* Pasek postępu */
         .scroll-progress {
             position: fixed; top: 0; left: 0; height: 4px;
             background: var(--accent-yellow); width: 0%; z-index: 1001;
@@ -91,17 +91,17 @@
         .section-padding { padding: 90px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- 4. RYSOWANIE IKON (SVG) --- */
+        /* Rysowanie ikon (SVG) */
         .doodle-icon {
             width: 60px; height: 60px; fill: none; stroke: var(--accent-blue);
             stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
             margin-bottom: 20px; display: block; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
         }
         .doodle-icon path {
-            stroke-dasharray: 100; stroke-dashoffset: 100; /* Start ukryty */
+            stroke-dasharray: 100; stroke-dashoffset: 100;
             transition: stroke-dashoffset 1.5s ease-out;
         }
-        .doodle-icon.active path { stroke-dashoffset: 0; } /* Stan narysowany */
+        .doodle-icon.active path { stroke-dashoffset: 0; }
 
         /* PRZYCISKI */
         .btn {
@@ -145,7 +145,7 @@
         }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-blue); }
 
-        /* O MNIE & 6. LICZNIK */
+        /* O MNIE & LICZNIK */
         .about-box { 
             background: var(--bg-white); padding: 60px; border-radius: 30px; 
             box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
@@ -169,21 +169,21 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- 7. OFERTA (3D TILT) --- */
-        .offer-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; align-items: center; perspective: 1000px; /* Dla efektu 3D */
-        }
+        /* --- OFERTA (BEZ 3D TILT, RÓWNE KARTY) --- */
+        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
+        
         .offer-card {
             background: #fff; padding: 40px; border-radius: 20px;
-            border: 2px solid transparent; transition: transform 0.1s; /* Szybka reakcja na myszkę */
+            border: 2px solid transparent; transition: 0.3s;
             position: relative; display: flex; flex-direction: column;
-            transform-style: preserve-3d;
         }
-        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        /* Skalowanie środkowej karty */
-        .offer-card:nth-child(2) { transform: scale(1.05); border-color: var(--accent-yellow); box-shadow: 0 15px 40px rgba(0,0,0,0.08); z-index: 1; }
-        
+        /* Prosty hover */
+        .offer-card:hover { 
+            border-color: var(--accent-yellow); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08); 
+            transform: translateY(-5px);
+        }
+
         .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
         .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
         .tag { 
@@ -192,13 +192,14 @@
             border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
         }
 
-        /* --- 5. OPINIE (WIELKI CUDZYSŁÓW) --- */
+        /* --- OPINIE (POPRAWIONY KOLOR) --- */
         .reviews-section { text-align: center; position: relative; overflow: hidden; }
         .reviews-section::before {
             content: '“';
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             font-family: 'Lora', serif; font-size: 20rem; line-height: 0.8;
-            color: var(--accent-yellow); opacity: 0.1; z-index: 0; pointer-events: none;
+            /* ZMIANA KOLORU NA BŁĘKIT */
+            color: var(--accent-blue); opacity: 0.05; z-index: 0; pointer-events: none;
         }
         .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; position: relative; z-index: 1; }
 
@@ -247,7 +248,6 @@
             .arrow-note { display: none; }
             .about-box { padding: 30px; }
             .contact-box { padding: 40px 20px; }
-            .offer-card:nth-child(2) { transform: scale(1); }
         }
     </style>
 </head>
@@ -368,7 +368,7 @@
         <h2 style="text-align: center; margin-bottom: 60px;">Wybierz swoją ścieżkę</h2>
         <div class="offer-grid">
             
-            <div class="offer-card js-tilt">
+            <div class="offer-card">
                 <h3>Na co dzień<br>(General)</h3>
                 <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                 <div class="price">120 zł <span>/ 60 min</span></div>
@@ -380,7 +380,7 @@
                 <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
             </div>
 
-            <div class="offer-card js-tilt" style="border-color: var(--accent-yellow);">
+            <div class="offer-card" style="border-color: var(--accent-yellow);">
                 <div class="tag">POLECAM</div>
                 <h3>W pracy<br>(Business)</h3>
                 <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
@@ -393,7 +393,7 @@
                 <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
             </div>
 
-            <div class="offer-card js-tilt">
+            <div class="offer-card">
                 <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
                 <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
                 <div class="price">140 zł <span>/ 60 min</span></div>
@@ -448,14 +448,13 @@
     </footer>
 
     <script>
-        // 8. PASEK POSTĘPU
+        // Pasek postępu i zmiana tła
         window.onscroll = function() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             var scrolled = (winScroll / height) * 100;
             document.getElementById("scrollProgress").style.width = scrolled + "%";
             
-            // 3. ZMIANA KOLORU TŁA
             const body = document.getElementById('page-body');
             if (scrolled > 10 && scrolled < 40) { body.style.backgroundColor = 'var(--bg-white)'; }
             else if (scrolled >= 40 && scrolled < 70) { body.style.backgroundColor = 'var(--bg-warm)'; }
@@ -463,35 +462,13 @@
             else { body.style.backgroundColor = 'var(--bg-cream)'; }
         };
 
-        // 7. 3D TILT EFFECT
-        const cards = document.querySelectorAll('.js-tilt');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -5; // Max 5 deg
-                const rotateY = ((x - centerX) / centerX) * 5;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                if (card === cards[1]) card.style.transform = 'scale(1.05)'; // Przywróć scale dla środkowej karty
-            });
-        });
-
-        // 4. ANIMACJA IKON i 6. LICZNIK (Intersection Observer)
+        // Animacja ikon i licznika
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Animuj ikony
                     if(entry.target.classList.contains('doodle-icon')) {
                         entry.target.classList.add('active');
                     }
-                    // Animuj licznik
                     if(entry.target.classList.contains('counter-num')) {
                         const target = +entry.target.getAttribute('data-target');
                         const duration = 2000; 
