@@ -3,42 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angielski Online | Profesjonalne Lekcje 1:1</title>
-    <meta name="description" content="Indywidualne lekcje angielskiego online dla dorosłych. Business English, konwersacje, przygotowanie do egzaminów. Skuteczna nauka mówienia.">
+    <title>Angielski Online | Ewelina Nowak</title>
+    <meta name="description" content="Indywidualne lekcje angielskiego online z Eweliną Nowak. Business English, konwersacje, przygotowanie do egzaminów. Skuteczna nauka mówienia.">
     
-    <meta property="og:title" content="Angielski Online - Twoje Imię">
+    <meta property="og:title" content="Angielski Online - Ewelina Nowak">
     <meta property="og:description" content="Przełam barierę językową i zacznij mówić swobodnie.">
     <meta property="og:image" content="link-do-twojego-zdjecia.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- ZMIENNE CSS (THEMING) --- */
         :root {
-            --primary: #2F80ED;
-            --primary-hover: #1d5cb0;
+            /* NOWY KOLOR AKCENTU */
+            --primary: #feb538;
+            --primary-hover: #e5a332;
+            
             --text-main: #1f2937;
             --text-muted: #4b5563;
+            --text-on-primary: #1f2937; /* Ciemny tekst na żółtym tle dla kontrastu */
+            
             --bg-body: #ffffff;
-            --bg-card: #f9fafb;
+            --bg-card: #fffcf5; /* Bardzo delikatny ciepły kremowy */
             --bg-nav: rgba(255, 255, 255, 0.95);
+            --bg-hero-gradient: linear-gradient(135deg, #fffbf0 0%, #ffffff 100%);
+            
             --border: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --radius: 12px;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --radius: 16px; /* Trochę bardziej zaokrąglone rogi */
             --transition: all 0.3s ease;
+            --blob-opacity: 0.12;
         }
 
         /* Tryb Ciemny */
         [data-theme="dark"] {
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
+            --text-on-primary: #1f2937;
+            
             --bg-body: #111827;
             --bg-card: #1f2937;
             --bg-nav: rgba(17, 24, 39, 0.95);
+            --bg-hero-gradient: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            
             --border: #374151;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+            --blob-opacity: 0.05;
         }
 
         /* --- RESET & BAZA --- */
@@ -48,29 +60,29 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
         }
         ul { list-style: none; }
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
         img { max-width: 100%; height: auto; }
 
         /* --- UTILS --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-        .section-padding { padding: 80px 0; }
+        .section-padding { padding: 100px 0; }
         .text-center { text-align: center; }
         .text-primary { color: var(--primary); }
         
         /* Animacje wejścia */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: opacity, visibility;
         }
         .fade-in-section.is-visible {
@@ -83,18 +95,24 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 24px;
-            border-radius: var(--radius);
-            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 50px; /* Bardziej okrągłe przyciski */
+            font-weight: 700;
+            letter-spacing: 0.5px;
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
         }
         .btn-primary {
             background-color: var(--primary);
-            color: white;
+            color: var(--text-on-primary); /* Ciemny tekst dla kontrastu */
+            box-shadow: 0 4px 15px -5px rgba(254, 181, 56, 0.5);
         }
-        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        .btn-primary:hover { 
+            background-color: var(--primary-hover); 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px -5px rgba(254, 181, 56, 0.6);
+        }
         .btn-outline {
             border-color: var(--primary);
             color: var(--primary);
@@ -102,7 +120,8 @@
         }
         .btn-outline:hover {
             background-color: var(--primary);
-            color: white;
+            color: var(--text-on-primary);
+             transform: translateY(-3px);
         }
 
         /* --- NAVBAR --- */
@@ -111,9 +130,9 @@
             top: 0;
             z-index: 1000;
             background-color: var(--bg-nav);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            padding: 15px 0;
+            padding: 18px 0;
             transition: background-color 0.3s;
         }
         .nav-container {
@@ -122,50 +141,89 @@
             align-items: center;
         }
         .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
         }
+        .logo span { color: var(--primary); }
         .nav-menu {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             align-items: center;
         }
         .nav-link {
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
         }
-        .nav-link:hover { color: var(--primary); }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        .nav-link:hover::after { width: 100%; }
         
         /* Theme Toggle */
         .theme-toggle {
-            background: none;
-            border: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             cursor: pointer;
             font-size: 1.2rem;
             color: var(--text-main);
-            margin-left: 20px;
+            margin-left: 15px;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
         }
+        .theme-toggle:hover { border-color: var(--primary); }
 
         /* Mobile Menu */
-        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+        .hamburger { display: none; cursor: pointer; font-size: 1.8rem; color: var(--text-main); }
 
         /* --- HERO --- */
         .hero {
-            padding: 120px 0 80px;
+            padding: 140px 0 100px;
             text-align: center;
+            background: var(--bg-hero-gradient);
+            position: relative;
+            overflow: hidden;
         }
+        /* Dekoracyjne "bloby" w tle, żeby nie było pusto */
+        .hero-blob {
+            position: absolute;
+            background-color: var(--primary);
+            filter: blur(90px);
+            opacity: var(--blob-opacity);
+            z-index: 0;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .blob-1 { width: 400px; height: 400px; top: -150px; right: -100px; }
+        .blob-2 { width: 300px; height: 300px; bottom: -100px; left: -50px; }
+
+        .hero-content { position: relative; z-index: 1; }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            letter-spacing: -1px;
         }
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 700px;
+            margin-bottom: 45px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -173,121 +231,160 @@
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
         .hero-benefits {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 600;
         }
-        .benefit-item { display: flex; align-items: center; gap: 8px; }
-        .benefit-icon { color: var(--primary); font-weight: bold; }
+        .benefit-item { display: flex; align-items: center; gap: 10px; }
+        .benefit-icon { 
+            color: var(--primary); 
+            background: rgba(254, 181, 56, 0.15);
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+        }
 
         /* --- SEKCJE OGÓLNE --- */
         .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
             text-align: center;
+            letter-spacing: -0.5px;
         }
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 60px;
-            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 70px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
         }
+        .bg-alt { background-color: var(--bg-card); }
 
         /* --- O MNIE --- */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
         }
-        .about-text p { margin-bottom: 20px; color: var(--text-muted); }
+        .about-text p { margin-bottom: 25px; color: var(--text-muted); font-size: 1.05rem; }
         .how-i-work {
             background-color: var(--bg-card);
-            padding: 30px;
+            padding: 40px;
             border-radius: var(--radius);
             border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
-        .how-i-work h3 { margin-bottom: 20px; font-size: 1.2rem; }
+        .how-i-work h3 { margin-bottom: 25px; font-size: 1.3rem; font-weight: 700; }
         .work-list li {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             position: relative;
-            padding-left: 25px;
+            padding-left: 30px;
             color: var(--text-muted);
+            font-weight: 500;
         }
         .work-list li::before {
             content: "✓";
             position: absolute;
             left: 0;
+            top: 2px;
             color: var(--primary);
-            font-weight: bold;
+            font-weight: 800;
         }
 
         /* --- OFERTA --- */
         .offer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
         .offer-card {
-            background-color: var(--bg-card);
-            padding: 40px 30px;
+            background-color: var(--bg-body);
+            padding: 50px 35px;
             border-radius: var(--radius);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
         .offer-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-12px);
             box-shadow: var(--shadow);
             border-color: var(--primary);
         }
-        .offer-icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
+        /* Ozdobne kółko za ikoną */
+        .offer-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(254, 181, 56, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            transition: var(--transition);
         }
-        .offer-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
-        .offer-desc { color: var(--text-muted); margin-bottom: 30px; flex-grow: 1; }
+        .offer-card:hover .offer-icon-wrapper {
+             background-color: var(--primary);
+        }
+        .offer-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .offer-card:hover .offer-icon { color: var(--text-on-primary); }
+
+        .offer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+        .offer-desc { color: var(--text-muted); margin-bottom: 40px; flex-grow: 1; }
         .price-tag {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
             color: var(--primary);
             margin-top: auto;
         }
-        .price-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+        .price-label { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
 
         /* --- DLA KOGO --- */
         .persona-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 40px;
         }
         .persona-card {
             text-align: center;
-            padding: 30px;
+            padding: 40px 30px;
+            background: var(--bg-body);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
+        .persona-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .persona-icon {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(47, 128, 237, 0.1);
+            width: 70px;
+            height: 70px;
+            background-color: rgba(254, 181, 56, 0.15);
             color: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
+            margin: 0 auto 25px;
+            font-size: 1.8rem;
         }
+        .persona-card h3 { margin-bottom: 15px; font-weight: 700; }
 
         /* --- OPINIE --- */
         .testimonials-grid {
@@ -296,111 +393,134 @@
             gap: 30px;
         }
         .testimonial-card {
-            background: var(--bg-card);
-            padding: 30px;
+            background: var(--bg-body);
+            padding: 35px;
             border-radius: var(--radius);
             border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
-        .stars { color: #F2C94C; margin-bottom: 15px; }
-        .review-text { font-style: italic; color: var(--text-muted); margin-bottom: 20px; }
-        .client-name { font-weight: 600; font-size: 0.95rem; }
+        .stars { color: var(--primary); margin-bottom: 20px; font-size: 1.1rem; }
+        .review-text { font-style: italic; color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+        .client-name { font-weight: 700; font-size: 1rem; }
 
         /* --- FAQ --- */
-        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-container { max-width: 850px; margin: 0 auto; }
         details {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             background-color: var(--bg-card);
             border-radius: var(--radius);
             border: 1px solid var(--border);
             overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
+        details[open] { border-color: var(--primary); }
         summary {
-            padding: 20px;
+            padding: 25px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
             list-style: none;
             position: relative;
-            padding-right: 50px;
+            padding-right: 60px;
+            transition: var(--transition);
         }
+        summary:hover { color: var(--primary); }
         summary::-webkit-details-marker { display: none; }
         summary::after {
             content: '+';
             position: absolute;
-            right: 20px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
+            font-weight: 300;
         }
-        details[open] summary::after { content: '-'; }
+        details[open] summary::after { content: '-'; transform: translateY(-55%); }
         .faq-answer {
-            padding: 0 20px 20px 20px;
+            padding: 0 25px 25px 25px;
             color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            margin-top: 10px;
-            padding-top: 15px;
+            line-height: 1.8;
         }
 
         /* --- KONTAKT --- */
         .contact-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 70px;
         }
-        .contact-info h3 { margin-bottom: 20px; }
-        .contact-item { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); }
+        .contact-info h3 { margin-bottom: 30px; font-size: 1.5rem; }
+        .contact-item { margin-bottom: 25px; display: flex; align-items: center; gap: 15px; color: var(--text-main); font-weight: 500; font-size: 1.1rem;}
+        .contact-icon {
+            width: 45px; height: 45px;
+            background: rgba(254, 181, 56, 0.15);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
             border: none;
-            margin-top: 20px;
+            margin-top: 30px;
+            width: auto;
+            padding: 15px 35px;
         }
-        .whatsapp-btn:hover { background-color: #1ebc57; }
+        .whatsapp-btn:hover { background-color: #1ebc57; box-shadow: 0 8px 20px -5px rgba(37, 211, 102, 0.4); transform: translateY(-3px); }
         
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            background: var(--bg-body);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             border-radius: var(--radius);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             background-color: var(--bg-card);
             color: var(--text-main);
             font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
         }
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.2);
+            background-color: var(--bg-body);
         }
 
         /* --- FOOTER --- */
         footer {
             background-color: var(--bg-card);
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
             border-top: 1px solid var(--border);
-            margin-top: 80px;
+            margin-top: 100px;
         }
         .footer-content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
-        .footer-bio { max-width: 300px; }
-        .footer-links h4 { margin-bottom: 15px; }
-        .footer-links a { display: block; margin-bottom: 10px; color: var(--text-muted); }
-        .footer-links a:hover { color: var(--primary); }
+        .footer-bio { max-width: 350px; }
+        .footer-bio h4 { font-size: 1.3rem; margin-bottom: 15px; color: var(--primary); }
+        .footer-links h4 { margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-links a { display: block; margin-bottom: 12px; color: var(--text-muted); font-weight: 500; }
+        .footer-links a:hover { color: var(--primary); transform: translateX(5px); }
         .copyright {
             text-align: center;
             border-top: 1px solid var(--border);
-            padding-top: 20px;
+            padding-top: 30px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         /* --- SCROLL TO TOP --- */
@@ -414,35 +534,55 @@
             border: none;
             outline: none;
             background-color: var(--primary);
-            color: white;
+            color: var(--text-on-primary);
             cursor: pointer;
-            padding: 10px 15px;
-            border-radius: var(--radius);
+            width: 50px; height: 50px;
+            border-radius: 50%;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            align-items: center; justify-content: center;
         }
         #scrollTopBtn:hover { background-color: var(--primary-hover); transform: translateY(-5px); }
 
         /* --- RWD --- */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.8rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 50px; }
+            .persona-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
+            .navbar { padding: 15px 0; }
             .nav-menu {
                 position: fixed;
                 top: 70px;
                 left: -100%;
                 width: 100%;
+                height: calc(100vh - 70px);
                 background-color: var(--bg-nav);
                 flex-direction: column;
+                justify-content: center;
                 padding: 40px 0;
-                transition: 0.3s;
+                transition: 0.4s ease-in-out;
                 border-bottom: 1px solid var(--border);
             }
             .nav-menu.active { left: 0; }
+            .nav-link { font-size: 1.2rem; }
             .hamburger { display: block; }
-            .about-grid, .contact-wrapper, .persona-grid { grid-template-columns: 1fr; }
-            .hero-buttons { flex-direction: column; width: 100%; }
+            
+            .hero { padding: 100px 0 60px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.1rem; }
+            .hero-buttons { flex-direction: column; width: 100%; gap: 15px; }
             .btn { width: 100%; }
-            .hero-benefits { flex-direction: column; gap: 15px; align-items: center; }
+            .hero-benefits { flex-direction: column; gap: 20px; align-items: center; }
+            
+            .section-title { font-size: 2rem; }
+            .persona-grid { grid-template-columns: 1fr; }
+            .offer-grid { grid-template-columns: 1fr; }
+            
+            .contact-form { padding: 30px 20px; }
+            .blob-1, .blob-2 { opacity: 0.08; }
         }
     </style>
 </head>
@@ -450,7 +590,7 @@
 
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">TwojeImię<span style="color:var(--text-main)">.pl</span></a>
+            <a href="#" class="logo">Ewelina<span>Nowak</span></a>
             <div class="hamburger" id="hamburger">☰</div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#o-mnie" class="nav-link">O mnie</a></li>
@@ -463,19 +603,24 @@
         </div>
     </nav>
 
-    <header class="hero container fade-in-section">
-        <h1>Angielski, który działa<br><span class="text-primary">w pracy i w życiu.</span></h1>
-        <p>Pomagam ambitnym dorosłym przełamać barierę językową i poczuć się pewnie w rozmowach 1:1. Bez stresu, konkretnie i na temat.</p>
-        
-        <div class="hero-buttons">
-            <a href="#kontakt" class="btn btn-primary">Umów lekcję próbną</a>
-            <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
-        </div>
+    <header class="hero fade-in-section">
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
 
-        <div class="hero-benefits">
-            <div class="benefit-item"><span class="benefit-icon">✓</span> 100% Konwersacji</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Materiały autorskie</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Elastyczne terminy</div>
+        <div class="container hero-content">
+            <h1>Angielski, który działa<br><span class="text-primary">w pracy i w życiu.</span></h1>
+            <p>Cześć, jestem Ewelina Nowak. Pomagam ambitnym dorosłym przełamać barierę językową i poczuć się pewnie w rozmowach 1:1. Bez stresu, konkretnie i na temat.</p>
+            
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn btn-primary">Umów lekcję próbną</a>
+                <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
+            </div>
+
+            <div class="hero-benefits">
+                <div class="benefit-item"><span class="benefit-icon">✓</span> 100% Konwersacji</div>
+                <div class="benefit-item"><span class="benefit-icon">✓</span> Materiały autorskie</div>
+                <div class="benefit-item"><span class="benefit-icon">✓</span> Elastyczne terminy</div>
+            </div>
         </div>
     </header>
 
@@ -483,10 +628,10 @@
         <div class="section-title">O mnie</div>
         <div class="about-grid">
             <div class="about-text">
-                <p>Cześć! Jestem lektorem języka angielskiego z pasją do praktycznej komunikacji. Uczę głównie dorosłych z Polski, pomagając im odnaleźć się w międzynarodowym środowisku pracy.</p>
+                <p>Nazywam się <strong>Ewelina Nowak</strong> i jestem lektorką języka angielskiego z pasją do praktycznej komunikacji. Uczę głównie dorosłych z Polski, pomagając im odnaleźć się w międzynarodowym środowisku pracy.</p>
                 <p>Moje podejście opiera się na prostym założeniu: język to narzędzie, a nie zbiór regułek do wykucia. Skupiam się na słownictwie, które realnie Ci się przyda – kolokacjach, idiomach i phrasal verbs, które usłyszysz w biurze i na Netflixie.</p>
                 <p>Mam wieloletnie doświadczenie w pracy z klientami z branży finansowej, HR i IT (cybersecurity). Wiem, jak wygląda "korpo-angielski" i pomagam go okiełznać.</p>
-                <p>Prywatnie? Fan dobrej kawy i nowinek technologicznych. Na zajęciach dbam o luźną, partnerską atmosferę.</p>
+                <p>Prywatnie? Fanka dobrej kawy i nowinek technologicznych. Na zajęciach dbam o luźną, partnerską atmosferę.</p>
             </div>
             <div class="how-i-work">
                 <h3>Jak pracuję?</h3>
@@ -501,9 +646,10 @@
         </div>
     </section>
 
-    <section class="section-padding" style="background-color: var(--bg-card);">
+    <section class="section-padding bg-alt">
         <div class="container fade-in-section">
             <h2 class="section-title">Dla kogo są moje lekcje?</h2>
+            <p class="section-subtitle">Sprawdź, czy odnajdujesz się w jednym z tych profili. Moje metody są skrojone pod konkretne potrzeby dorosłych uczniów.</p>
             <div class="persona-grid">
                 <div class="persona-card">
                     <div class="persona-icon">💼</div>
@@ -526,25 +672,31 @@
 
     <section id="oferta" class="section-padding container fade-in-section">
         <h2 class="section-title">Oferta współpracy</h2>
-        <p class="section-subtitle">Wybierz ścieżkę dopasowaną do Twoich potrzeb. Wszystkie lekcje odbywają się online.</p>
+        <p class="section-subtitle">Wybierz ścieżkę dopasowaną do Twoich potrzeb. Wszystkie lekcje odbywają się online w modelu 1:1.</p>
         
         <div class="offer-grid">
             <div class="offer-card">
-                <div class="offer-icon">🗣️</div>
+                <div class="offer-icon-wrapper">
+                    <div class="offer-icon">🗣️</div>
+                </div>
                 <h3 class="offer-title">General English</h3>
                 <p class="offer-desc">Swobodne konwersacje, poszerzanie słownictwa, praktyczna gramatyka. Idealne do podróży i życia codziennego.</p>
                 <div class="price-tag">od 120 PLN <span class="price-label">/ 60 min</span></div>
             </div>
 
             <div class="offer-card" style="border-color: var(--primary);">
-                <div class="offer-icon">👔</div>
+                <div class="offer-icon-wrapper">
+                    <div class="offer-icon">👔</div>
+                </div>
                 <h3 class="offer-title">Business English</h3>
                 <p class="offer-desc">Angielski w HR, finansach, IT. Przygotowanie do prezentacji, negocjacji i rozmów rekrutacyjnych. Profesjonalne słownictwo.</p>
                 <div class="price-tag">od 150 PLN <span class="price-label">/ 60 min</span></div>
             </div>
 
             <div class="offer-card">
-                <div class="offer-icon">🎓</div>
+                <div class="offer-icon-wrapper">
+                    <div class="offer-icon">🎓</div>
+                </div>
                 <h3 class="offer-title">Egzaminy & Certyfikaty</h3>
                 <p class="offer-desc">Intensywne przygotowanie do FCE, CAE lub matury rozszerzonej. Strategie egzaminacyjne i arkusze próbne.</p>
                 <div class="price-tag">od 140 PLN <span class="price-label">/ 60 min</span></div>
@@ -552,13 +704,14 @@
         </div>
     </section>
 
-    <section id="opinie" class="section-padding" style="background-color: var(--bg-card);">
+    <section id="opinie" class="section-padding bg-alt">
         <div class="container fade-in-section">
             <h2 class="section-title">Co mówią uczniowie?</h2>
+             <p class="section-subtitle">Zobacz, jak współpraca ze mną pomogła innym osiągnąć ich cele językowe.</p>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p class="review-text">"W końcu przestałem się bać odzywać na callach. Lekcje są konkretne, a materiały idealnie dopasowane do mojej branży."</p>
+                    <p class="review-text">"W końcu przestałem się bać odzywać na callach. Lekcje z Eweliną są konkretne, a materiały idealnie dopasowane do mojej branży."</p>
                     <p class="client-name">Tomasz, Project Manager</p>
                 </div>
                 <div class="testimonial-card">
@@ -573,7 +726,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p class="review-text">"Najlepszy lektor, jakiego miałem. Skupiamy się na wymowie i naturalnych zwrotach. Widzę ogromny postęp."</p>
+                    <p class="review-text">"Najlepsza lektorka, jaką miałem. Skupiamy się na wymowie i naturalnych zwrotach. Widzę ogromny postęp."</p>
                     <p class="client-name">Marek, Programista</p>
                 </div>
             </div>
@@ -582,6 +735,7 @@
 
     <section id="faq" class="section-padding container fade-in-section">
         <h2 class="section-title">Częste pytania (FAQ)</h2>
+         <p class="section-subtitle">Odpowiedzi na najczęściej zadawane pytania dotyczące współpracy.</p>
         <div class="faq-container">
             <details>
                 <summary>Na jakim poziomie muszę być, żeby zacząć?</summary>
@@ -610,19 +764,19 @@
         </div>
     </section>
 
-    <section id="kontakt" class="section-padding" style="background-color: var(--bg-card);">
+    <section id="kontakt" class="section-padding bg-alt">
         <div class="container fade-in-section">
-            <h2 class="section-title">Skontaktuj się</h2>
-            <p class="section-subtitle">Masz pytania? Chcesz ustalić termin lekcji próbnej? Napisz!</p>
+            <h2 class="section-title">Skontaktuj się ze mną</h2>
+            <p class="section-subtitle">Masz pytania? Chcesz ustalić termin lekcji próbnej? Napisz śmiało!</p>
             
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <h3>Dane kontaktowe</h3>
-                    <div class="contact-item">📧 kontakt@twoja-domena.pl</div>
-                    <div class="contact-item">📞 +48 000 000 000</div>
-                    <div class="contact-item">📍 Online (Polska)</div>
+                    <div class="contact-item"><div class="contact-icon">📧</div> kontakt@ewelina-nowak.pl</div>
+                    <div class="contact-item"><div class="contact-icon">📞</div> +48 000 000 000</div>
+                    <div class="contact-item"><div class="contact-icon">📍</div> Online (Cała Polska)</div>
                     
-                    <p style="margin-top: 20px; color: var(--text-muted);">Preferujesz szybki kontakt?</p>
+                    <p style="margin-top: 30px; color: var(--text-muted); font-weight: 500;">Preferujesz szybki kontakt?</p>
                     <a href="#" class="btn whatsapp-btn">Napisz na WhatsApp / Telegram</a>
                 </div>
 
@@ -636,7 +790,7 @@
                     <div class="form-group">
                         <textarea id="message" rows="5" placeholder="Wiadomość (np. poziom angielskiego, cel nauki)" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Wyślij wiadomość</button>
                 </form>
             </div>
         </div>
@@ -646,29 +800,30 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-bio">
-                    <h4>Twoje Imię</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Profesjonalny lektor języka angielskiego online. Pomagam przełamać barierę językową i osiągnąć zawodowe cele.</p>
+                    <h4>Ewelina Nowak</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Profesjonalna lektorka języka angielskiego online. Pomagam przełamać barierę językową i osiągnąć zawodowe cele.</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Menu</h4>
+                    <h4>Nawigacja</h4>
                     <a href="#o-mnie">O mnie</a>
                     <a href="#oferta">Oferta</a>
                     <a href="#opinie">Opinie</a>
+                    <a href="#kontakt">Kontakt</a>
                 </div>
                 <div class="footer-links">
                     <h4>Oferta</h4>
-                    <a href="#">Business English</a>
-                    <a href="#">General English</a>
-                    <a href="#">Egzaminy</a>
+                    <a href="#oferta">Business English</a>
+                    <a href="#oferta">General English</a>
+                    <a href="#oferta">Egzaminy</a>
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2024 Twoje Imię. Wszelkie prawa zastrzeżone. | Design: Minimalist
+                &copy; 2024 Ewelina Nowak. Wszelkie prawa zastrzeżone.
             </div>
         </div>
     </footer>
 
-    <button id="scrollTopBtn" title="Wróć do góry">↑</button>
+    <button id="scrollTopBtn" title="Wróć do góry" style="display: flex;">↑</button>
 
     <script>
         // 1. Mobile Menu Toggle
@@ -678,12 +833,13 @@
 
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Zamknij menu po kliknięciu w link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                hamburger.innerHTML = '☰';
             });
         });
 
@@ -691,7 +847,6 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         
-        // Sprawdź zapisany motyw
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             body.setAttribute('data-theme', 'dark');
@@ -714,26 +869,22 @@
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         const sections = document.querySelectorAll('.fade-in-section');
 
-        const observerOptions = {
-            threshold: 0.15
-        };
+        const observerOptions = { threshold: 0.15 };
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Animuj tylko raz
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        sections.forEach(section => { observer.observe(section); });
 
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollTopBtn.style.display = "block";
+                scrollTopBtn.style.display = "flex";
             } else {
                 scrollTopBtn.style.display = "none";
             }
@@ -747,13 +898,11 @@
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
             if(name && email && message) {
-                // Tutaj normalnie byłoby wysyłanie danych na serwer (np. PHP Mailer lub Formspree)
                 alert(`Dziękuję, ${name}! Wiadomość została wysłana (symulacja). Odezwę się na ${email}.`);
                 contactForm.reset();
             } else {
