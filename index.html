@@ -15,10 +15,14 @@
         :root {
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
+            --bg-warm: #fffdf5; /* Nowy kolor do tranzycji */
+            
             --text-main: #2d2420;
             --text-light: #5e504a;
+            
             --accent-yellow: #ffc400;
             --accent-blue: #4a6fa5;
+            
             --radius: 20px;
             --shadow: 0 8px 30px -5px rgba(45, 36, 32, 0.05);
         }
@@ -33,15 +37,32 @@
             line-height: 1.7;
             font-size: 18px;
             overflow-x: hidden;
+            transition: background-color 0.8s ease; /* Płynna zmiana tła */
         }
 
-        /* --- TYPOGRAFIA (ZMIANA: Editorial Style) --- */
+        /* --- 10. CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg-cream); }
+        ::-webkit-scrollbar-thumb { 
+            background-color: var(--accent-yellow); 
+            border-radius: 6px; 
+            border: 3px solid var(--bg-cream); 
+        }
+
+        /* --- 8. PASEK POSTĘPU --- */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--accent-yellow); width: 0%; z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* TYPOGRAFIA */
         h1, h2, h3 { 
             font-family: 'Lora', serif; 
-            font-weight: 700; /* Zwiększona waga */
+            font-weight: 700; 
             line-height: 1.2; 
             margin-bottom: 20px;
-            letter-spacing: -0.03em; /* Nowoczesny, "magazynowy" ścisk */
+            letter-spacing: -0.03em;
         }
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.6rem; }
@@ -56,53 +77,44 @@
             line-height: 1;
         }
         
-        /* --- ANIMACJA MARKERA (ZMIANA) --- */
-        @keyframes drawMarker {
-            from { width: 0; }
-            to { width: 105%; }
-        }
-
-        .marker {
-            position: relative;
-            z-index: 1;
-            white-space: nowrap;
-        }
+        /* Animowany Marker */
+        @keyframes drawMarker { from { width: 0; } to { width: 105%; } }
+        .marker { position: relative; z-index: 1; white-space: nowrap; }
         .marker::after {
             content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
             background: var(--accent-yellow); opacity: 0.6; z-index: -1;
             border-radius: 4px; transform: rotate(-1deg);
-            width: 0; /* Start od zera */
-            animation: drawMarker 1s 0.8s forwards ease-out; /* Animacja po załadowaniu */
+            width: 0; animation: drawMarker 1s 0.8s forwards ease-out;
         }
 
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
         .section-padding { padding: 90px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- STYL DLA IKON DOODLE (SVG) --- */
+        /* --- 4. RYSOWANIE IKON (SVG) --- */
         .doodle-icon {
             width: 60px; height: 60px; fill: none; stroke: var(--accent-blue);
             stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
             margin-bottom: 20px; display: block; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
         }
+        .doodle-icon path {
+            stroke-dasharray: 100; stroke-dashoffset: 100; /* Start ukryty */
+            transition: stroke-dashoffset 1.5s ease-out;
+        }
+        .doodle-icon.active path { stroke-dashoffset: 0; } /* Stan narysowany */
 
-        /* --- PRZYCISKI --- */
+        /* PRZYCISKI */
         .btn {
             display: inline-block; padding: 14px 32px;
             border-radius: 50px; font-weight: 700; font-size: 1rem;
             cursor: pointer; transition: 0.3s; border: 2px solid transparent;
         }
-        .btn-primary {
-            background-color: var(--text-main); color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+        .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: #000; }
-        .btn-warm {
-            background-color: var(--accent-yellow); color: var(--text-main);
-        }
+        .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
 
-        /* --- NAVBAR --- */
+        /* NAVBAR */
         nav {
             padding: 20px 0; position: sticky; top: 0; z-index: 100;
             background: rgba(253, 251, 247, 0.95);
@@ -115,72 +127,63 @@
         .nav-links a:hover { color: #d84315; }
         @media(max-width: 768px) { .nav-links { display: none; } }
 
-        /* --- HERO --- */
+        /* HERO */
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 40px; }
         .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
-        
         .hero-img-box { position: relative; }
         .hero-img { 
-            width: 100%; border-radius: var(--radius); 
-            transform: rotate(2deg); box-shadow: var(--shadow);
-            border: 8px solid #fff;
+            width: 100%; border-radius: var(--radius); transform: rotate(2deg); 
+            box-shadow: var(--shadow); border: 8px solid #fff;
             object-fit: cover; aspect-ratio: 3/4;
         }
         
-        /* --- ANIMACJA FLOAT (PŁYWANIE) --- */
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(0deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(0deg); } 100% { transform: translateY(0px) rotate(0deg); } }
         .arrow-note {
             position: absolute; bottom: 425px; left: -50px;
             display: flex; flex-direction: column; align-items: center; z-index: 2;
-            /* ZMIANA: Animacja */
             animation: float 4s ease-in-out infinite;
         }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-blue); }
 
-        /* --- O MNIE --- */
+        /* O MNIE & 6. LICZNIK */
         .about-box { 
             background: var(--bg-white); padding: 60px; border-radius: 30px; 
             box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
         }
         .about-text p { margin-bottom: 20px; color: var(--text-light); }
         .signature { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--text-main); margin-top: 20px; }
+        
+        .counters-wrapper {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;
+        }
+        .counter-item { text-align: center; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .counter-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--accent-yellow); display: block; }
+        .counter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
 
-        /* --- DLA KOGO --- */
+        /* DLA KOGO */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
         .persona { 
             background: #fff; padding: 35px; border-radius: 20px; 
-            border: 1px solid rgba(0,0,0,0.03); transition: 0.3s;
-            text-align: center;
+            border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center;
         }
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- OFERTA (ZMIANA: Scale Up dla środkowej karty) --- */
-        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
-        
+        /* --- 7. OFERTA (3D TILT) --- */
+        .offer-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; align-items: center; perspective: 1000px; /* Dla efektu 3D */
+        }
         .offer-card {
             background: #fff; padding: 40px; border-radius: 20px;
-            border: 2px solid transparent; transition: 0.3s;
+            border: 2px solid transparent; transition: transform 0.1s; /* Szybka reakcja na myszkę */
             position: relative; display: flex; flex-direction: column;
+            transform-style: preserve-3d;
         }
-        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
-
-        /* Wyróżnienie środkowej karty (drugie dziecko) */
-        .offer-card:nth-child(2) {
-            transform: scale(1.05); /* Powiększenie */
-            border-color: var(--accent-yellow);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Mocniejszy cień */
-            z-index: 1;
-        }
-        .offer-card:nth-child(2):hover {
-            transform: scale(1.07); /* Jeszcze większe po najechaniu */
-        }
-
+        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        /* Skalowanie środkowej karty */
+        .offer-card:nth-child(2) { transform: scale(1.05); border-color: var(--accent-yellow); box-shadow: 0 15px 40px rgba(0,0,0,0.08); z-index: 1; }
+        
         .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
         .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
         .tag { 
@@ -189,11 +192,17 @@
             border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
         }
 
-        /* --- OPINIE --- */
-        .reviews-section { text-align: center; }
-        .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; }
+        /* --- 5. OPINIE (WIELKI CUDZYSŁÓW) --- */
+        .reviews-section { text-align: center; position: relative; overflow: hidden; }
+        .reviews-section::before {
+            content: '“';
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            font-family: 'Lora', serif; font-size: 20rem; line-height: 0.8;
+            color: var(--accent-yellow); opacity: 0.1; z-index: 0; pointer-events: none;
+        }
+        .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; position: relative; z-index: 1; }
 
-        /* --- FAQ --- */
+        /* FAQ */
         .faq-item {
             background: #fff; border-radius: 15px; margin-bottom: 15px;
             border: 1px solid rgba(0,0,0,0.05); overflow: hidden;
@@ -206,7 +215,7 @@
         .faq-item[open] summary { color: var(--accent-blue); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
-        /* --- KONTAKT --- */
+        /* KONTAKT */
         .contact-box {
             background: var(--text-main); color: #fff; border-radius: 30px;
             padding: 60px; text-align: center; position: relative; overflow: hidden;
@@ -223,12 +232,11 @@
         .contact-note {
             position: absolute; top: 40px; right: 40px; 
             transform: rotate(15deg); display: none;
-            /* Też animujemy */
             animation: float 5s ease-in-out infinite reverse;
         }
         @media(min-width: 900px) { .contact-note { display: block; } }
 
-        /* --- FOOTER --- */
+        /* FOOTER */
         footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
         @media(max-width: 900px) {
@@ -239,13 +247,13 @@
             .arrow-note { display: none; }
             .about-box { padding: 30px; }
             .contact-box { padding: 40px 20px; }
-            /* Reset skali na mobile żeby się mieściło */
             .offer-card:nth-child(2) { transform: scale(1); }
-            .offer-card:nth-child(2):hover { transform: translateY(-5px); }
         }
     </style>
 </head>
-<body>
+<body id="page-body">
+
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <nav>
         <div class="container nav-inner">
@@ -259,7 +267,7 @@
         </div>
     </nav>
 
-    <header class="container section-padding">
+    <header class="container section-padding" id="section-hero">
         <div class="hero-grid">
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
@@ -286,18 +294,29 @@
         </div>
     </header>
 
-    <section id="o-mnie" class="section-padding">
+    <section id="o-mnie" class="section-padding" style="position:relative; z-index:10;">
         <div class="container about-box">
             <div>
                 <h2>Nie jestem typową "panią od angielskiego".</h2>
                 <p>Wierzę, że język to narzędzie do komunikacji, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się swobodnie w podróży i w pracy.</p>
-                <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się popełniać błędów (bo to dzięki nim się uczysz!).</p>
+                <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się popełniać błędów.</p>
                 <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
             </div>
             <div style="background: #f4f1ea; padding: 40px; border-radius: 20px;">
                 <h3 style="margin-bottom: 20px;">Moje podejście:</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 15px;">✅ <strong>Zero stresu</strong> – uczymy się w przyjaznej atmosferze.</li>
+                
+                <div class="counters-wrapper">
+                    <div class="counter-item">
+                        <span class="counter-num" data-target="1500">0</span>
+                        <span class="counter-label">Wypitych kaw</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-num" data-target="100">0</span>%
+                        <span class="counter-label">Zero stresu</span>
+                    </div>
+                </div>
+                
+                <ul style="list-style: none; margin-top: 30px;">
                     <li style="margin-bottom: 15px;">✅ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
                     <li style="margin-bottom: 15px;">✅ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
                 </ul>
@@ -305,7 +324,7 @@
         </div>
     </section>
 
-    <section class="section-padding container">
+    <section class="section-padding container" id="section-personas">
         <div style="text-align: center; max-width: 700px; margin: 0 auto;">
             <span class="handwritten">Dla kogo?</span>
             <h2>W kim odnajdujesz siebie?</h2>
@@ -349,7 +368,7 @@
         <h2 style="text-align: center; margin-bottom: 60px;">Wybierz swoją ścieżkę</h2>
         <div class="offer-grid">
             
-            <div class="offer-card">
+            <div class="offer-card js-tilt">
                 <h3>Na co dzień<br>(General)</h3>
                 <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                 <div class="price">120 zł <span>/ 60 min</span></div>
@@ -361,7 +380,7 @@
                 <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
             </div>
 
-            <div class="offer-card">
+            <div class="offer-card js-tilt" style="border-color: var(--accent-yellow);">
                 <div class="tag">POLECAM</div>
                 <h3>W pracy<br>(Business)</h3>
                 <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
@@ -374,7 +393,7 @@
                 <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
             </div>
 
-            <div class="offer-card">
+            <div class="offer-card js-tilt">
                 <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
                 <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
                 <div class="price">140 zł <span>/ 60 min</span></div>
@@ -399,19 +418,9 @@
     <section class="section-padding container">
         <div style="max-width: 700px; margin: 0 auto;">
             <h2 style="text-align: center; margin-bottom: 40px;">Pytania? Tutaj znajdziesz odpowiedzi.</h2>
-            
-            <details class="faq-item">
-                <summary>Jak wyglądają zajęcia?</summary>
-                <div class="faq-content">Spotykamy się online (Google Meet). Rozmawiamy, korzystamy z interaktywnej tablicy i moich autorskich materiałów. Jest luźno, ale produktywnie.</div>
-            </details>
-            <details class="faq-item">
-                <summary>Co jeśli muszę odwołać lekcję?</summary>
-                <div class="faq-content">Życie pisze różne scenariusze. Możesz odwołać lub przełożyć lekcję bezpłatnie do 24h przed terminem.</div>
-            </details>
-            <details class="faq-item">
-                <summary>Jak mogę zapłacić?</summary>
-                <div class="faq-content">Przyjmuję płatności przelewem lub BLIKiem. Zazwyczaj rozliczamy się za pakiet lekcji z góry. Wystawiam faktury.</div>
-            </details>
+            <details class="faq-item"><summary>Jak wyglądają zajęcia?</summary><div class="faq-content">Spotykamy się online (Google Meet). Rozmawiamy, korzystamy z interaktywnej tablicy i moich autorskich materiałów. Jest luźno, ale produktywnie.</div></details>
+            <details class="faq-item"><summary>Co jeśli muszę odwołać lekcję?</summary><div class="faq-content">Życie pisze różne scenariusze. Możesz odwołać lub przełożyć lekcję bezpłatnie do 24h przed terminem.</div></details>
+            <details class="faq-item"><summary>Jak mogę zapłacić?</summary><div class="faq-content">Przyjmuję płatności przelewem lub BLIKiem. Zazwyczaj rozliczamy się za pakiet lekcji z góry. Wystawiam faktury.</div></details>
         </div>
     </section>
 
@@ -420,22 +429,14 @@
             <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
             <h2>Napisz do mnie</h2>
             <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
-            
             <form action="https://formspree.io/f/TWOJ_KOD" method="POST" class="contact-form">
                 <input type="text" name="name" class="input-field" placeholder="Jak masz na imię?" required>
                 <input type="email" name="email" class="input-field" placeholder="Twój e-mail" required>
                 <textarea name="message" rows="4" class="input-field" placeholder="O co chcesz zapytać? (np. poziom, terminy)" required></textarea>
-                
-                <div style="text-align: left; font-size: 0.85rem; margin-bottom: 20px; opacity: 0.8;">
-                    <input type="checkbox" required> Akceptuję politykę prywatności.
-                </div>
-
+                <div style="text-align: left; font-size: 0.85rem; margin-bottom: 20px; opacity: 0.8;"><input type="checkbox" required> Akceptuję politykę prywatności.</div>
                 <button type="submit" class="btn btn-submit">Wyślij wiadomość</button>
             </form>
-
-            <div style="margin-top: 40px; font-size: 0.9rem;">
-                Lub napisz bezpośrednio: <strong>kontakt@ewelina-nowak.pl</strong>
-            </div>
+            <div style="margin-top: 40px; font-size: 0.9rem;">Lub napisz bezpośrednio: <strong>kontakt@ewelina-nowak.pl</strong></div>
         </div>
     </section>
 
@@ -445,6 +446,75 @@
             <a href="#" style="text-decoration: underline; margin-top: 10px; display: inline-block;">Polityka Prywatności</a>
         </div>
     </footer>
+
+    <script>
+        // 8. PASEK POSTĘPU
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+            
+            // 3. ZMIANA KOLORU TŁA
+            const body = document.getElementById('page-body');
+            if (scrolled > 10 && scrolled < 40) { body.style.backgroundColor = 'var(--bg-white)'; }
+            else if (scrolled >= 40 && scrolled < 70) { body.style.backgroundColor = 'var(--bg-warm)'; }
+            else if (scrolled >= 70) { body.style.backgroundColor = 'var(--bg-cream)'; }
+            else { body.style.backgroundColor = 'var(--bg-cream)'; }
+        };
+
+        // 7. 3D TILT EFFECT
+        const cards = document.querySelectorAll('.js-tilt');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -5; // Max 5 deg
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                if (card === cards[1]) card.style.transform = 'scale(1.05)'; // Przywróć scale dla środkowej karty
+            });
+        });
+
+        // 4. ANIMACJA IKON i 6. LICZNIK (Intersection Observer)
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animuj ikony
+                    if(entry.target.classList.contains('doodle-icon')) {
+                        entry.target.classList.add('active');
+                    }
+                    // Animuj licznik
+                    if(entry.target.classList.contains('counter-num')) {
+                        const target = +entry.target.getAttribute('data-target');
+                        const duration = 2000; 
+                        const step = target / (duration / 16);
+                        let current = 0;
+                        const timer = setInterval(() => {
+                            current += step;
+                            if(current >= target) {
+                                entry.target.innerText = target;
+                                clearInterval(timer);
+                            } else {
+                                entry.target.innerText = Math.ceil(current);
+                            }
+                        }, 16);
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.doodle-icon').forEach(icon => observer.observe(icon));
+        document.querySelectorAll('.counter-num').forEach(num => observer.observe(num));
+    </script>
 
 </body>
 </html>
