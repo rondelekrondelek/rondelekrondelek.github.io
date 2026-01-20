@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         /* --- PALETA --- */
@@ -35,11 +35,17 @@
             overflow-x: hidden;
         }
 
-        /* TYPOGRAFIA */
-        h1, h2, h3 { font-family: 'Lora', serif; font-weight: 600; line-height: 1.3; margin-bottom: 20px; }
-        h1 { font-size: 3.2rem; letter-spacing: -0.5px; }
-        h2 { font-size: 2.4rem; }
-        h3 { font-size: 1.5rem; }
+        /* --- TYPOGRAFIA (ZMIANA: Editorial Style) --- */
+        h1, h2, h3 { 
+            font-family: 'Lora', serif; 
+            font-weight: 700; /* Zwiększona waga */
+            line-height: 1.2; 
+            margin-bottom: 20px;
+            letter-spacing: -0.03em; /* Nowoczesny, "magazynowy" ścisk */
+        }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.6rem; }
+        h3 { font-size: 1.6rem; }
 
         .handwritten {
             font-family: 'Caveat', cursive;
@@ -50,15 +56,23 @@
             line-height: 1;
         }
         
+        /* --- ANIMACJA MARKERA (ZMIANA) --- */
+        @keyframes drawMarker {
+            from { width: 0; }
+            to { width: 105%; }
+        }
+
         .marker {
             position: relative;
             z-index: 1;
             white-space: nowrap;
         }
         .marker::after {
-            content: ''; position: absolute; bottom: 2px; left: -5px; width: 105%; height: 12px;
+            content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
             background: var(--accent-yellow); opacity: 0.6; z-index: -1;
             border-radius: 4px; transform: rotate(-1deg);
+            width: 0; /* Start od zera */
+            animation: drawMarker 1s 0.8s forwards ease-out; /* Animacja po załadowaniu */
         }
 
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -67,16 +81,9 @@
 
         /* --- STYL DLA IKON DOODLE (SVG) --- */
         .doodle-icon {
-            width: 60px;
-            height: 60px;
-            fill: none;
-            stroke: var(--accent-blue);
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            margin-bottom: 20px;
-            display: block;
-            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
+            width: 60px; height: 60px; fill: none; stroke: var(--accent-blue);
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+            margin-bottom: 20px; display: block; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
         }
 
         /* --- PRZYCISKI --- */
@@ -103,7 +110,7 @@
             border-bottom: 1px solid rgba(0,0,0,0.03);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; }
+        .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
         .nav-links a:hover { color: #d84315; }
         @media(max-width: 768px) { .nav-links { display: none; } }
@@ -120,10 +127,18 @@
             object-fit: cover; aspect-ratio: 3/4;
         }
         
-        /* ZMIANA 2: Nowa pozycja strzałki */
+        /* --- ANIMACJA FLOAT (PŁYWANIE) --- */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
         .arrow-note {
             position: absolute; bottom: 425px; left: -50px;
             display: flex; flex-direction: column; align-items: center; z-index: 2;
+            /* ZMIANA: Animacja */
+            animation: float 4s ease-in-out infinite;
         }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-blue); }
 
@@ -145,14 +160,27 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- OFERTA --- */
-        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* --- OFERTA (ZMIANA: Scale Up dla środkowej karty) --- */
+        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
+        
         .offer-card {
             background: #fff; padding: 40px; border-radius: 20px;
             border: 2px solid transparent; transition: 0.3s;
             position: relative; display: flex; flex-direction: column;
         }
         .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
+
+        /* Wyróżnienie środkowej karty (drugie dziecko) */
+        .offer-card:nth-child(2) {
+            transform: scale(1.05); /* Powiększenie */
+            border-color: var(--accent-yellow);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Mocniejszy cień */
+            z-index: 1;
+        }
+        .offer-card:nth-child(2):hover {
+            transform: scale(1.07); /* Jeszcze większe po najechaniu */
+        }
+
         .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
         .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
         .tag { 
@@ -195,6 +223,8 @@
         .contact-note {
             position: absolute; top: 40px; right: 40px; 
             transform: rotate(15deg); display: none;
+            /* Też animujemy */
+            animation: float 5s ease-in-out infinite reverse;
         }
         @media(min-width: 900px) { .contact-note { display: block; } }
 
@@ -209,6 +239,9 @@
             .arrow-note { display: none; }
             .about-box { padding: 30px; }
             .contact-box { padding: 40px 20px; }
+            /* Reset skali na mobile żeby się mieściło */
+            .offer-card:nth-child(2) { transform: scale(1); }
+            .offer-card:nth-child(2):hover { transform: translateY(-5px); }
         }
     </style>
 </head>
@@ -318,7 +351,7 @@
             
             <div class="offer-card">
                 <h3>Na co dzień<br>(General)</h3>
-                <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu, kulturze i świecie.</p>
+                <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                 <div class="price">120 zł <span>/ 60 min</span></div>
                 <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
                     <li>• Luźne konwersacje</li>
@@ -328,10 +361,10 @@
                 <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
             </div>
 
-            <div class="offer-card" style="border-color: var(--accent-yellow);">
+            <div class="offer-card">
                 <div class="tag">POLECAM</div>
                 <h3>W pracy<br>(Business)</h3>
-                <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań i prezentacji.</p>
+                <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
                 <div class="price">150 zł <span>/ 60 min</span></div>
                 <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
                     <li>• Symulacje rozmów</li>
@@ -343,7 +376,7 @@
 
             <div class="offer-card">
                 <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
-                <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów. Konkretnie i do celu.</p>
+                <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
                 <div class="price">140 zł <span>/ 60 min</span></div>
                 <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
                     <li>• Arkusze próbne</li>
