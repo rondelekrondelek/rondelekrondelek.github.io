@@ -11,22 +11,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA (CZYSTA I ENERGETYCZNA) --- */
+        /* --- PALETA --- */
         :root {
-            /* Tła - TYLKO CZYSTE */
-            --bg-cream: #fdfbf7;      /* Ciepły papier */
-            --bg-white: #ffffff;      /* Czysta biel */
+            --bg-cream: #fdfbf7;
+            --bg-white: #ffffff;
             
-            /* Tekst */
-            --text-main: #2d2420;     /* Ciemny brąz/grafit */
+            --text-main: #2d2420;
             --text-light: #5e504a;
             
-            /* Akcenty */
-            --accent-yellow: #ffc400; /* Twój ulubiony mocny żółty */
-            --accent-blue: #4a6fa5;   /* Długopisowy niebieski */
+            --accent-yellow: #ffc400;
+            --accent-blue: #4a6fa5;
             
             --radius: 20px;
-            --shadow: 0 8px 30px -5px rgba(45, 36, 32, 0.06);
+            --shadow: 0 10px 40px -5px rgba(45, 36, 32, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,16 +36,34 @@
             line-height: 1.7;
             font-size: 18px;
             overflow-x: hidden;
-            transition: background-color 0.5s ease;
         }
 
-        /* Custom Scrollbar (Żółty suwak) */
+        /* --- SEPARATORY (WAVES) --- */
+        .wave-separator {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            position: absolute;
+            left: 0;
+        }
+        .wave-separator svg {
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+        }
+        .wave-bottom { bottom: 0; }
+        .wave-top { top: 0; transform: rotate(180deg); }
+        
+        /* Klasy tła dla sekcji */
+        .bg-cream { background-color: var(--bg-cream); position: relative; }
+        .bg-white { background-color: var(--bg-white); position: relative; }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: var(--bg-cream); }
         ::-webkit-scrollbar-thumb { 
             background-color: var(--accent-yellow); 
-            border-radius: 6px; 
-            border: 3px solid var(--bg-cream); 
+            border-radius: 6px; border: 3px solid var(--bg-cream); 
         }
 
         /* Pasek postępu */
@@ -58,42 +73,36 @@
             transition: width 0.1s;
         }
 
-        /* TYPOGRAFIA (Editorial Style) */
+        /* TYPOGRAFIA */
         h1, h2, h3 { 
-            font-family: 'Lora', serif; 
-            font-weight: 700; 
-            line-height: 1.2; 
-            margin-bottom: 20px;
-            letter-spacing: -0.03em;
+            font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; 
+            margin-bottom: 20px; letter-spacing: -0.03em;
         }
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.6rem; }
         h3 { font-size: 1.6rem; }
 
         .handwritten {
-            font-family: 'Caveat', cursive;
-            color: var(--accent-blue);
-            font-size: 1.6rem;
-            transform: rotate(-3deg);
-            display: inline-block;
-            line-height: 1;
+            font-family: 'Caveat', cursive; color: var(--accent-blue);
+            font-size: 1.6rem; transform: rotate(-3deg); display: inline-block; line-height: 1;
         }
         
-        /* Animowany Marker (Żółty) */
-        @keyframes drawMarker { from { width: 0; } to { width: 105%; } }
-        .marker { position: relative; z-index: 1; white-space: nowrap; }
+        /* --- HIGHLIGHTER NA SCROLL (ZMIANA) --- */
+        .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; }
         .marker::after {
             content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
             background: var(--accent-yellow); opacity: 0.6; z-index: -1;
             border-radius: 4px; transform: rotate(-1deg);
-            width: 0; animation: drawMarker 1s 0.8s forwards ease-out;
+            width: 0%; /* Start ukryty */
+            transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1); /* Płynna animacja */
         }
+        .marker.active::after { width: 105%; } /* Stan po przewinięciu */
 
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 90px 0; }
+        .section-padding { padding: 100px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* Doodles (Ikony) */
+        /* Doodles */
         .doodle-icon {
             width: 60px; height: 60px; fill: none; stroke: var(--accent-blue);
             stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
@@ -113,26 +122,23 @@
         }
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: #000; }
-        
-        /* Żółty przycisk */
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
 
         /* NAVBAR */
         nav {
             padding: 20px 0; position: sticky; top: 0; z-index: 100;
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(5px);
+            background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(0,0,0,0.03);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
-        .nav-links a:hover { color: var(--accent-yellow); } /* Hover na żółto */
+        .nav-links a:hover { color: var(--accent-yellow); }
         @media(max-width: 768px) { .nav-links { display: none; } }
 
         /* HERO */
-        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 40px; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 20px; }
         .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
         .hero-img-box { position: relative; }
         .hero-img { 
@@ -140,7 +146,6 @@
             box-shadow: var(--shadow); border: 8px solid #fff;
             object-fit: cover; aspect-ratio: 3/4;
         }
-        
         @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(0deg); } 100% { transform: translateY(0px) rotate(0deg); } }
         .arrow-note {
             position: absolute; bottom: 425px; left: -50px;
@@ -152,14 +157,12 @@
         /* O MNIE & LICZNIK */
         .about-box { 
             background: var(--bg-white); padding: 60px; border-radius: 30px; 
-            box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+            box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; z-index: 2; position: relative;
         }
         .about-text p { margin-bottom: 20px; color: var(--text-light); }
         .signature { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--text-main); margin-top: 20px; }
         
-        .counters-wrapper {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;
-        }
+        .counters-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
         .counter-item { text-align: center; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .counter-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--accent-yellow); display: block; }
         .counter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
@@ -167,7 +170,7 @@
         /* DLA KOGO */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
         .persona { 
-            background: #fff; padding: 35px; border-radius: 20px; 
+            background: var(--bg-cream); padding: 35px; border-radius: 20px; 
             border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center;
         }
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
@@ -175,18 +178,12 @@
 
         /* OFERTA */
         .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
-        
         .offer-card {
             background: #fff; padding: 40px; border-radius: 20px;
             border: 2px solid transparent; transition: 0.3s;
             position: relative; display: flex; flex-direction: column;
         }
-        .offer-card:hover { 
-            border-color: var(--accent-yellow); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08); 
-            transform: translateY(-5px);
-        }
-
+        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); transform: translateY(-5px); }
         .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
         .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
         .tag { 
@@ -195,27 +192,41 @@
             border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
         }
 
-        /* OPINIE - CZYSTE TŁO + BŁĘKITNY CUDZYSŁÓW */
-        .reviews-section { text-align: center; position: relative; overflow: hidden; background: transparent; }
+        /* OPINIE */
+        .reviews-section { text-align: center; position: relative; overflow: hidden; }
         .reviews-section::before {
-            content: '“';
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            content: '“'; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             font-family: 'Lora', serif; font-size: 20rem; line-height: 0.8;
             color: var(--accent-blue); opacity: 0.05; z-index: 0; pointer-events: none;
         }
         .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; position: relative; z-index: 1; }
 
-        /* FAQ */
+        /* --- INTERAKTYWNE FAQ (ZMIANA) --- */
         .faq-item {
             background: #fff; border-radius: 15px; margin-bottom: 15px;
             border: 1px solid rgba(0,0,0,0.05); overflow: hidden;
+            transition: all 0.3s;
         }
+        .faq-item[open] { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
+        
         .faq-item summary {
             padding: 20px 25px; cursor: pointer; font-weight: 700;
             display: flex; justify-content: space-between; align-items: center;
+            list-style: none; /* Ukrywa domyślny trójkąt */
         }
-        .faq-item[open] { border-color: var(--accent-blue); }
-        .faq-item[open] summary { color: var(--accent-blue); }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        
+        /* Plusik, który się obraca */
+        .faq-item summary::after {
+            content: '+'; 
+            font-size: 1.5rem; font-weight: 300; 
+            color: var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(45deg); /* Obrót w iksa */
+            color: var(--accent-yellow);
+        }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
         /* KONTAKT */
@@ -233,8 +244,7 @@
         .btn-submit:hover { background: #ffdb4d; }
         
         .contact-note {
-            position: absolute; top: 40px; right: 40px; 
-            transform: rotate(15deg); display: none;
+            position: absolute; top: 40px; right: 40px; transform: rotate(15deg); display: none;
             animation: float 5s ease-in-out infinite reverse;
         }
         @media(min-width: 900px) { .contact-note { display: block; } }
@@ -250,7 +260,6 @@
             .arrow-note { display: none; }
             .about-box { padding: 30px; }
             .contact-box { padding: 40px 20px; }
-            .offer-card:nth-child(2) { transform: scale(1); }
         }
     </style>
 </head>
@@ -258,7 +267,7 @@
 
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <nav>
+    <nav class="bg-cream">
         <div class="container nav-inner">
             <a href="#" class="logo">Ewelina Nowak</a>
             <div class="nav-links">
@@ -270,19 +279,17 @@
         </div>
     </nav>
 
-    <header class="container section-padding" id="section-hero">
-        <div class="hero-grid">
+    <header class="bg-cream section-padding" id="section-hero" style="padding-bottom: 150px;">
+        <div class="container hero-grid">
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span></h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
-                
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
                     <a href="#kontakt" class="btn btn-warm">Umów bezpłatną rozmowę</a>
                     <a href="#oferta" style="display:flex; align-items:center; font-weight:700; padding: 0 15px;">Zobacz jak uczę ↓</a>
                 </div>
             </div>
-            
             <div class="hero-img-box">
                 <div class="arrow-note">
                     <span class="handwritten">To ja! :)</span>
@@ -291,18 +298,23 @@
                         <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#4a6fa5"/></marker></defs>
                     </svg>
                 </div>
-                
                 <img src="ewelina.jpg" alt="Ewelina Nowak" class="hero-img">
             </div>
         </div>
+        
+        <div class="wave-separator wave-bottom">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
+        </div>
     </header>
 
-    <section id="o-mnie" class="section-padding" style="position:relative; z-index:10;">
+    <section id="o-mnie" class="bg-white section-padding">
         <div class="container about-box">
             <div>
                 <h2>Nie jestem typową "panią od angielskiego".</h2>
-                <p>Wierzę, że język to narzędzie do komunikacji, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się swobodnie w podróży i w pracy.</p>
-                <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się popełniać błędów.</p>
+                <p>Wierzę, że język to narzędzie do komunikacji, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się <span class="marker">swobodnie</span> w podróży i w pracy.</p>
+                <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się <span class="marker">popełniać błędów</span>.</p>
                 <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
             </div>
             <div style="background: #fdfbf7; padding: 40px; border-radius: 20px; border: 1px solid #eee;">
@@ -327,99 +339,100 @@
         </div>
     </section>
 
-    <section class="section-padding container" id="section-personas">
-        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-            <span class="handwritten">Dla kogo?</span>
-            <h2>W kim odnajdujesz siebie?</h2>
-        </div>
-        <div class="personas">
-            
-            <div class="persona">
-                <svg class="doodle-icon" viewBox="0 0 24 24">
-                    <path d="M20 7h-3a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                    <path d="M16 21V7a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v14"/>
-                    <path d="M12 11v2"/>
-                </svg>
-                <h3>Dla profesjonalistów</h3>
-                <p>Potrzebujesz angielskiego w pracy, ale stresujesz się przed każdym callem? Pomogę Ci zyskać pewność siebie.</p>
+    <section class="bg-white section-padding" id="section-personas">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="handwritten">Dla kogo?</span>
+                <h2>W kim odnajdujesz siebie?</h2>
             </div>
-
-            <div class="persona">
-                <svg class="doodle-icon" viewBox="0 0 24 24">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                    <path d="M8 10h.01"/>
-                    <path d="M12 10h.01"/>
-                    <path d="M16 10h.01"/>
-                </svg>
-                <h3>Dla "zablokowanych"</h3>
-                <p>Rozumiesz, co czytasz, ale boisz się odezwać? Stworzę dla Ciebie bezpieczną przestrzeń do "rozgadania się".</p>
+            <div class="personas">
+                <div class="persona">
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M20 7h-3a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V7a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v14"/><path d="M12 11v2"/></svg>
+                    <h3>Dla profesjonalistów</h3>
+                    <p>Potrzebujesz angielskiego w pracy, ale stresujesz się przed każdym callem? Pomogę Ci zyskać <span class="marker">pewność siebie</span>.</p>
+                </div>
+                <div class="persona">
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>
+                    <h3>Dla "zablokowanych"</h3>
+                    <p>Rozumiesz, co czytasz, ale boisz się odezwać? Stworzę dla Ciebie <span class="marker">bezpieczną przestrzeń</span>.</p>
+                </div>
+                <div class="persona">
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                    <h3>Dla podróżników</h3>
+                    <p>Chcesz swobodnie zamawiać kawę w Rzymie i pytać o drogę w Londynie? Przećwiczymy to!</p>
+                </div>
             </div>
-
-            <div class="persona">
-                <svg class="doodle-icon" viewBox="0 0 24 24">
-                    <path d="M22 2L11 13"/>
-                    <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
-                </svg>
-                <h3>Dla podróżników</h3>
-                <p>Chcesz swobodnie zamawiać kawę w Rzymie i pytać o drogę w Londynie? Przećwiczymy to!</p>
-            </div>
-
         </div>
     </section>
 
-    <section id="oferta" class="section-padding container">
-        <h2 style="text-align: center; margin-bottom: 60px;">Wybierz swoją ścieżkę</h2>
-        <div class="offer-grid">
-            
-            <div class="offer-card">
-                <h3>Na co dzień<br>(General)</h3>
-                <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
-                <div class="price">120 zł <span>/ 60 min</span></div>
-                <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
-                    <li>• Luźne konwersacje</li>
-                    <li>• Ciekawe artykuły i wideo</li>
-                    <li>• Poszerzanie słownictwa</li>
-                </ul>
-                <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
-            </div>
+    <section id="oferta" class="bg-cream section-padding" style="padding-top: 150px;">
+        <div class="wave-separator wave-top">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
+        </div>
 
-            <div class="offer-card" style="border-color: var(--accent-yellow);">
-                <div class="tag">POLECAM</div>
-                <h3>W pracy<br>(Business)</h3>
-                <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
-                <div class="price">150 zł <span>/ 60 min</span></div>
-                <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
-                    <li>• Symulacje rozmów</li>
-                    <li>• Pisanie e-maili</li>
-                    <li>• Słownictwo branżowe</li>
-                </ul>
-                <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
-            </div>
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 60px;">Wybierz swoją ścieżkę</h2>
+            <div class="offer-grid">
+                
+                <div class="offer-card">
+                    <h3>Na co dzień<br>(General)</h3>
+                    <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
+                    <div class="price">120 zł <span>/ 60 min</span></div>
+                    <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
+                        <li>• Luźne konwersacje</li>
+                        <li>• Ciekawe artykuły i wideo</li>
+                        <li>• Poszerzanie słownictwa</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
+                </div>
 
-            <div class="offer-card">
-                <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
-                <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
-                <div class="price">140 zł <span>/ 60 min</span></div>
-                <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
-                    <li>• Arkusze próbne</li>
-                    <li>• Strategie egzaminacyjne</li>
-                    <li>• Korekta prac pisemnych</li>
-                </ul>
-                <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
-            </div>
+                <div class="offer-card" style="border-color: var(--accent-yellow);">
+                    <div class="tag">POLECAM</div>
+                    <h3>W pracy<br>(Business)</h3>
+                    <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
+                    <div class="price">150 zł <span>/ 60 min</span></div>
+                    <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
+                        <li>• Symulacje rozmów</li>
+                        <li>• Pisanie e-maili</li>
+                        <li>• Słownictwo branżowe</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
+                </div>
 
+                <div class="offer-card">
+                    <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
+                    <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
+                    <div class="price">140 zł <span>/ 60 min</span></div>
+                    <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
+                        <li>• Arkusze próbne</li>
+                        <li>• Strategie egzaminacyjne</li>
+                        <li>• Korekta prac pisemnych</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <section id="opinie" class="section-padding reviews-section container">
-        <span class="handwritten">Dumni uczniowie</span>
-        <h2 style="margin-bottom: 40px;">Zobacz, co mówią inni</h2>
-        <script src="https://elfsightcdn.com/platform.js" async></script>
-        <div class="elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061" data-elfsight-app-lazy></div>
+    <section id="opinie" class="bg-cream section-padding reviews-section">
+        <div class="container">
+            <span class="handwritten">Dumni uczniowie</span>
+            <h2 style="margin-bottom: 40px;">Zobacz, co mówią inni</h2>
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061" data-elfsight-app-lazy></div>
+        </div>
     </section>
 
-    <section class="section-padding container">
-        <div style="max-width: 700px; margin: 0 auto;">
+    <section class="bg-white section-padding" style="padding-top: 150px;">
+        <div class="wave-separator wave-top">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#fdfbf7"></path>
+            </svg>
+        </div>
+        <div class="container" style="max-width: 700px;">
             <h2 style="text-align: center; margin-bottom: 40px;">Pytania? Tutaj znajdziesz odpowiedzi.</h2>
             <details class="faq-item"><summary>Jak wyglądają zajęcia?</summary><div class="faq-content">Spotykamy się online (Google Meet). Rozmawiamy, korzystamy z interaktywnej tablicy i moich autorskich materiałów. Jest luźno, ale produktywnie.</div></details>
             <details class="faq-item"><summary>Co jeśli muszę odwołać lekcję?</summary><div class="faq-content">Życie pisze różne scenariusze. Możesz odwołać lub przełożyć lekcję bezpłatnie do 24h przed terminem.</div></details>
@@ -427,8 +440,8 @@
         </div>
     </section>
 
-    <section id="kontakt" class="section-padding container">
-        <div class="contact-box">
+    <section id="kontakt" class="bg-white section-padding" style="padding-top: 50px;">
+        <div class="container contact-box">
             <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
             <h2>Napisz do mnie</h2>
             <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
@@ -443,7 +456,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="bg-white">
         <div class="container">
             &copy; 2024 Ewelina Nowak. Strona stworzona z myślą o ludziach.<br>
             <a href="#" style="text-decoration: underline; margin-top: 10px; display: inline-block;">Polityka Prywatności</a>
@@ -451,23 +464,22 @@
     </footer>
 
     <script>
-        // Pasek postępu i zmiana tła (TYLKO CZYSTA BIEL I KREM)
+        // Pasek postępu
         window.onscroll = function() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             var scrolled = (winScroll / height) * 100;
             document.getElementById("scrollProgress").style.width = scrolled + "%";
-            
-            const body = document.body;
-            if (scrolled > 10 && scrolled < 60) { body.style.backgroundColor = 'var(--bg-white)'; }
-            else { body.style.backgroundColor = 'var(--bg-cream)'; }
         };
 
-        // Animacja ikon i licznika
+        // Animacje (Icons, Counters, Markers)
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     if(entry.target.classList.contains('doodle-icon')) {
+                        entry.target.classList.add('active');
+                    }
+                    if(entry.target.classList.contains('marker')) {
                         entry.target.classList.add('active');
                     }
                     if(entry.target.classList.contains('counter-num')) {
@@ -492,6 +504,7 @@
 
         document.querySelectorAll('.doodle-icon').forEach(icon => observer.observe(icon));
         document.querySelectorAll('.counter-num').forEach(num => observer.observe(num));
+        document.querySelectorAll('.marker').forEach(m => observer.observe(m));
     </script>
 
 </body>
