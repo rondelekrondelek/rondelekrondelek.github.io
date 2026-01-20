@@ -3,305 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angielski Online | Ewelina Nowak</title>
-    <meta name="description" content="Kreatywne lekcje angielskiego w luźnej atmosferze. Przełam lody i zacznij mówić.">
+    <title>Angielski z Eweliną | Po ludzku i bez stresu</title>
+    <meta name="description" content="Angielski, na który będziesz czekać. Indywidualne podejście, zero stresu i pełne wsparcie.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA "COFFEE HOUSE" (CZYTELNA) --- */
+        /* --- PALETA "HUMAN & WARM" --- */
         :root {
-            /* Tła */
-            --bg-cream: #fdfbf7;      /* Ciepły papier/śmietanka */
+            --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
-            --bg-card: #ffffff;
-
-            /* Tekst */
-            --text-coffee: #3e2723;   /* Bardzo ciemny brąz (prawie czarny) dla lepszego kontrastu */
-            --text-muted: #5d4037;    /* Ciemniejszy beż */
-
-            /* Akcenty */
-            --color-honey: #ffca28;   /* Żółty miodowy */
-            --color-clay: #d84315;    /* Akcent ceglasty */
-
-            /* Ustawienia */
-            --radius-soft: 12px;
-            --radius-organic: 24px;   /* Mniej "kleksowate", bardziej zaokrąglone rogi */
-            --shadow-soft: 0 10px 30px -5px rgba(62, 39, 35, 0.08);
-            --transition: all 0.3s ease;
+            
+            /* Kolory ziemi i kawy */
+            --text-main: #2d2420;     /* Bardzo ciemny brąz (cieplejszy niż czerń) */
+            --text-light: #5e504a;
+            
+            --accent-yellow: #ffc400; /* Słonecznikowy (energia) */
+            --accent-blue: #4a6fa5;   /* Spokojny niebieski (długopis) */
+            
+            --radius: 20px;
+            --shadow: 0 8px 30px -5px rgba(45, 36, 32, 0.05);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
         body {
             font-family: 'Lato', sans-serif;
             background-color: var(--bg-cream);
-            color: var(--text-coffee);
-            line-height: 1.6;
-            font-size: 18px; /* Nieco większy tekst dla czytelności */
+            color: var(--text-main);
+            line-height: 1.7;
+            font-size: 18px;
             overflow-x: hidden;
         }
 
-        /* Typografia "Bookstore" - Czytelna Lora */
-        h1, h2, h3, h4 {
-            font-family: 'Lora', serif;
-            color: var(--text-coffee);
-            line-height: 1.3;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        h1 { font-size: 3.5rem; letter-spacing: -0.5px; }
-        h2 { font-size: 2.5rem; }
+        /* TYPOGRAFIA */
+        h1, h2, h3 { font-family: 'Lora', serif; font-weight: 600; line-height: 1.3; margin-bottom: 20px; }
+        h1 { font-size: 3.2rem; letter-spacing: -0.5px; }
+        h2 { font-size: 2.4rem; }
         h3 { font-size: 1.5rem; }
 
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
+        /* Klasa dla "odręcznych" dopisków */
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            color: var(--accent-blue);
+            font-size: 1.6rem;
+            transform: rotate(-3deg);
+            display: inline-block;
+            line-height: 1;
+        }
+        
+        /* Podkreślenie jak markerem */
+        .marker {
+            position: relative;
+            z-index: 1;
+            white-space: nowrap;
+        }
+        .marker::after {
+            content: ''; position: absolute; bottom: 2px; left: -5px; width: 105%; height: 12px;
+            background: var(--accent-yellow); opacity: 0.6; z-index: -1;
+            border-radius: 4px; transform: rotate(-1deg);
+        }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
         .section-padding { padding: 90px 0; }
-        .text-center { text-align: center; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- BUTTONS --- */
+        /* --- PRZYCISKI --- */
         .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 16px 36px; 
-            border-radius: 8px; /* Lekko zaokrąglone, klasyczne */
-            font-family: 'Lato', sans-serif; font-weight: 700; font-size: 1rem;
-            cursor: pointer; transition: var(--transition); border: 2px solid transparent;
+            display: inline-block; padding: 14px 32px;
+            border-radius: 50px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; transition: 0.3s; border: 2px solid transparent;
         }
-
         .btn-primary {
-            background-color: var(--text-coffee);
-            color: var(--bg-cream);
+            background-color: var(--text-main); color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .btn-primary:hover {
-            background-color: var(--color-honey);
-            color: var(--text-coffee);
-            transform: translateY(-3px);
+        .btn-primary:hover { transform: translateY(-3px); background-color: #000; }
+        
+        .btn-warm {
+            background-color: var(--accent-yellow); color: var(--text-main);
         }
-
-        .btn-honey {
-            background-color: var(--color-honey);
-            color: var(--text-coffee);
-        }
-        .btn-honey:hover {
-            background-color: #ffb300;
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border-color: var(--text-coffee);
-            color: var(--text-coffee);
-        }
-        .btn-outline:hover {
-            background-color: var(--text-coffee);
-            color: var(--bg-cream);
-            transform: translateY(-3px);
-        }
+        .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
 
         /* --- NAVBAR --- */
         nav {
-            padding: 20px 0;
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(253, 251, 247, 0.98);
-            border-bottom: 1px solid rgba(62, 39, 35, 0.08);
+            padding: 20px 0; position: sticky; top: 0; z-index: 100;
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        
-        .logo { 
-            font-family: 'Lora', serif; 
-            font-size: 1.8rem; font-weight: 700;
-            color: var(--text-coffee);
-            letter-spacing: -0.5px;
-        }
-        .logo span { color: var(--color-honey); }
-
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-link { 
-            font-size: 1rem; font-weight: 500; color: var(--text-coffee); 
-            position: relative;
-        }
-        .nav-link:hover { color: var(--color-clay); }
-        
+        .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; }
+        .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
+        .nav-links a:hover { color: #d84315; }
         @media(max-width: 768px) { .nav-links { display: none; } }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 80px 0 100px;
-        }
-        .hero-grid {
-            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
-        }
-
-        /* Proste podkreślenie */
-        .highlight {
-            background: linear-gradient(120deg, var(--color-honey) 0%, var(--color-honey) 100%);
-            background-repeat: no-repeat;
-            background-size: 100% 30%;
-            background-position: 0 88%;
-        }
-
-        .hero p { 
-            font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; 
-            max-width: 500px;
-        }
+        /* --- HERO --- */
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 40px; }
+        .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
         
-        /* Zdjęcie - prostszy kształt */
-        .hero-img-wrapper {
-            position: relative; padding: 20px;
+        .hero-img-box { position: relative; }
+        .hero-img { 
+            width: 100%; border-radius: var(--radius); 
+            transform: rotate(2deg); box-shadow: var(--shadow);
+            border: 8px solid #fff;
         }
-        .hero-img {
-            width: 100%; max-width: 480px;
-            border-radius: var(--radius-organic);
-            box-shadow: var(--shadow-soft);
-            z-index: 2; position: relative;
+        /* Odręczna strzałka */
+        .arrow-note {
+            position: absolute; bottom: -40px; left: -60px;
+            display: flex; flex-direction: column; align-items: center;
         }
-        /* Ramka dekoracyjna */
-        .hero-img-wrapper::before {
-            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 100%;
-            border: 2px solid var(--color-honey); border-radius: var(--radius-organic);
-            transform: translate(15px, -15px); z-index: 1;
-        }
+        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-blue); }
 
         /* --- O MNIE --- */
-        .about-section {
-            background: var(--bg-white);
-            border-radius: var(--radius-organic);
-            box-shadow: var(--shadow-soft);
+        .about-box { 
+            background: var(--bg-white); padding: 60px; border-radius: 30px; 
+            box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
         }
-        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; padding: 60px; align-items: center; }
-        
-        .about-text p { margin-bottom: 20px; color: var(--text-muted); }
-        
-        /* Cytat - prosty, bez kursywy */
-        .quote {
-            font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 500;
-            color: var(--text-coffee); 
-            background: #fff8e1; /* Bardzo jasny żółty */
-            padding: 20px 30px; border-left: 4px solid var(--color-honey);
-            margin: 30px 0; border-radius: 0 10px 10px 0;
-        }
+        .about-text p { margin-bottom: 20px; color: var(--text-light); }
+        .signature { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--text-main); margin-top: 20px; }
 
         /* --- DLA KOGO --- */
-        .persona-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px;
+        .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .persona { 
+            background: #fff; padding: 35px; border-radius: 20px; 
+            border: 1px solid rgba(0,0,0,0.03); transition: 0.3s;
         }
-        .persona-card {
-            background: var(--bg-white); padding: 40px 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(62, 39, 35, 0.08);
-            transition: var(--transition);
-        }
-        .persona-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--color-honey);
-            box-shadow: var(--shadow-soft);
-        }
-        .persona-icon {
-            font-size: 2.2rem; margin-bottom: 20px; display: block;
-            background: var(--bg-cream); width: 60px; height: 60px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%;
-        }
+        .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
+        .persona-emoji { font-size: 2.5rem; display: block; margin-bottom: 15px; }
 
-        /* --- OFERTA --- */
-        .offer-section { background-color: var(--bg-white); }
-        .offer-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
-        }
+        /* --- OFERTA (Menu) --- */
+        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .offer-card {
-            background: var(--bg-cream);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid transparent;
-            transition: var(--transition);
+            background: #fff; padding: 40px; border-radius: 20px;
+            border: 2px solid transparent; transition: 0.3s;
+            position: relative; display: flex; flex-direction: column;
         }
-        .offer-card:hover {
-            border-color: var(--color-honey);
-            background: #fff;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .offer-title { font-size: 1.6rem; margin-bottom: 5px; }
-        .offer-price { 
-            font-family: 'Lora', serif; 
-            font-size: 1.4rem; color: var(--color-clay); font-weight: 700; margin-bottom: 20px; 
-        }
-        .offer-desc { color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem; }
-        .offer-features li {
-            margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 0.95rem; color: var(--text-coffee);
-        }
-        .offer-features li::before {
-            content: '✔'; position: absolute; left: 0; color: var(--color-honey); font-weight: bold;
+        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
+        .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
+        .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
+        .tag { 
+            position: absolute; top: -12px; right: 20px; 
+            background: var(--accent-yellow); padding: 5px 12px; 
+            border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
         }
 
         /* --- OPINIE --- */
-        .reviews-section { background: var(--text-coffee); color: var(--bg-cream); }
-        .reviews-section h2 { color: var(--bg-cream); margin-bottom: 10px;}
-        .reviews-section p { color: rgba(255,255,255,0.7); margin-bottom: 40px; }
-        
+        .reviews-section { text-align: center; }
         .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; }
 
         /* --- FAQ --- */
         .faq-item {
-            background: var(--bg-white);
-            border: 1px solid rgba(62, 39, 35, 0.1); 
-            margin-bottom: 15px; border-radius: 8px;
+            background: #fff; border-radius: 15px; margin-bottom: 15px;
+            border: 1px solid rgba(0,0,0,0.05); overflow: hidden;
         }
         .faq-item summary {
-            padding: 20px; cursor: pointer; font-weight: 700;
+            padding: 20px 25px; cursor: pointer; font-weight: 700;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .faq-item[open] summary { color: var(--color-clay); }
-        .faq-content { padding: 0 20px 20px; color: var(--text-muted); border-top: 1px solid rgba(0,0,0,0.05); }
-        summary::after { content: '+'; font-size: 1.5rem; font-weight: 300; }
-        details[open] summary::after { content: '−'; }
+        .faq-item[open] { border-color: var(--accent-blue); }
+        .faq-item[open] summary { color: var(--accent-blue); }
+        .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
         /* --- KONTAKT --- */
-        .contact-wrapper {
-            background: var(--bg-white);
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            padding: 50px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        .contact-box {
+            background: var(--text-main); color: #fff; border-radius: 30px;
+            padding: 60px; text-align: center; position: relative; overflow: hidden;
         }
-        .contact-info {
-            display: flex; flex-direction: column; justify-content: center;
+        .contact-box h2 { color: #fff; }
+        .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
+        .input-field {
+            width: 100%; padding: 15px; margin-bottom: 15px;
+            border-radius: 10px; border: none; font-family: inherit; font-size: 1rem;
         }
+        .btn-submit { background: var(--accent-yellow); color: var(--text-main); width: 100%; border: none; }
+        .btn-submit:hover { background: #ffdb4d; }
         
-        .form-label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; }
-        .form-field {
-            width: 100%; padding: 12px 15px; 
-            background: var(--bg-cream); border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            font-family: 'Lato', sans-serif; font-size: 1rem; color: var(--text-coffee);
-            margin-bottom: 20px; transition: 0.3s;
+        .contact-note {
+            position: absolute; top: 40px; right: 40px; 
+            transform: rotate(15deg); display: none;
         }
-        .form-field:focus { outline: none; border-color: var(--color-honey); background: #fff; }
-        .checkbox-wrapper { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 10px; margin-bottom: 25px; align-items: center; }
+        @media(min-width: 900px) { .contact-note { display: block; } }
 
         /* --- FOOTER --- */
-        footer {
-            text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 0.9rem;
-            border-top: 1px solid rgba(62, 39, 35, 0.1);
-        }
+        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
-        /* --- RWD --- */
         @media(max-width: 900px) {
-            h1 { font-size: 2.5rem; }
-            .hero-grid, .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
-            .hero { text-align: center; }
-            .hero p { margin-left: auto; margin-right: auto; }
-            .hero-img-wrapper { margin-top: 40px; margin-left: auto; margin-right: auto; }
-            .about-grid { padding: 30px; }
-            .contact-wrapper { padding: 30px; gap: 40px; }
+            .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
+            .hero-grid { text-align: center; gap: 40px; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+            .hero-img-box { margin: 0 auto; max-width: 350px; }
+            .arrow-note { display: none; } /* Ukryj strzałkę na mobile bo się rozjeżdża */
+            .about-box { padding: 30px; }
+            .contact-box { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -309,223 +206,184 @@
 
     <nav>
         <div class="container nav-inner">
-            <a href="#" class="logo">Ewelina <span>Nowak</span></a>
+            <a href="#" class="logo">Ewelina Nowak</a>
             <div class="nav-links">
-                <a href="#o-mnie" class="nav-link">O mnie</a>
-                <a href="#metoda" class="nav-link">Metoda</a>
-                <a href="#oferta" class="nav-link">Oferta</a>
-                <a href="#kontakt" class="btn btn-primary">Umów lekcję</a>
+                <a href="#o-mnie">Poznajmy się</a>
+                <a href="#oferta">Współpraca</a>
+                <a href="#opinie">Opinie</a>
+                <a href="#kontakt" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Napisz do mnie</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero container">
+    <header class="container section-padding">
         <div class="hero-grid">
             <div class="hero-text">
-                <h1>Angielski przy<br><span class="highlight">dobrej kawie.</span></h1>
-                <p>Zapomnij o stresie i szkolnej ławce. Zapraszam Cię na lekcje, które są jak spotkanie z przyjacielem. Przełam barierę językową w atmosferze pełnej wsparcia.</p>
+                <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
+                <h1>Angielski<br><span class="marker">po ludzku.</span></h1>
+                <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
+                
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
-                    <a href="#kontakt" class="btn btn-honey">Umów darmową rozmowę</a>
-                    <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
+                    <a href="#kontakt" class="btn btn-warm">Umów bezpłatną rozmowę</a>
+                    <a href="#oferta" style="display:flex; align-items:center; font-weight:700; padding: 0 15px;">Zobacz jak uczę ↓</a>
                 </div>
             </div>
             
-            <div class="hero-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=750" alt="Ewelina Nowak Lektorka" class="hero-img">
+            <div class="hero-img-box">
+                <div class="arrow-note">
+                    <span class="handwritten">To ja! :)</span>
+                    <svg class="arrow-svg" viewBox="0 0 50 50" width="40">
+                        <path d="M10,10 Q30,5 40,30" fill="none" stroke="#4a6fa5" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#4a6fa5"/></marker></defs>
+                    </svg>
+                </div>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=750" alt="Ewelina Nowak" class="hero-img">
             </div>
         </div>
     </header>
 
     <section id="o-mnie" class="section-padding">
-        <div class="container about-section">
-            <div class="about-grid">
-                <div>
-                    <h4 style="color: var(--color-clay); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Moja filozofia</h4>
-                    <h2>Więcej niż lektor.</h2>
-                    <div class="quote">
-                        Język to narzędzie do budowania relacji, a nie zbiór gramatycznych regułek. Uczę komunikacji, która łączy ludzi.
-                    </div>
-                    <p>Cześć! Jestem Ewelina. Wierzę, że nauka angielskiego może być przyjemnością, a nie przykrym obowiązkiem.</p>
-                    <p>Moje zajęcia są skrojone dla dorosłych, którzy cenią swój czas i chcą konkretów, ale podanych w ludzkiej formie. Specjalizuję się w Business English, ale odczarowuję "korpo-mowę", ucząc Cię komunikować się naturalnie.</p>
-                </div>
-                <div>
-                    <h3 style="margin-bottom: 25px;">Dlaczego moi uczniowie zostają na lata?</h3>
-                    <ul style="display:grid; gap:20px;">
-                        <li style="display:flex; gap:15px; align-items:center;">
-                            <span style="font-size:1.5rem; background: var(--bg-cream); width: 50px; height: 50px; display:flex; align-items:center; justify-content:center; border-radius: 50%;">☕</span>
-                            <span><strong>Atmosfera:</strong> Zero stresu, 100% wsparcia.</span>
-                        </li>
-                        <li style="display:flex; gap:15px; align-items:center;">
-                            <span style="font-size:1.5rem; background: var(--bg-cream); width: 50px; height: 50px; display:flex; align-items:center; justify-content:center; border-radius: 50%;">📑</span>
-                            <span><strong>Materiały:</strong> Autorskie, ciekawe, życiowe.</span>
-                        </li>
-                        <li style="display:flex; gap:15px; align-items:center;">
-                            <span style="font-size:1.5rem; background: var(--bg-cream); width: 50px; height: 50px; display:flex; align-items:center; justify-content:center; border-radius: 50%;">🎯</span>
-                            <span><strong>Cel:</strong> Mówienie od pierwszej minuty.</span>
-                        </li>
-                    </ul>
-                </div>
+        <div class="container about-box">
+            <div>
+                <h2>Nie jestem typową "panią od angielskiego".</h2>
+                <p>Wierzę, że język to narzędzie do komunikacji, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się swobodnie w podróży i w pracy.</p>
+                <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się popełniać błędów (bo to dzięki nim się uczysz!).</p>
+                <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
+            </div>
+            <div style="background: #f4f1ea; padding: 40px; border-radius: 20px;">
+                <h3 style="margin-bottom: 20px;">Moje podejście:</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 15px;">✅ <strong>Zero stresu</strong> – uczymy się w przyjaznej atmosferze.</li>
+                    <li style="margin-bottom: 15px;">✅ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
+                    <li style="margin-bottom: 15px;">✅ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section id="metoda" class="section-padding container">
-        <div class="text-center" style="max-width: 700px; margin: 0 auto 50px;">
-            <h2>Dla kogo jest ta przestrzeń?</h2>
-            <p>Tworzę lekcje z myślą o osobach, które chcą czegoś więcej niż standardowy kurs językowy.</p>
+    <section class="section-padding container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <span class="handwritten">Dla kogo?</span>
+            <h2>W kim odnajdujesz siebie?</h2>
         </div>
-
-        <div class="persona-grid">
-            <div class="persona-card">
-                <span class="persona-icon">💼</span>
+        <div class="personas">
+            <div class="persona">
+                <span class="persona-emoji">💼</span>
                 <h3>Dla profesjonalistów</h3>
-                <p>Potrzebujesz angielskiego w pracy, ale boisz się odezwać na spotkaniu? Pomogę Ci zyskać pewność siebie w biznesie.</p>
+                <p>Potrzebujesz angielskiego w pracy, ale stresujesz się przed każdym callem? Pomogę Ci zyskać pewność siebie.</p>
             </div>
-            <div class="persona-card">
-                <span class="persona-icon">😶</span>
-                <h3>Dla "wiecznie początkujących"</h3>
-                <p>Uczysz się od lat, ale wciąż masz blokadę? Stworzę dla Ciebie bezpieczną strefę do popełniania błędów i nauki.</p>
+            <div class="persona">
+                <span class="persona-emoji">😶</span>
+                <h3>Dla "zablokowanych"</h3>
+                <p>Rozumiesz, co czytasz, ale boisz się odezwać? Stworzę dla Ciebie bezpieczną przestrzeń do "rozgadania się".</p>
             </div>
-            <div class="persona-card">
-                <span class="persona-icon">🌍</span>
-                <h3>Dla ciekawych świata</h3>
-                <p>Chcesz podróżować, czytać zagraniczne media i oglądać filmy w oryginale? Otworzę Ci te drzwi.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="oferta" class="section-padding offer-section">
-        <div class="container">
-            <div class="text-center" style="margin-bottom: 60px;">
-                <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--color-clay); font-weight: 700;">Oferta współpracy</span>
-                <h2 style="margin-top: 10px;">Wybierz swój pakiet</h2>
-            </div>
-
-            <div class="offer-grid">
-                <div class="offer-card">
-                    <h3 class="offer-title">General English</h3>
-                    <div class="offer-price">120 PLN <span style="font-size:0.9rem; font-weight:400; color: var(--text-muted);">/ 60 min</span></div>
-                    <p class="offer-desc">Konwersacje o życiu, kulturze i podróżach. Rozwijaj słownictwo w naturalny sposób.</p>
-                    <ul class="offer-features">
-                        <li>Luźne rozmowy</li>
-                        <li>Artykuły i wideo</li>
-                        <li>Praca domowa (dla chętnych)</li>
-                    </ul>
-                    <div style="text-align:center; margin-top:30px;">
-                        <a href="#kontakt" class="btn btn-outline" style="font-size:0.9rem; width: 100%;">Wybieram</a>
-                    </div>
-                </div>
-
-                <div class="offer-card" style="border: 2px solid var(--color-honey); background: #fff;">
-                    <div style="text-align: center; margin-bottom: 10px;"><span style="background:var(--color-honey); font-size:0.7rem; padding:4px 10px; border-radius:4px; font-weight:bold; letter-spacing: 1px;">NAJCZĘŚCIEJ WYBIERANE</span></div>
-                    <h3 class="offer-title" style="text-align: center;">Business English</h3>
-                    <div class="offer-price" style="text-align: center;">150 PLN <span style="font-size:0.9rem; font-weight:400; color: var(--text-muted);">/ 60 min</span></div>
-                    <p class="offer-desc" style="text-align: center;">Angielski w HR, finansach, IT. Przygotowanie do prezentacji, maili i negocjacji.</p>
-                    <ul class="offer-features">
-                        <li>Symulacje spotkań</li>
-                        <li>Korekta CV / LinkedIn</li>
-                        <li>Słownictwo branżowe</li>
-                    </ul>
-                    <div style="text-align:center; margin-top:30px;">
-                        <a href="#kontakt" class="btn btn-honey" style="font-size:0.9rem; width: 100%;">Wybieram</a>
-                    </div>
-                </div>
-
-                <div class="offer-card">
-                    <h3 class="offer-title">Egzaminy</h3>
-                    <div class="offer-price">140 PLN <span style="font-size:0.9rem; font-weight:400; color: var(--text-muted);">/ 60 min</span></div>
-                    <p class="offer-desc">FCE, CAE, Matura. Strategiczne przygotowanie do certyfikatów.</p>
-                    <ul class="offer-features">
-                        <li>Arkusze próbne</li>
-                        <li>Strategie egzaminacyjne</li>
-                        <li>Writing & Speaking</li>
-                    </ul>
-                    <div style="text-align:center; margin-top:30px;">
-                        <a href="#kontakt" class="btn btn-outline" style="font-size:0.9rem; width: 100%;">Wybieram</a>
-                    </div>
-                </div>
+            <div class="persona">
+                <span class="persona-emoji">🌍</span>
+                <h3>Dla podróżników</h3>
+                <p>Chcesz swobodnie zamawiać kawę w Rzymie i pytać o drogę w Londynie? Przećwiczymy to!</p>
             </div>
         </div>
     </section>
 
-    <section id="opinie" class="section-padding reviews-section">
-        <div class="container text-center">
-            <h2>Historie moich uczniów</h2>
-            <p>Zobacz, co mówią osoby, które już przełamały barierę.</p>
-            <div style="margin-top: 40px;">
-                <script src="https://elfsightcdn.com/platform.js" async></script>
-                <div class="elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061" data-elfsight-app-lazy></div>
+    <section id="oferta" class="section-padding container">
+        <h2 style="text-align: center; margin-bottom: 60px;">Wybierz swoją ścieżkę</h2>
+        <div class="offer-grid">
+            
+            <div class="offer-card">
+                <h3>Na co dzień<br>(General)</h3>
+                <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu, kulturze i świecie.</p>
+                <div class="price">120 zł <span>/ 60 min</span></div>
+                <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
+                    <li>• Luźne konwersacje</li>
+                    <li>• Ciekawe artykuły i wideo</li>
+                    <li>• Poszerzanie słownictwa</li>
+                </ul>
+                <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
             </div>
+
+            <div class="offer-card" style="border-color: var(--accent-yellow);">
+                <div class="tag">POLECAM</div>
+                <h3>W pracy<br>(Business)</h3>
+                <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań i prezentacji.</p>
+                <div class="price">150 zł <span>/ 60 min</span></div>
+                <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
+                    <li>• Symulacje rozmów</li>
+                    <li>• Pisanie e-maili</li>
+                    <li>• Słownictwo branżowe</li>
+                </ul>
+                <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
+            </div>
+
+            <div class="offer-card">
+                <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
+                <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów. Konkretnie i do celu.</p>
+                <div class="price">140 zł <span>/ 60 min</span></div>
+                <ul style="margin-bottom: 30px; font-size: 0.95rem; color: var(--text-light);">
+                    <li>• Arkusze próbne</li>
+                    <li>• Strategie egzaminacyjne</li>
+                    <li>• Korekta prac pisemnych</li>
+                </ul>
+                <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
+            </div>
+
         </div>
     </section>
 
-    <section id="faq" class="section-padding container">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 class="text-center" style="margin-bottom: 50px;">Pytania i odpowiedzi</h2>
+    <section id="opinie" class="section-padding reviews-section container">
+        <span class="handwritten">Dumni uczniowie</span>
+        <h2 style="margin-bottom: 40px;">Zobacz, co mówią inni</h2>
+        
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061" data-elfsight-app-lazy></div>
+    </section>
+
+    <section class="section-padding container">
+        <div style="max-width: 700px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 40px;">Pytania? Tutaj znajdziesz odpowiedzi.</h2>
             
             <details class="faq-item">
-                <summary>Na jakim poziomie muszę być?</summary>
-                <div class="faq-content">Uczę od poziomu A2 (podstawowy komunikatywny) do C2. Dostosuję tempo do Ciebie.</div>
+                <summary>Jak wyglądają zajęcia?</summary>
+                <div class="faq-content">Spotykamy się online (Google Meet). Rozmawiamy, korzystamy z interaktywnej tablicy i moich autorskich materiałów. Jest luźno, ale produktywnie.</div>
             </details>
             <details class="faq-item">
-                <summary>Gdzie odbywają się lekcje?</summary>
-                <div class="faq-content">Spotykamy się online na Google Meet. To wygodne i oszczędza Twój czas.</div>
+                <summary>Co jeśli muszę odwołać lekcję?</summary>
+                <div class="faq-content">Życie pisze różne scenariusze. Możesz odwołać lub przełożyć lekcję bezpłatnie do 24h przed terminem.</div>
             </details>
             <details class="faq-item">
-                <summary>Czy wystawiasz faktury?</summary>
-                <div class="faq-content">Tak, prowadzę legalną działalność i wystawiam faktury (bez VAT).</div>
-            </details>
-            <details class="faq-item">
-                <summary>Co w przypadku odwołania lekcji?</summary>
-                <div class="faq-content">Szanujemy swój czas. Lekcję możesz odwołać lub przełożyć bezpłatnie do 24h przed terminem.</div>
+                <summary>Jak mogę zapłacić?</summary>
+                <div class="faq-content">Przyjmuję płatności przelewem lub BLIKiem. Zazwyczaj rozliczamy się za pakiet lekcji z góry. Wystawiam faktury.</div>
             </details>
         </div>
     </section>
 
     <section id="kontakt" class="section-padding container">
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <h2>Napisz do mnie.</h2>
-                <p style="color: var(--text-muted); margin-top: 15px; margin-bottom: 30px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na bezpłatną, 15-minutową rozmowę.</p>
+        <div class="contact-box">
+            <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
+            <h2>Napisz do mnie</h2>
+            <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
+            
+            <form action="https://formspree.io/f/TWOJ_KOD" method="POST" class="contact-form">
+                <input type="text" name="name" class="input-field" placeholder="Jak masz na imię?" required>
+                <input type="email" name="email" class="input-field" placeholder="Twój e-mail" required>
+                <textarea name="message" rows="4" class="input-field" placeholder="O co chcesz zapytać? (np. poziom, terminy)" required></textarea>
                 
-                <div>
-                    <p style="margin-bottom: 10px;"><strong>Email:</strong> kontakt@ewelina-nowak.pl</p>
-                    <p><strong>Telefon:</strong> +48 000 000 000</p>
+                <div style="text-align: left; font-size: 0.85rem; margin-bottom: 20px; opacity: 0.8;">
+                    <input type="checkbox" required> Akceptuję politykę prywatności.
                 </div>
 
-                <div style="margin-top: 40px;">
-                    <a href="#" style="color: var(--color-clay); font-weight: 700; border-bottom: 1px solid var(--color-clay);">Znajdź mnie na Instagramie</a>
-                </div>
-            </div>
+                <button type="submit" class="btn btn-submit">Wyślij wiadomość</button>
+            </form>
 
-            <div class="contact-form-box">
-                <form action="https://formspree.io/f/TWOJ_KOD" method="POST">
-                    <label class="form-label">Imię</label>
-                    <input type="text" name="name" class="form-field" placeholder="Wpisz swoje imię" required>
-                    
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-field" placeholder="Twój adres email" required>
-                    
-                    <label class="form-label">Wiadomość</label>
-                    <textarea name="message" rows="4" class="form-field" placeholder="O co chcesz zapytać?" required></textarea>
-                    
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" required>
-                        <span>Akceptuję politykę prywatności i wyrażam zgodę na kontakt.</span>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Wyślij wiadomość</button>
-                </form>
+            <div style="margin-top: 40px; font-size: 0.9rem;">
+                Lub napisz bezpośrednio: <strong>kontakt@ewelina-nowak.pl</strong>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Ewelina Nowak. Wszystkie prawa zastrzeżone.</p>
-            <p style="margin-top: 10px; font-size: 0.8rem;">
-                <a href="#" style="margin: 0 10px;">Polityka Prywatności</a> | <a href="#" style="margin: 0 10px;">Regulamin</a>
-            </p>
+            &copy; 2024 Ewelina Nowak. Strona stworzona z myślą o ludziach.<br>
+            <a href="#" style="text-decoration: underline; margin-top: 10px; display: inline-block;">Polityka Prywatności</a>
         </div>
     </footer>
 
