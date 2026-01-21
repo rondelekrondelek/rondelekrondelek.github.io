@@ -196,29 +196,17 @@
             background: var(--text-main); 
             color: #fff; 
             border-radius: 30px; 
-            padding: 30px 50px; /* Zmniejszony padding góra/dół */
+            padding: 40px 50px;
+            text-align: center;
             margin: 50px auto; 
             position: relative; 
             overflow: hidden; 
         }
-        .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; text-align: left; }
-        .lead-magnet p { text-align: left; margin-bottom: 30px; opacity: 0.9; }
-        .lead-form { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
-        .lead-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 100%; max-width: 350px; }
+        .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; }
+        .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+        .lead-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 300px; }
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 35px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .lead-form button:hover { transform: translateY(-3px); background: #ffd633; }
-        .lead-mockup img { 
-    width: auto; 
-    height: auto; 
-    max-height: 350px; /* Zwiększona wartość z 250px */
-    display: block; 
-    margin: 0 auto; 
-    transform: rotate(5deg); 
-    transition: 0.5s; 
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3)); 
-}
-        .lead-mockup:hover img { transform: rotate(0deg) scale(1.05); }
 
         .contact-box { background: var(--accent-navy); color: #fff; border-radius: 30px; padding: 60px; text-align: center; position: relative; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
@@ -235,10 +223,8 @@
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
         @media(max-width: 900px) {
-            .hero-grid, .about-box, .personas, .lead-grid { grid-template-columns: 1fr; }
-            .hero-grid, .lead-magnet { text-align: center; }
-            .lead-magnet h3, .lead-magnet p { text-align: center; }
-            .lead-form { align-items: center; }
+            .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
+            .hero-grid { text-align: center; gap: 40px; }
             .offer-card.featured { transform: scale(1); margin: 20px 0; }
             .mobile-toggle { display: block; }
             .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
@@ -439,19 +425,12 @@
         </div>
         
         <div class="container lead-magnet">
-            <div class="lead-grid">
-                <div>
-                    <h3 style="margin-bottom: 10px;">🎁 Pobierz darmową checklistę</h3>
-                    <p style="margin-bottom: 20px;">10 zwrotów, które uratują Cię na każdym spotkaniu biznesowym.</p>
-                    <form class="lead-form">
-                        <input type="email" placeholder="Twój e-mail" required>
-                        <button type="submit">Wyślij mi PDF</button>
-                    </form>
-                </div>
-                <div class="lead-mockup">
-                    <img src="mockup2.png" alt="Tablet z checklistą angielskiego">
-                </div>
-            </div>
+            <h3>🎁 Pobierz darmową checklistę</h3>
+            <p>10 zwrotów, które uratują Cię na każdym spotkaniu biznesowym.</p>
+            <form class="lead-form">
+                <input type="email" placeholder="Twój e-mail" required>
+                <button type="submit">Wyślij mi PDF</button>
+            </form>
         </div>
     </section>
 
