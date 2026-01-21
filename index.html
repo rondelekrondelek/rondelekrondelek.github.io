@@ -54,20 +54,26 @@
             transition: background-color 0.5s ease;
         }
 
-        /* --- DOODLES --- */
+        /* --- DOODLES (Ultra Cienka Linia 0.8px) --- */
         .doodle-icon, .doodle-small {
             fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
         .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
-        .doodle-small { width: 32px; height: 32px; margin: 0 5px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
+        .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; }
 
         /* Animacja rysowania */
         .doodle-icon path, .doodle-small path {
             stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 2s ease-out;
         }
         .active path { stroke-dashoffset: 0; }
+
+        /* Scrollbar & Progress */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-cream); }
+        ::-webkit-scrollbar-thumb { background-color: var(--accent-yellow); border-radius: 5px; border: 2px solid var(--bg-cream); }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-yellow); width: 0%; z-index: 1001; transition: width 0.1s; }
 
         /* Typography */
         h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
@@ -92,6 +98,7 @@
         .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; border: 2px solid transparent; text-align: center; }
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); }
+        
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
         .btn-warm::after {
@@ -106,6 +113,7 @@
         nav.scrolled { background: rgba(253, 251, 247, 0.98); box-shadow: 0 5px 20px rgba(0,0,0,0.05); padding: 15px 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
+        
         .nav-links { display: flex; align-items: center; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
@@ -119,11 +127,17 @@
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
-        /* About Box */
-        .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
-        .signature { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--accent-navy); margin-top: 20px; font-weight: 400; }
-        .about-list { list-style: none; margin-top: 20px; padding: 0; }
-        .about-list li { margin-bottom: 15px; font-size: 1.05rem; display: flex; align-items: baseline; gap: 10px; }
+        /* --- MINI KAFELKI (ABOUT SECTION) --- */
+        .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; margin-bottom: 60px; }
+        
+        .about-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .mini-tile { 
+            background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; 
+            text-align: left; transition: 0.3s; display: flex; flex-direction: column; gap: 8px;
+        }
+        .mini-tile:hover { transform: translateY(-5px); border-color: var(--accent-yellow); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .mini-tile h4 { font-size: 0.95rem; font-weight: 700; color: var(--accent-navy); margin: 0; }
+        .mini-tile p { font-size: 0.8rem; line-height: 1.4; margin: 0; color: var(--text-light); }
 
         /* Personas */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
@@ -131,7 +145,7 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- OFERTA (NAVY) --- */
+        /* OFFER */
         #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
         .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
@@ -184,11 +198,17 @@
         .contact-note { position: absolute; top: 40px; right: 40px; transform: rotate(15deg); display: none; animation: float 5s ease-in-out infinite reverse; }
         @media(min-width: 900px) { .contact-note { display: block; } }
 
+        /* Footer */
+        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
+
         /* Floating Buttons */
         .floating-btn { position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s; }
         .whatsapp-btn { right: 30px; background-color: #25D366; }
         .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: auto; }
         .back-to-top.visible { opacity: 1; }
+        .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
@@ -198,6 +218,7 @@
             .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
             .nav-links.active { transform: translateX(0); }
             .nav-links a { font-size: 1.5rem; margin: 0; }
+            .about-tiles { grid-template-columns: 1fr; }
         }
         
         .bg-cream { background-color: var(--bg-cream); position: relative; }
@@ -252,15 +273,31 @@
                 <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się <span class="marker">popełniać błędów</span>.</p>
                 <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
             </div>
-            <div style="background: #fdfbf7; padding: 40px; border-radius: 20px; border: 1px solid #eee;">
-                <h3 style="margin-bottom: 20px;">Jak uczę? <svg class="doodle-small" viewBox="0 0 24 24"><path d="M9 21h6v-2H9v2zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg></h3>
-                <ul class="about-list">
-                    <li>➔ <strong>Komunikacja</strong> – mówimy od pierwszej minuty lekcji.</li>
-                    <li>➔ <strong>Materiały</strong> – autentyczne artykuły, wideo i podcasty.</li>
-                    <li>➔ <strong>Atmosfera</strong> – bezpieczna przestrzeń bez oceniania.</li>
-                    <li>➔ <strong>Indywidualizm</strong> – lekcje dopasowane do Twoich celów.</li>
-                </ul>
-                <div class="handwritten" style="margin-top: 20px; font-size: 1.4rem;">Angielski, na który będziesz czekać ✨</div>
+            <div style="background: #fdfbf7; padding: 35px; border-radius: 25px; border: 1px solid #eee;">
+                <h3 style="margin-bottom: 5px;">Jak uczę? 💡</h3>
+                
+                <div class="about-tiles">
+                    <div class="mini-tile">
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <h4>Komunikacja</h4>
+                        <p>➔ Mówimy od pierwszej minuty lekcji.</p>
+                    </div>
+                    <div class="mini-tile">
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V5H6.5A2.5 2.5 0 0 0 4 7.5v12z"/></svg>
+                        <h4>Materiały</h4>
+                        <p>➔ Artykuły, wideo i podcasty.</p>
+                    </div>
+                    <div class="mini-tile">
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <h4>Atmosfera</h4>
+                        <p>➔ Bezpieczna przestrzeń bez ocen.</p>
+                    </div>
+                    <div class="mini-tile">
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <h4>Indywidualizm</h4>
+                        <p>➔ Cele dopasowane do Ciebie.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
