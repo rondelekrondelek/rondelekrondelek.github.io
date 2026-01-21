@@ -150,7 +150,44 @@
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
+        .nav-links { display: flex; align-items: center; }
+
+
+/* Stylizacja linków w menu z animacjami hover */
+.nav-links a { 
+    margin-left: 30px; 
+    font-size: 0.95rem; 
+    color: var(--text-main); 
+    font-weight: 800; 
+    position: relative; 
+    display: inline-block; 
+    transition: 0.3s; 
+}
+
+/* Efekt wysuwającej się linii pod tekstem (tylko dla zwykłych linków) */
+.nav-links a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-yellow);
+    transition: width 0.3s ease-in-out;
+}
+
+/* Rozwinięcie linii po najechaniu */
+.nav-links a:not(.btn):hover::after {
+    width: 100%;
+}
+
+/* Delikatne uniesienie i zmiana koloru tekstu */
+.nav-links a:not(.btn):hover {
+    color: var(--accent-navy);
+    transform: translateY(-2px);
+}
+
+        
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
         .mobile-toggle svg { width: 30px; height: 30px; stroke: var(--text-main); stroke-width: 2; }
 
