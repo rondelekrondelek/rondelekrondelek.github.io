@@ -103,6 +103,22 @@
         .active path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s forwards ease-out; }
         @keyframes draw { to { stroke-dashoffset: 0; } }
 
+        @keyframes envelopeFloat {
+    0%, 100% { 
+        transform: rotate(10deg) translateY(0); 
+    }
+    50% { 
+        transform: rotate(15deg) translateY(-8px); 
+    }
+}
+
+/* Nałożenie animacji na ikonę w sekcji kontaktowej */
+.contact-box h2 svg {
+    display: inline-block;
+    animation: envelopeFloat 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
         h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.6rem; }
@@ -306,7 +322,7 @@
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2L14.4 9.6H22L15.8 14.2L18.2 21.8L12 17.2L5.8 21.8L8.2 14.2L2 9.6H9.6L12 2Z"/></svg>
+                    <svg class="doodle-small" viewBox="0 0 24 24" style="transform: rotate(10deg)"><path d="M12 2L14.4 9.6H22L15.8 14.2L18.2 21.8L12 17.2L5.8 21.8L8.2 14.2L2 9.6H9.6L12 2Z"/></svg>
                 </h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
