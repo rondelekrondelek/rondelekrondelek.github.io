@@ -52,6 +52,7 @@
             overflow-x: hidden;
         }
 
+        /* --- SKETCHY DOODLES (0.8px) --- */
         .doodle-icon, .doodle-small {
             fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
             stroke-linecap: round; stroke-linejoin: round;
@@ -65,7 +66,7 @@
         .active path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s forwards ease-out; }
         @keyframes draw { to { stroke-dashoffset: 0; } }
 
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-yellow); width: 0%; z-index: 1001; }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-yellow); width: 0%; z-index: 1001; transition: width 0.1s; }
 
         h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
         h1 { font-size: 3.5rem; }
@@ -141,6 +142,7 @@
         .price { font-family: 'Lato', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--accent-navy); line-height: 1; }
         .price span { font-size: 0.8rem; font-weight: 700; color: #999; display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .tag { position: absolute; top: -15px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2; }
+        .offer-card .btn { width: 100%; margin-top: auto; }
 
         .faq-item { background: #fff; border-radius: 15px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden; transition: all 0.3s; }
         .faq-item[open] { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
@@ -172,6 +174,7 @@
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
             .hero-grid { text-align: center; gap: 40px; }
+            .hero-img-box { margin: 0 auto; max-width: 350px; }
             .mobile-toggle { display: block; }
             .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
             .nav-links.active { transform: translateX(0); }
@@ -202,7 +205,7 @@
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 3c1 4 2 5 5 6-4 1-5 2-6 6-1-4-2-5-6-6 4-1 5-2 6-6z"/></svg>
+                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 3c.5 3.5 1.5 4.5 4.5 5-3 1-4 2-4.5 5.5-.5-3.5-1.5-4.5-4.5-5 3-1 4-2 4.5-5.5z"/></svg>
                 </h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
@@ -233,7 +236,7 @@
                 <div class="about-tiles">
                     <div class="mini-tile">
                         <svg class="doodle-small" viewBox="0 0 24 24">
-                            <path d="M7 8c-2 0-4 1.5-4 3.5s2 3.5 4 3.5h1l.5 2 2.5-2h2c2 0 4-1.5 4-3.5S15 8 13 8H7z M14 5c2.5 0 4.5 1.8 4.5 4s-2 4-4.5 4h-.5l-.3 1.5-1.7-1.5h-1c-1 0-2-.3-2.8-.8"/>
+                            <path d="M21 11.5c0 3.6-4 6.5-9 6.5-.8 0-1.6-.1-2.4-.3l-4.6 2.3 1-4.5c-3.1-1-5-2.6-5-4 0-3.6 4-6.5 9-6.5s9 2.9 9 6.5z"/>
                         </svg>
                         <h4>Komunikacja</h4>
                         <p>➔ Mówimy od pierwszej minuty lekcji.</p>
@@ -267,17 +270,15 @@
             <div class="personas">
                 <div class="persona">
                     <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M12 4c-4.4 0-8 3.6-8 8v3c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-4c0-.6-.4-1-1-1H5.1c.4-2.8 2.8-5 5.7-5.1"/>
-                        <path d="M18.9 11c-.6 0-1 .4-1 1v4c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-3c0-4.4-3.6-8-8-8"/>
-                        <path d="M19 17v1.5c0 1.4-1.1 2.5-2.5 2.5H15M7 16v.5"/>
+                        <path d="M8.5 3h7l-1 4.5 1.5 11-4 2.5-4-2.5 1.5-11L8.5 3z M8.5 3l3.5 2 3.5-2"/>
                     </svg>
                     <h3>Dla profesjonalistów</h3>
-                    <p>➔ Pomogę Ci zyskać <span class="marker">pewność siebie</span> na spotkaniach.</p>
+                    <p>➔ Zyskaj <span class="marker">pewność siebie</span> na callach i spotkaniach.</p>
                 </div>
                 <div class="persona">
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     <h3>Dla "zablokowanych"</h3>
-                    <p>➔ Stworzę dla Ciebie <span class="marker">bezpieczną przestrzeń</span> do rozmów.</p>
+                    <p>➔ Rozgadaj się w <span class="marker">bezpiecznej atmosferze</span> bez stresu.</p>
                 </div>
                 <div class="persona">
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
@@ -300,7 +301,9 @@
             </div>
             <div class="offer-grid">
                 <div class="offer-card">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3"/><path d="M10 1v3"/><path d="M14 1v3"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24">
+                        <path d="M17 8c2 0 4 1.5 4 4s-2 4-4 4h-1c-.5 2-2 3-4 3h-5c-2.5 0-4-1.5-4-4l1-10h12l1 7M5 3v2M9 3v2M13 3v2"/>
+                    </svg>
                     <h3>Na co dzień</h3>
                     <p>Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                     <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span class="price-unit">PLN / LEKCJA</span></div>
@@ -311,7 +314,7 @@
                 <div class="offer-card">
                     <div class="tag">POLECAM</div>
                     <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M12 4c-4.4 0-8 3.6-8 8v3c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-4c0-.6-.4-1-1-1H5.1c.4-2.8 2.8-5 5.7-5.1 M18.9 11c-.6 0-1 .4-1 1v4c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-3c0-4.4-3.6-8-8-8 M19 17v1.5c0 1.4-1.1 2.5-2.5 2.5H15 M7 16v.5"/>
+                        <path d="M8.5 3h7l-1 4.5 1.5 11-4 2.5-4-2.5 1.5-11L8.5 3z M8.5 3l3.5 2 3.5-2"/>
                     </svg>
                     <h3>W pracy</h3>
                     <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
