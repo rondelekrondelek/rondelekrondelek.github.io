@@ -54,28 +54,20 @@
             transition: background-color 0.5s ease;
         }
 
-        /* --- DOODLES (Ultra Cienka Linia 0.8px) --- */
-        .doodle-icon, .doodle-small, .doodle-tick, .doodle-dot {
+        /* --- DOODLES --- */
+        .doodle-icon, .doodle-small {
             fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
         .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
         .doodle-small { width: 32px; height: 32px; margin: 0 5px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
-        .doodle-tick { width: 20px; height: 20px; margin-right: 12px; display: inline-block; vertical-align: middle; stroke-width: 1px; }
-        .doodle-dot { width: 10px; height: 10px; margin-right: 10px; display: inline-block; vertical-align: middle; fill: var(--accent-navy); stroke: none; opacity: 0.8; }
 
         /* Animacja rysowania */
-        .doodle-icon path, .doodle-small path, .doodle-tick path {
+        .doodle-icon path, .doodle-small path {
             stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 2s ease-out;
         }
         .active path { stroke-dashoffset: 0; }
-
-        /* Scrollbar & Progress */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-cream); }
-        ::-webkit-scrollbar-thumb { background-color: var(--accent-yellow); border-radius: 5px; border: 2px solid var(--bg-cream); }
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-yellow); width: 0%; z-index: 1001; transition: width 0.1s; }
 
         /* Typography */
         h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
@@ -100,7 +92,6 @@
         .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; border: 2px solid transparent; text-align: center; }
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); }
-        
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
         .btn-warm::after {
@@ -117,7 +108,6 @@
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
         .nav-links { display: flex; align-items: center; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
-        .nav-links a:hover { color: var(--accent-navy); }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
         .mobile-toggle svg { width: 30px; height: 30px; stroke: var(--text-main); stroke-width: 2; }
 
@@ -129,15 +119,11 @@
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
-        /* About & Counters */
-        .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; z-index: 2; position: relative; }
+        /* About Box */
+        .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
         .signature { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--accent-navy); margin-top: 20px; font-weight: 400; }
-        .counters-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-        .counter-item { text-align: center; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .counter-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--accent-yellow); display: block; }
-        .counter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
-        .about-list { list-style: none; margin-top: 30px; padding: 0; }
-        .about-list li { margin-bottom: 15px; font-size: 1.05rem; }
+        .about-list { list-style: none; margin-top: 20px; padding: 0; }
+        .about-list li { margin-bottom: 15px; font-size: 1.05rem; display: flex; align-items: baseline; gap: 10px; }
 
         /* Personas */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
@@ -145,10 +131,9 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- OFERTA (NAVY + ORGANIC CARDS) --- */
+        /* --- OFERTA (NAVY) --- */
         #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
-        .offer-header h2 { color: #fff; }
         .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
         .toggle-switch { position: relative; width: 50px; height: 26px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -176,70 +161,47 @@
         .tag { position: absolute; top: -15px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2; }
         .offer-card .btn { width: 100%; margin-top: auto; }
 
-        /* Testimonials */
-        .reviews-section { text-align: center; position: relative; overflow: hidden; background: transparent; }
-        .reviews-section::before { content: '“'; position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-family: 'Lora', serif; font-size: 20rem; line-height: 0.8; color: var(--accent-navy); opacity: 0.05; z-index: 0; pointer-events: none; }
-        .elfsight-app-8f8449e3-cef4-4384-9204-214bf1125061 { width: 100%; min-height: 300px; position: relative; z-index: 1; }
-
         /* FAQ */
         .faq-item { background: #fff; border-radius: 15px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden; transition: all 0.3s; }
         .faq-item[open] { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
         .faq-item summary { padding: 20px 25px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; list-style: none; }
-        .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after { content: '+'; font-size: 2rem; font-weight: 200; color: var(--accent-navy); transition: transform 0.3s ease; line-height: 1; }
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
         /* Lead Magnet */
         .lead-magnet { background: var(--text-main); color: #fff; border-radius: 30px; padding: 50px; text-align: center; margin: 50px auto; position: relative; overflow: hidden; }
-        .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; font-family: 'Lora', serif; }
+        .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; }
         .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
         .lead-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 300px; }
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
-        .lead-form button:hover { background: #ffd633; }
 
-        /* KONTAKT (Navy Background) */
-        .contact-box { 
-            background: var(--accent-navy); color: #fff; 
-            border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden; 
-        }
-        .contact-box h2 { color: #fff; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        /* KONTAKT */
+        .contact-box { background: var(--accent-navy); color: #fff; border-radius: 30px; padding: 60px; text-align: center; position: relative; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
         .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit; font-size: 1rem; }
         .btn-submit { background: var(--accent-yellow); color: var(--text-main); width: 100%; border: none; }
-        .btn-submit:hover { background: #ffdb4d; }
-        
         .contact-note { position: absolute; top: 40px; right: 40px; transform: rotate(15deg); display: none; animation: float 5s ease-in-out infinite reverse; }
         @media(min-width: 900px) { .contact-note { display: block; } }
 
-        /* Footer */
-        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
-
-        /* Buttons & Cookie */
+        /* Floating Buttons */
         .floating-btn { position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s; }
         .whatsapp-btn { right: 30px; background-color: #25D366; }
-        .whatsapp-btn:hover { transform: scale(1.1); }
-        .whatsapp-btn svg { width: 30px; height: 30px; fill: white; }
-        .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: none; }
-        .back-to-top.visible { opacity: 1; pointer-events: auto; }
-        .back-to-top:hover { background-color: var(--accent-yellow); color: var(--text-main); }
-        .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
-        .cookie-banner.show { transform: translateY(0); }
-        .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: auto; }
+        .back-to-top.visible { opacity: 1; }
 
-        /* Mobile */
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
             .hero-grid { text-align: center; gap: 40px; }
             .hero-img-box { margin: 0 auto; max-width: 350px; }
-            .arrow-note { display: none; }
-            .about-box { padding: 30px; }
-            .contact-box { padding: 40px 20px; }
             .mobile-toggle { display: block; }
             .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
             .nav-links.active { transform: translateX(0); }
             .nav-links a { font-size: 1.5rem; margin: 0; }
         }
+        
+        .bg-cream { background-color: var(--bg-cream); position: relative; }
+        .bg-white { background-color: var(--bg-white); position: relative; }
     </style>
 </head>
 <body id="page-body">
@@ -291,23 +253,14 @@
                 <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
             </div>
             <div style="background: #fdfbf7; padding: 40px; border-radius: 20px; border: 1px solid #eee;">
-                <h3>Moje podejście: <svg class="doodle-small" viewBox="0 0 24 24"><path d="M9 21h6v-2H9v2zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg></h3>
-                
-                <div class="counters-wrapper">
-                    <div class="counter-item">
-                        <span class="counter-num" data-target="1500">0</span>
-                        <span class="counter-label">Wypitych kaw</span>
-                    </div>
-                    <div class="counter-item">
-                        <span class="counter-num" data-target="100">0</span>%
-                        <span class="counter-label">Zero stresu</span>
-                    </div>
-                </div>
-                
+                <h3 style="margin-bottom: 20px;">Jak uczę? <svg class="doodle-small" viewBox="0 0 24 24"><path d="M9 21h6v-2H9v2zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg></h3>
                 <ul class="about-list">
-                    <li>➔ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
-                    <li>➔ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
+                    <li>➔ <strong>Komunikacja</strong> – mówimy od pierwszej minuty lekcji.</li>
+                    <li>➔ <strong>Materiały</strong> – autentyczne artykuły, wideo i podcasty.</li>
+                    <li>➔ <strong>Atmosfera</strong> – bezpieczna przestrzeń bez oceniania.</li>
+                    <li>➔ <strong>Indywidualizm</strong> – lekcje dopasowane do Twoich celów.</li>
                 </ul>
+                <div class="handwritten" style="margin-top: 20px; font-size: 1.4rem;">Angielski, na który będziesz czekać ✨</div>
             </div>
         </div>
     </section>
@@ -357,7 +310,7 @@
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3"/><path d="M10 1v3"/><path d="M14 1v3"/></svg>
                     <h3>Na co dzień</h3>
                     <p>Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
-                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span class="price-unit">PLN / LEKCJA</span></div>
+                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span>PLN / LEKCJA</span></div>
                     <hr class="card-divider">
                     <ul>
                         <li>➔ Luźne konwersacje</li>
@@ -372,7 +325,7 @@
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M6 3h12v4c0 4-3 9-6 9s-6-5-6-9V3z"/><path d="M12 3v13"/><path d="M12 16l-4 6h8l-4-6"/></svg>
                     <h3>W pracy</h3>
                     <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
-                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span class="price-unit">PLN / LEKCJA</span></div>
+                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span>PLN / LEKCJA</span></div>
                     <hr class="card-divider">
                     <ul>
                         <li>➔ Symulacje rozmów</li>
@@ -386,7 +339,7 @@
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     <h3>Egzaminy</h3>
                     <p>Strategiczne przygotowanie do certyfikatów.</p>
-                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span class="price-unit">PLN / LEKCJA</span></div>
+                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span>PLN / LEKCJA</span></div>
                     <hr class="card-divider">
                     <ul>
                         <li>➔ Arkusze próbne</li>
@@ -496,21 +449,12 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    if(entry.target.classList.contains('counter-num')) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let current = 0;
-                        const timer = setInterval(() => {
-                            current += Math.ceil(target / 50);
-                            if(current >= target) { entry.target.innerText = target; clearInterval(timer); } 
-                            else { entry.target.innerText = current; }
-                        }, 20);
-                        observer.unobserve(entry.target);
-                    }
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.doodle-icon, .doodle-small, .marker, .counter-num').forEach(el => observer.observe(el));
+        document.querySelectorAll('.doodle-icon, .doodle-small, .marker').forEach(el => observer.observe(el));
     </script>
 
 </body>
