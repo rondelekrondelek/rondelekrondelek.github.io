@@ -58,18 +58,19 @@
         }
 
         /* --- DOODLES --- */
-        .doodle-icon, .doodle-small, .doodle-tick, .doodle-dot {
-            fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
+        .doodle-icon, .doodle-small {
+            fill: none; 
+            stroke: var(--accent-navy); 
+            stroke-width: 0.8px; 
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
+        
         .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
         .doodle-small { width: 32px; height: 32px; margin: 0 5px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
-        .doodle-tick { width: 20px; height: 20px; margin-right: 12px; display: inline-block; vertical-align: middle; stroke-width: 1px; }
-        .doodle-dot { width: 10px; height: 10px; margin-right: 10px; display: inline-block; vertical-align: middle; fill: var(--accent-navy); stroke: none; opacity: 0.8; }
 
         /* Animacja rysowania */
-        .doodle-icon path, .doodle-small path, .doodle-tick path {
+        .doodle-icon path, .doodle-small path {
             stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 2s ease-out;
         }
         .active path { stroke-dashoffset: 0; }
@@ -85,8 +86,15 @@
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.6rem; }
         h3 { font-size: 1.6rem; }
-        .handwritten { font-family: 'Caveat', cursive; color: var(--accent-navy); font-size: 1.8rem; transform: rotate(-3deg); display: inline-block; line-height: 1; font-weight: 400; }
         
+        .handwritten { 
+            font-family: 'Caveat', cursive; 
+            color: var(--accent-navy); 
+            font-size: 1.8rem; transform: rotate(-3deg); display: inline-block; line-height: 1; 
+            font-weight: 400; 
+        }
+        
+        /* Marker */
         .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; }
         .marker::after {
             content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
@@ -96,7 +104,7 @@
         .marker.active::after { width: 105%; }
 
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 100px 0; } /* Standardowy padding */
+        .section-padding { padding: 100px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* Buttons */
@@ -106,6 +114,7 @@
         
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
+        
         .btn-warm::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
@@ -150,7 +159,7 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- OFFER (NAVY BACKGROUND) --- */
+        /* OFFER */
         #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
         .offer-header h2 { color: #fff; }
@@ -165,11 +174,10 @@
         .toggle-label { font-weight: 700; font-size: 0.95rem; cursor: pointer; color: rgba(255,255,255,0.7); }
         .toggle-label.active { color: #fff; }
 
-        /* Karty */
         .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: stretch; }
         .offer-card { 
             background: #fff; padding: 40px 30px; 
-            border-radius: 20px 25px 22px 28px; /* Organiczny kształt */
+            border-radius: 20px 25px 22px 28px; 
             border: 2px solid transparent; transition: 0.3s; 
             position: relative; display: flex; flex-direction: column; text-align: center;
             color: var(--text-main); 
@@ -189,16 +197,10 @@
         .offer-card ul { text-align: left; padding-left: 10px; list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .offer-card li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-light); }
         
-        /* Cena - Lato Font */
         .price { font-family: 'Lato', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--accent-navy); line-height: 1; }
         .price span { font-size: 0.8rem; font-weight: 700; color: #999; display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .tag { 
-            position: absolute; top: -15px; right: 20px; 
-            background: var(--accent-yellow); color: var(--text-main); 
-            padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2;
-        }
+        .tag { position: absolute; top: -15px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2; }
         .offer-card .btn { width: 100%; margin-top: auto; }
 
         /* Testimonials */
@@ -223,12 +225,8 @@
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
         .lead-form button:hover { background: #ffd633; }
 
-        /* KONTAKT (Navy Background) */
-        .contact-box { 
-            background: var(--accent-navy); /* Ciemny Granat */
-            color: #fff; 
-            border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden;
-        }
+        /* KONTAKT */
+        .contact-box { background: var(--accent-navy); color: #fff; border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden; }
         .contact-box h2 { color: #fff; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
         .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit; font-size: 1rem; }
@@ -266,9 +264,6 @@
             .nav-links.active { transform: translateX(0); }
             .nav-links a { font-size: 1.5rem; margin: 0; }
         }
-        
-        .bg-cream { background-color: var(--bg-cream); position: relative; }
-        .bg-white { background-color: var(--bg-white); position: relative; }
     </style>
 </head>
 <body id="page-body">
@@ -326,8 +321,8 @@
                     <div class="counter-item"><span class="counter-num" data-target="100">0</span>%<span class="counter-label">Zero stresu</span></div>
                 </div>
                 <ul class="about-list">
-                    <li>✅ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
-                    <li>✅ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
+                    <li>➔ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
+                    <li>➔ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
                 </ul>
             </div>
         </div>
@@ -475,7 +470,6 @@
     <div class="cookie-banner" id="cookieBanner"><span>Ta strona używa ciasteczek (cookies).</span><button class="cookie-btn" onclick="acceptCookies()">OK</button></div>
 
     <script>
-        // Progress, Sticky, BackTop
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -488,13 +482,11 @@
             if (winScroll > 300) backBtn.classList.add('visible'); else backBtn.classList.remove('visible');
         };
 
-        // Mobile Menu
         const mobileBtn = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
         mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
 
-        // Price Toggle
         const toggle = document.getElementById('priceToggle');
         const prices = document.querySelectorAll('.price-val');
         const labelSingle = document.getElementById('label-single');
@@ -513,11 +505,9 @@
             });
         });
 
-        // Cookies
         if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
         function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('cookiesAccepted', 'true'); }
 
-        // Observer
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -536,7 +526,7 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.doodle-icon, .doodle-small, .doodle-tick, .marker, .counter-num').forEach(el => observer.observe(el));
+        document.querySelectorAll('.doodle-icon, .doodle-small, .marker, .counter-num').forEach(el => observer.observe(el));
     </script>
 
 </body>
