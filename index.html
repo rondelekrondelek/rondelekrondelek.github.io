@@ -6,6 +6,19 @@
     <title>Angielski z Eweliną | Po ludzku i bez stresu</title>
     <meta name="description" content="Angielski, na który będziesz czekać. Indywidualne podejście, zero stresu i pełne wsparcie.">
     
+    <meta name="theme-color" content="#fdfbf7">
+
+    <meta property="og:title" content="Angielski z Eweliną | Po ludzku i bez stresu">
+    <meta property="og:description" content="Indywidualne lekcje angielskiego online. Przełam barierę językową w swoim tempie.">
+    <meta property="og:image" content="https://rondelekrondelek.github.io/ewelina.webp">
+    <meta property="og:url" content="https://rondelekrondelek.github.io">
+    <meta property="og:type" content="website">
+
+    <link rel="canonical" href="https://rondelekrondelek.github.io">
+
+    <link rel="apple-touch-icon" href="ewelina.webp">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M12 2L14.4 9.6H22L15.8 14.2L18.2 21.8L12 17.2L5.8 21.8L8.2 14.2L2 9.6H9.6L12 2Z%22/></svg>">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -22,8 +35,6 @@
     }
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M12 2L14.4 9.6H22L15.8 14.2L18.2 21.8L12 17.2L5.8 21.8L8.2 14.2L2 9.6H9.6L12 2Z%22/></svg>">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -39,6 +50,15 @@
             --radius: 20px;
             --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.06);
         }
+
+        /* 6. Własny kolor zaznaczania tekstu */
+        ::selection { background-color: var(--accent-yellow); color: var(--text-main); }
+
+        /* 7. Nowoczesny kolor checkboxa */
+        input[type="checkbox"] { accent-color: var(--accent-yellow); width: 18px; height: 18px; }
+
+        /* 9. Ukrywanie zbędnych elementów przy drukowaniu */
+        @media print { nav, .mobile-toggle, .btn, .cookie-banner, .floating-btn { display: none; } }
 
         /* SCROLLBAR */
         ::-webkit-scrollbar { width: 12px; }
@@ -76,8 +96,8 @@
 
         .contact-box h2 svg { display: inline-block; animation: envelopeFloat 3s ease-in-out infinite; transform-origin: center; }
 
-        /* TYPOGRAPHY CLAMP FIX */
-        h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
+        /* TYPOGRAPHY & 5. Text Balance */
+        h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; text-wrap: balance; }
         h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); }
         h2 { font-size: clamp(2rem, 6vw, 2.6rem); }
         h3 { font-size: 1.6rem; }
@@ -122,18 +142,22 @@
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 20px; }
         .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 50px; max-width: 500px; }
         .hero-img-box { position: relative; }
-.hero-img {
-    width: 100%;
-    max-width: 500px; /* NOWE: Ogranicza maksymalny rozmiar zdjęcia */
-    display: block;   /* NOWE: Potrzebne do wyśrodkowania */
-    margin: 0 auto;   /* NOWE: Wyśrodkowanie zdjęcia */
-    border-radius: var(--radius);
-    transform: rotate(2deg);
-    box-shadow: var(--shadow);
-    border: 8px solid #fff;
-    object-fit: cover;
-    aspect-ratio: 4/5; /* ZMIANA: Trochę "niższe" proporcje niż wcześniej (było 3/4) */
-}        .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
+        
+        /* 8. Lepsze centrowanie zdjęcia i max-width */
+        .hero-img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            transform: rotate(2deg);
+            box-shadow: var(--shadow);
+            border: 8px solid #fff;
+            object-fit: cover;
+            object-position: top center; /* Ważne: kadruje od góry (twarzy) */
+            aspect-ratio: 4/5;
+        }        
+        .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
         .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; margin-bottom: 60px; }
@@ -223,7 +247,7 @@
     <nav id="navbar">
         <div class="container nav-inner">
             <a href="#" class="logo-handwritten">Ewelina Nowak</a>
-            <button class="mobile-toggle" aria-label="Otwórz menu nawigacji" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg></button>
+            <button type="button" class="mobile-toggle" aria-label="Otwórz menu nawigacji" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg></button>
             <div class="nav-links">
                 <a href="#o-mnie">Poznajmy się</a>
                 <a href="#oferta">Współpraca</a>
@@ -238,7 +262,7 @@
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24" style="transform: rotate(10deg)"><path d="M12 2L14.4 9.6H22L15.8 14.2L18.2 21.8L12 17.2L5.8 21.8L8.2 14.2L2 9.6H9.6L12 2Z"/></svg>
+                    <svg class="doodle-small" aria-hidden="true" viewBox="0 0 24 24" style="transform: rotate(10deg)"><path d="M12 2L14.4 9.6H22L15.8 14.2L18.2 21.8L12 17.2L5.8 21.8L8.2 14.2L2 9.6H9.6L12 2Z"/></svg>
                 </h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
@@ -249,9 +273,10 @@
             <div class="hero-img-box">
                 <div class="arrow-note">
                     <span class="handwritten">To ja! :)</span>
-                    <svg class="arrow-svg" viewBox="0 0 50 50" width="40"><path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a"/></marker></defs></svg>
+                    <svg class="arrow-svg" aria-hidden="true" viewBox="0 0 50 50" width="40"><path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a"/></marker></defs></svg>
                 </div>
-<img src="ewelina.webp" alt="Ewelina Nowak" class="hero-img" width="600" height="700"></div>
+                <img src="ewelina.webp" alt="Ewelina Nowak" class="hero-img" width="600" height="700">
+            </div>
         </div>
     </header>
 
@@ -267,22 +292,22 @@
                 <h3 style="margin-bottom: 5px;">Moje podejście 💡</h3>
                 <div class="about-tiles">
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 11.567c0 5.283-4.478 9.566-10 9.566q-.977.001-1.935-.178c-.459-.087-.688-.13-.848-.105c-.16.024-.388.145-.842.386a6.5 6.5 0 0 1-4.224.657a5.3 5.3 0 0 0 1.087-2.348c.1-.53-.148-1.045-.52-1.422C3.034 16.411 2 14.105 2 11.567C2 6.284 6.478 2 12 2s10 4.284 10 9.567M11.996 12h.008m3.987 0H16m-8 0h.009" /></svg>
+                        <svg class="doodle-small" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 11.567c0 5.283-4.478 9.566-10 9.566q-.977.001-1.935-.178c-.459-.087-.688-.13-.848-.105c-.16.024-.388.145-.842.386a6.5 6.5 0 0 1-4.224.657a5.3 5.3 0 0 0 1.087-2.348c.1-.53-.148-1.045-.52-1.422C3.034 16.411 2 14.105 2 11.567C2 6.284 6.478 2 12 2s10 4.284 10 9.567M11.996 12h.008m3.987 0H16m-8 0h.009" /></svg>
                         <h4>Komunikacja</h4>
                         <p>➔ Mówimy od pierwszej minuty lekcji.</p>
                     </div>
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V5H6.5A2.5 2.5 0 0 0 4 7.5v12z"/></svg>
+                        <svg class="doodle-small" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V5H6.5A2.5 2.5 0 0 0 4 7.5v12z"/></svg>
                         <h4>Materiały</h4>
                         <p>➔ Artykuły, wideo i podcasty.</p>
                     </div>
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <svg class="doodle-small" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                         <h4>Atmosfera</h4>
                         <p>➔ Bezpieczna przestrzeń bez ocen.</p>
                     </div>
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="doodle-small" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <h4>Indywidualizm</h4>
                         <p>➔ Cele dopasowane do Ciebie.</p>
                     </div>
@@ -299,17 +324,17 @@
             </div>
             <div class="personas">
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/></svg>
+                    <svg class="doodle-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/></svg>
                     <h3>Dla profesjonalistów</h3>
                     <p>➔ Pomogę Ci zyskać <span class="marker">pewność siebie</span> na callach i spotkaniach.</p>
                 </div>
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <svg class="doodle-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     <h3>Dla "zablokowanych"</h3>
                     <p>➔ Rozgadaj się w <span class="marker">bezpiecznej atmosferze</span> bez stresu.</p>
                 </div>
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                    <svg class="doodle-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
                     <h3>Dla podróżników</h3>
                     <p>➔ Nauczysz się swobodnie komunikować w każdej sytuacji.</p>
                 </div>
@@ -329,7 +354,7 @@
             </div>
             <div class="offer-grid">
                 <div class="offer-card">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M17 8c2 0 4 1.5 4 4s-2 4-4 4h-1c-.5 2-2 3-4 3h-5c-2.5 0-4-1.5-4-4l1-10h12l1 7M5 3v2M9 3v2M13 3v2"/></svg>
+                    <svg class="doodle-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M17 8c2 0 4 1.5 4 4s-2 4-4 4h-1c-.5 2-2 3-4 3h-5c-2.5 0-4-1.5-4-4l1-10h12l1 7M5 3v2M9 3v2M13 3v2"/></svg>
                     <h3>Na co dzień</h3>
                     <p>Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                     <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span class="price-unit">PLN / LEKCJA</span></div>
@@ -340,7 +365,7 @@
 
                 <div class="offer-card featured">
                     <div class="tag">NAJCZĘSTSZY WYBÓR</div>
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/></svg>
+                    <svg class="doodle-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/></svg>
                     <h3>W pracy</h3>
                     <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
                     <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span class="price-unit">PLN / LEKCJA</span></div>
@@ -350,7 +375,7 @@
                 </div>
 
                 <div class="offer-card">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <svg class="doodle-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     <h3>Egzaminy</h3>
                     <p>Strategiczne przygotowanie do certyfikatów.</p>
                     <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span class="price-unit">PLN / LEKCJA</span></div>
@@ -416,59 +441,64 @@
             </details>
         </div>
         
-<div class="container lead-magnet" style="display: flex; align-items: center; gap: 40px; text-align: left; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px;">
-        <img src="mockup2.png" alt="Business English Checklist Mockup" style="width: 100%; height: auto; border-radius: 15px;">
-    </div>
-    <div style="flex: 1; min-width: 300px;">
-        <h3 style="color: #fff; margin-bottom: 10px;">🎁 Pobierz darmową checklistę</h3>
-        <p>10 zwrotów, które uratują Cię na każdym spotkaniu biznesowym. Dowiedz się, jak brzmieć pewniej już dziś!</p>
-        
-        <form action="https://formsubmit.co/e47711c462aff4dd55ecd3c03de71e88" method="POST" class="lead-form" style="justify-content: flex-start; margin-top: 20px;">
-    <input type="hidden" name="_next" value="https://rondelekrondelek.github.io/thanks.html">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="Nowy zapis na checklistę!">
-    
-    <input type="email" name="email" placeholder="Twój e-mail" required style="width: 100%; margin-bottom: 10px;">
-    <button type="submit" style="width: 100%;">Wyślij mi PDF</button>
-</form>
-    </div>
-</div>
+        <div class="container lead-magnet" style="display: flex; align-items: center; gap: 40px; text-align: left; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <img src="mockup2.png" loading="lazy" alt="Business English Checklist Mockup" style="width: 100%; height: auto; border-radius: 15px;">
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="color: #fff; margin-bottom: 10px;">🎁 Pobierz darmową checklistę</h3>
+                <p>10 zwrotów, które uratują Cię na każdym spotkaniu biznesowym. Dowiedz się, jak brzmieć pewniej już dziś!</p>
+                
+                <form action="https://formsubmit.co/ewelina.nowak103@gmail.com" method="POST" class="lead-form" style="justify-content: flex-start; margin-top: 20px;">
+                    <input type="hidden" name="_next" value="https://rondelekrondelek.github.io/thanks.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Nowy zapis na checklistę!">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <input type="email" name="email" inputmode="email" spellcheck="false" autocomplete="email" placeholder="Twój e-mail" required style="width: 100%; margin-bottom: 10px;">
+                    <button type="submit" style="width: 100%;">Wyślij mi PDF</button>
+                </form>
+            </div>
+        </div>
     </section>
 
     <section id="kontakt" class="bg-white section-padding" style="padding-top: 50px;">
         <div class="container contact-box">
             <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
-            <h2>Napisz do mnie <svg class="doodle-small" viewBox="0 0 24 24" style="stroke:#fff; margin-left:15px; transform: rotate(10deg);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></h2>
+            <h2>Napisz do mnie <svg class="doodle-small" aria-hidden="true" viewBox="0 0 24 24" style="stroke:#fff; margin-left:15px; transform: rotate(10deg);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></h2>
             <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
             
-<form action="https://formsubmit.co/ewelina.nowak103@gmail.com" method="POST" class="contact-form">
-    <input type="hidden" name="_next" value="https://rondelekrondelek.github.io/thanks.html">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="Nowa wiadomość ze strony">
+            <form action="https://formsubmit.co/ewelina.nowak103@gmail.com" method="POST" class="contact-form">
+                <input type="hidden" name="_next" value="https://rondelekrondelek.github.io/thanks.html">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="Nowa wiadomość ze strony">
+                <input type="text" name="_honey" style="display:none">
 
-    <input type="text" name="name" class="input-field" placeholder="Jak masz na imię?" required>
-    <input type="email" name="email" class="input-field" placeholder="Twój e-mail" required>
-    <textarea name="message" rows="4" class="input-field" placeholder="O co chcesz zapytać?" required></textarea>
-    <div style="text-align: left; font-size: 0.85rem; margin-bottom: 20px; opacity: 0.8;"><input type="checkbox" required> Akceptuję politykę prywatności.</div>
-    <button type="submit" class="btn btn-submit">Wyślij wiadomość</button>
-</form>
-            <div style="margin-top: 40px; font-size: 0.9rem;">Lub napisz bezpośrednio: <strong>kontakt@ewelina-nowak.pl</strong></div>
+                <input type="text" name="name" autocomplete="given-name" class="input-field" placeholder="Jak masz na imię?" required>
+                <input type="email" name="email" inputmode="email" spellcheck="false" autocomplete="email" class="input-field" placeholder="Twój e-mail" required>
+                <textarea name="message" rows="4" class="input-field" placeholder="O co chcesz zapytać?" required></textarea>
+                <div style="text-align: left; font-size: 0.85rem; margin-bottom: 20px; opacity: 0.8;"><input type="checkbox" required> Akceptuję politykę prywatności.</div>
+                <button type="submit" class="btn btn-submit">Wyślij wiadomość</button>
+            </form>
+            <div style="margin-top: 40px; font-size: 0.9rem;">Lub napisz bezpośrednio: <a href="mailto:kontakt@ewelina-nowak.pl" style="font-weight:700; text-decoration:underline;">kontakt@ewelina-nowak.pl</a></div>
         </div>
     </section>
 
     <footer class="bg-white">
         <div class="container">
-            &copy; 2024 Ewelina Nowak. Strona stworzona z myślą o ludziach.<br>
+            &copy; <span id="year"></span> Ewelina Nowak. Strona stworzona z myślą o ludziach.<br>
             <a href="#" style="text-decoration: underline; margin-top: 10px; display: inline-block;">Polityka Prywatności</a>
         </div>
     </footer>
 
-    <a href="https://wa.me/48732682619" class="floating-btn whatsapp-btn" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg></a>
-    <a href="#navbar" class="floating-btn back-to-top" id="backToTop">↑</a>
+    <a href="https://wa.me/48732682619" class="floating-btn whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg></a>
+    <a href="#navbar" class="floating-btn back-to-top" id="backToTop" title="Wróć na górę">↑</a>
     <div class="cookie-banner" id="cookieBanner"><span>Ta strona używa ciasteczek (cookies).</span><button class="cookie-btn" onclick="acceptCookies()">OK</button></div>
 
     <script>
+        // 20. Skrypt do automatycznego roku
+        document.getElementById('year').textContent = new Date().getFullYear();
+
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
