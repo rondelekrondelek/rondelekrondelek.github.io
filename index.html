@@ -99,15 +99,30 @@
 
         .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-yellow); width: 0%; z-index: 2001; transition: width 0.1s; }
 
-        /* BAZGROŁY */
+        /* --- ORGANICZNE BAZGROŁY & ANIMACJE --- */
         .doodle-icon, .doodle-small {
             fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
             display: block; margin: 0 auto 20px auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
-        .doodle-icon { width: 60px; height: 60px; }
+        .doodle-icon { 
+            width: 60px; height: 60px; 
+            animation: floatDoodle 4s ease-in-out infinite;
+        }
         .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
+
+        .doodle-small:hover, .doodle-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+        }
+
+        @keyframes floatDoodle {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
 
         .active path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s forwards ease-out; }
         @keyframes draw { to { stroke-dashoffset: 0; } }
@@ -120,27 +135,72 @@
         h2 { font-size: clamp(2rem, 6vw, 2.6rem); }
         h3 { font-size: 1.6rem; }
         
-        .handwritten { font-family: 'Caveat', cursive; color: var(--accent-navy); font-size: 1.8rem; transform: rotate(-3deg); display: inline-block; line-height: 1; font-weight: 400; }
+        .handwritten { 
+            font-family: 'Caveat', cursive; 
+            color: var(--accent-navy); 
+            font-size: 1.8rem; 
+            transform: rotate(-3deg); 
+            display: inline-block; 
+            line-height: 1; 
+            font-weight: 400;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+        }
+        .handwritten:hover {
+            transform: rotate(-1deg) scale(1.1);
+            color: var(--accent-yellow);
+        }
         
-        .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; }
+        .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; cursor: pointer; }
         .marker::after {
             content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
             background: var(--accent-yellow); opacity: 0.6; z-index: -1; border-radius: 4px; transform: rotate(-1deg);
-            width: 0%; transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+            width: 0%; 
+            transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1), transform 0.3s ease;
         }
-        .marker.active::after { width: 105%; }
+        .marker.active::after, .marker:hover::after { width: 105%; }
+        .marker:hover::after { transform: rotate(-1.5deg) scaleY(1.2); }
+
+        /* Podświetlanie tekstu "point" */
+        .point {
+            background-image: linear-gradient(120deg, transparent 0%, transparent 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.2em;
+            background-position: 0 80%;
+            transition: background-size 0.4s ease-in;
+            font-weight: 700;
+        }
+        .point:hover {
+            background-image: linear-gradient(120deg, var(--accent-yellow) 0%, var(--accent-yellow) 100%);
+            background-size: 100% 80%;
+            color: var(--text-main);
+        }
 
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
         .section-padding { padding: 100px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* PRZYCISKI */
+        /* PRZYCISKI & KAFELKI Z EFEKTEM RĘCZNYM */
         .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; border: 2px solid transparent; text-align: center; }
+        .btn-warm { 
+            background-color: var(--accent-yellow); color: var(--text-main); 
+            position: relative; overflow: hidden; font-weight: 800;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px !important;
+        }
+        .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
+
+        .mini-tile, .persona {
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px !important;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .mini-tile:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--accent-yellow); 
+            border-radius: 15px 225px 15px 255px/255px 15px 225px 15px !important;
+        }
+
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); }
         
-        .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; font-weight: 800; }
-        .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
         .btn-warm::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); animation: shimmer 3s infinite; }
         @keyframes shimmer { 100% { left: 150%; } }
 
@@ -182,22 +242,26 @@
         }
 
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
-        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
+        .arrow-svg { 
+            width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; 
+            animation: arrowPointer 3s ease-in-out infinite;
+        }
+        @keyframes arrowPointer {
+            0%, 100% { transform: rotate(-20deg) translate(0, 0); }
+            50% { transform: rotate(-22deg) translate(-5px, 5px); }
+        }
 
         /* ABOUT & KAFELKI */
         .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; margin-bottom: 60px; }
         .about-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .mini-tile { background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; text-align: left; transition: 0.3s; display: flex; flex-direction: column; gap: 8px; }
-        
-        /* POPRAWKA: PROSTE KAFELKI (BEZ ROTACJI) */
-        .mini-tile:hover { transform: translateY(-5px); border-color: var(--accent-yellow); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .mini-tile { background: #fff; padding: 20px; border: 1px solid #eee; text-align: left; display: flex; flex-direction: column; gap: 8px; }
         
         .mini-tile h4 { font-size: 0.95rem; font-weight: 700; color: var(--accent-navy); margin: 0; }
         .mini-tile p { font-size: 0.8rem; line-height: 1.4; margin: 0; color: var(--text-light); }
 
         /* PERSONY */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-        .persona { background: var(--bg-cream); padding: 35px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center; }
+        .persona { background: var(--bg-cream); padding: 35px; border: 1px solid rgba(0,0,0,0.03); text-align: center; }
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
 
         /* OFERTA */
@@ -253,6 +317,18 @@
         .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: auto; }
         .back-to-top.visible { opacity: 1; }
         
+        /* Mobile Sticky CTA */
+        .floating-contact { display: none; }
+        @media (max-width: 900px) {
+            .floating-contact {
+                display: block; position: fixed; bottom: 90px; right: 30px;
+                background: var(--accent-yellow); color: var(--text-main);
+                padding: 10px 20px; border-radius: 50px; font-weight: 800;
+                box-shadow: var(--shadow); z-index: 998; font-size: 0.8rem;
+                border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            }
+        }
+
         .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
@@ -330,7 +406,7 @@
         <div class="container about-box">
             <div>
                 <h2>Nie jestem typową "panią od angielskiego".</h2>
-                <p>Wierzę, że język to narzędzie do komunikacji, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się <span class="marker">swobodnie</span> w podróży i w pracy.</p>
+                <p>Wierzę, że język to <span class="point">narzędzie do komunikacji</span>, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się <span class="marker">swobodnie</span> w podróży i w pracy.</p>
                 <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się <span class="marker">popełniać błędów</span>.</p>
                 <div class="signature" style="font-family: 'Caveat', cursive; font-size: 2rem; color: var(--accent-navy); margin-top: 20px; font-weight: 400;">Do zobaczenia na lekcji!</div>
             </div>
@@ -540,6 +616,8 @@
     <a href="https://wa.me/48732682619" class="floating-btn whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg></a>
     <a href="#navbar" class="floating-btn back-to-top" id="backToTop" title="Wróć na górę">↑</a>
     
+    <a href="#kontakt" class="floating-contact">Napisz do mnie</a>
+
     <div class="cookie-banner" id="cookieBanner">
         <span>Ta strona używa ciasteczek. <a href="/privacy.html" style="text-decoration:underline; color:#fff;">Dowiedz się więcej</a>.</span>
         <button class="cookie-btn" onclick="acceptCookies()">OK</button>
